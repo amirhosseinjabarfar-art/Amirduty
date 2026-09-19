@@ -1,28 +1,15 @@
-```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-  <head>
-    <meta charset="UTF-8">
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-        >
-        <title>امیر دیوتی | مسابقات کالاف</title>
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-          >
-          <link
-            rel="preconnect"
-            href="https://fonts.googleapis.com"
-            crossorigin
-            >
-            <link
-              href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
-              rel="stylesheet"
-              >
-              <style>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>امیر دیوتی | مسابقات کالاف</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
 *{
     box-sizing:border-box;
     margin:0;
@@ -36,16 +23,8 @@ html{
 body{
     font-family:"Vazirmatn",sans-serif;
     background:
-        radial-gradient(
-            circle at 10% 10%,
-            rgba(0,255,255,.10),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(255,0,170,.10),
-            transparent 30%
-        ),
+        radial-gradient(circle at 10% 10%,rgba(0,255,255,.10),transparent 30%),
+        radial-gradient(circle at 90% 20%,rgba(255,0,170,.10),transparent 30%),
         #05070d;
     color:#fff;
     min-height:100vh;
@@ -68,74 +47,39 @@ body{
 }
 
 @keyframes floatParticle{
-
-    0%{
-        transform:translateY(110vh);
-        opacity:0;
-    }
-
-    15%{
-        opacity:.8;
-    }
-
-    85%{
-        opacity:.8;
-    }
-
-    100%{
-        transform:translateY(-20vh);
-        opacity:0;
-    }
-
+    0%{transform:translateY(110vh);opacity:0}
+    15%{opacity:.8}
+    85%{opacity:.8}
+    100%{transform:translateY(-20vh);opacity:0}
 }
 
 header{
     position:sticky;
     top:0;
     z-index:1000;
-
-    background:
-        rgba(5,7,13,.82);
-
+    background:rgba(5,7,13,.82);
     backdrop-filter:blur(18px);
-
-    border-bottom:
-        1px solid rgba(0,255,255,.18);
-
-    box-shadow:
-        0 0 30px rgba(0,255,255,.08);
+    border-bottom:1px solid rgba(0,255,255,.18);
+    box-shadow:0 0 30px rgba(0,255,255,.08);
 }
 
 .header-inner{
     max-width:1250px;
     margin:auto;
-
     min-height:76px;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     padding:12px 20px;
 }
 
 .logo{
     font-size:24px;
     font-weight:900;
-
-    background:
-        linear-gradient(
-            90deg,
-            #00ffff,
-            #fff,
-            #ff00aa
-        );
-
+    background:linear-gradient(90deg,#00ffff,#fff,#ff00aa);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-
-    text-shadow:
-        0 0 20px rgba(0,255,255,.25);
+    text-shadow:0 0 20px rgba(0,255,255,.25);
 }
 
 .nav-links{
@@ -149,13 +93,10 @@ header{
     border:0;
     color:#bbb;
     background:transparent;
-
     font-family:inherit;
     font-weight:700;
-
     padding:10px 14px;
     border-radius:12px;
-
     cursor:pointer;
     transition:.25s;
 }
@@ -163,16 +104,12 @@ header{
 .nav-links button:hover,
 .nav-links button.active{
     color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,255,255,.13),
-            rgba(255,0,170,.10)
-        );
-
-    box-shadow:
-        0 0 18px rgba(0,255,255,.12);
+    background:linear-gradient(
+        135deg,
+        rgba(0,255,255,.13),
+        rgba(255,0,170,.10)
+    );
+    box-shadow:0 0 18px rgba(0,255,255,.12);
 }
 
 main{
@@ -194,27 +131,22 @@ main{
 }
 
 @keyframes pageIn{
-
     from{
         opacity:0;
         transform:translateY(15px);
     }
-
     to{
         opacity:1;
         transform:translateY(0);
     }
-
 }
 
 .hero{
     min-height:600px;
-
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-
     position:relative;
 }
 
@@ -224,80 +156,50 @@ main{
 
 .hero-badge{
     display:inline-block;
-
     padding:9px 18px;
     border-radius:999px;
-
     color:#00ffff;
-
-    border:
-        1px solid rgba(0,255,255,.35);
-
-    background:
-        rgba(0,255,255,.06);
-
+    border:1px solid rgba(0,255,255,.35);
+    background:rgba(0,255,255,.06);
     margin-bottom:22px;
-
     animation:pulseBadge 2s infinite;
 }
 
 @keyframes pulseBadge{
-
-    0%,100%{
-        box-shadow:0 0 0 rgba(0,255,255,0);
-    }
-
-    50%{
-        box-shadow:0 0 25px rgba(0,255,255,.20);
-    }
-
+    0%,100%{box-shadow:0 0 0 rgba(0,255,255,0)}
+    50%{box-shadow:0 0 25px rgba(0,255,255,.20)}
 }
 
 .hero h1{
-    font-size:
-        clamp(52px,10vw,110px);
-
+    font-size:clamp(52px,10vw,110px);
     font-weight:900;
-
     line-height:1;
-
-    background:
-        linear-gradient(
-            90deg,
-            #00ffff,
-            #fff,
-            #ff00a8,
-            #7c5cff
-        );
-
+    background:linear-gradient(
+        90deg,
+        #00ffff,
+        #fff,
+        #ff00a8,
+        #7c5cff
+    );
     background-size:300% auto;
-
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-
     animation:
         gradientText 5s linear infinite,
         heroGlow 2.5s ease-in-out infinite;
 }
 
 @keyframes gradientText{
-
-    to{
-        background-position:300% center;
-    }
-
+    to{background-position:300% center}
 }
 
 @keyframes heroGlow{
-
     0%,100%{
         filter:drop-shadow(0 0 5px rgba(0,255,255,.2));
     }
-
     50%{
         filter:drop-shadow(0 0 28px rgba(0,255,255,.5));
     }
-
 }
 
 .hero p{
@@ -318,26 +220,13 @@ main{
 .btn{
     border:0;
     cursor:pointer;
-
     font-family:inherit;
     font-weight:800;
-
     color:#031014;
-
     padding:13px 22px;
-
     border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #00ffff,
-            #00ffae
-        );
-
-    box-shadow:
-        0 0 20px rgba(0,255,255,.18);
-
+    background:linear-gradient(135deg,#00ffff,#00ffae);
+    box-shadow:0 0 20px rgba(0,255,255,.18);
     transition:
         transform .2s,
         box-shadow .2s,
@@ -346,22 +235,17 @@ main{
 
 .btn:hover{
     transform:translateY(-3px);
-
-    box-shadow:
-        0 8px 30px rgba(0,255,255,.28);
-
+    box-shadow:0 8px 30px rgba(0,255,255,.28);
     filter:brightness(1.08);
 }
 
 .btn.secondary{
     color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,0,170,.85),
-            rgba(124,92,255,.85)
-        );
+    background:linear-gradient(
+        135deg,
+        rgba(255,0,170,.85),
+        rgba(124,92,255,.85)
+    );
 }
 
 .section-title{
@@ -372,15 +256,7 @@ main{
 .section-title h2{
     font-size:36px;
     font-weight:900;
-
-    background:
-        linear-gradient(
-            90deg,
-            #00ffff,
-            #fff,
-            #ff00a8
-        );
-
+    background:linear-gradient(90deg,#00ffff,#fff,#ff00a8);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -392,71 +268,48 @@ main{
 
 .rooms{
     display:grid;
-    grid-template-columns:
-        repeat(auto-fit,minmax(280px,1fr));
-
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:20px;
 }
 
 .room{
     position:relative;
-
     padding:22px;
-
     border-radius:22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,23,36,.94),
-            rgba(8,11,20,.94)
-        );
-
-    border:
-        1px solid rgba(0,255,255,.13);
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.3);
-
+    background:linear-gradient(
+        145deg,
+        rgba(18,23,36,.94),
+        rgba(8,11,20,.94)
+    );
+    border:1px solid rgba(0,255,255,.13);
+    box-shadow:0 15px 45px rgba(0,0,0,.3);
     overflow:hidden;
-
     transition:.3s;
 }
 
 .room::before{
     content:"";
     position:absolute;
-
     width:180px;
     height:180px;
-
     border-radius:50%;
-
     background:#00ffff;
-
     opacity:.04;
-
     top:-80px;
     right:-70px;
-
     filter:blur(25px);
 }
 
 .room:hover{
     transform:translateY(-6px);
-
-    border-color:
-        rgba(0,255,255,.38);
-
-    box-shadow:
-        0 15px 45px rgba(0,255,255,.12);
+    border-color:rgba(0,255,255,.38);
+    box-shadow:0 15px 45px rgba(0,255,255,.12);
 }
 
 .room-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     margin-bottom:20px;
 }
 
@@ -467,20 +320,12 @@ main{
 .room-number{
     width:43px;
     height:43px;
-
     display:grid;
     place-items:center;
-
     border-radius:13px;
-
     color:#00ffff;
-
-    border:
-        1px solid rgba(0,255,255,.3);
-
-    background:
-        rgba(0,255,255,.06);
-
+    border:1px solid rgba(0,255,255,.3);
+    background:rgba(0,255,255,.06);
     font-weight:900;
 }
 
@@ -493,13 +338,9 @@ main{
     display:flex;
     justify-content:space-between;
     gap:15px;
-
     padding:10px 12px;
-
     border-radius:10px;
-
-    background:
-        rgba(255,255,255,.035);
+    background:rgba(255,255,255,.035);
 }
 
 .info span{
@@ -523,18 +364,11 @@ main{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     margin-top:18px;
-
     padding:13px;
-
     border-radius:12px;
-
-    background:
-        rgba(0,255,255,.045);
-
-    border:
-        1px solid rgba(0,255,255,.08);
+    background:rgba(0,255,255,.045);
+    border:1px solid rgba(0,255,255,.08);
 }
 
 .room-capacity span{
@@ -547,23 +381,13 @@ main{
 
 .capacity-complete{
     display:none;
-
     margin-top:10px;
-
     text-align:center;
-
     padding:10px;
-
     border-radius:10px;
-
     color:#ff557c;
-
-    background:
-        rgba(255,0,80,.08);
-
-    border:
-        1px solid rgba(255,0,80,.2);
-
+    background:rgba(255,0,80,.08);
+    border:1px solid rgba(255,0,80,.2);
     font-weight:800;
 }
 
@@ -588,6 +412,32 @@ main{
     padding:11px 10px;
 }
 
+/* =========================
+   DUEL ROOM STYLE
+========================= */
+
+.duel-room .room-capacity{
+    display:block;
+    text-align:center;
+}
+
+.duel-room .room-capacity strong{
+    display:block;
+    line-height:1.9;
+}
+
+.duel-badge{
+    display:inline-block;
+    margin-bottom:14px;
+    padding:6px 12px;
+    border-radius:999px;
+    color:#00ffff;
+    background:rgba(0,255,255,.06);
+    border:1px solid rgba(0,255,255,.2);
+    font-size:12px;
+    font-weight:800;
+}
+
 .room-page{
     max-width:1000px;
     margin:auto;
@@ -595,15 +445,10 @@ main{
 
 .room-hero{
     position:relative;
-
     padding:55px 25px;
-
     border-radius:28px;
-
     text-align:center;
-
     overflow:hidden;
-
     background:
         radial-gradient(
             circle at center,
@@ -615,34 +460,25 @@ main{
             rgba(17,24,38,.95),
             rgba(7,10,18,.95)
         );
-
-    border:
-        1px solid rgba(0,255,255,.2);
-
-    box-shadow:
-        0 0 50px rgba(0,255,255,.08);
+    border:1px solid rgba(0,255,255,.2);
+    box-shadow:0 0 50px rgba(0,255,255,.08);
 }
 
 .room-icon{
     font-size:55px;
     margin-bottom:15px;
-
-    animation:
-        iconFloat 2.5s ease-in-out infinite;
+    animation:iconFloat 2.5s ease-in-out infinite;
 }
 
 @keyframes iconFloat{
-
     50%{
         transform:translateY(-8px) scale(1.04);
     }
-
 }
 
 .room-hero h1{
     font-size:45px;
     font-weight:900;
-
     color:#fff;
 }
 
@@ -653,25 +489,16 @@ main{
 
 .room-meta{
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:12px;
-
     margin-top:35px;
 }
 
 .meta-box{
     padding:15px;
-
     border-radius:14px;
-
-    background:
-        rgba(255,255,255,.04);
-
-    border:
-        1px solid rgba(255,255,255,.07);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.07);
 }
 
 .meta-box span{
@@ -687,19 +514,11 @@ main{
 
 .rules-card{
     margin-top:22px;
-
     padding:25px;
-
     border-radius:20px;
-
-    background:
-        rgba(12,16,27,.9);
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.2);
+    background:rgba(12,16,27,.9);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 .rules-card h2{
@@ -732,15 +551,7 @@ main{
 
 .store-head h2{
     font-size:38px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #00ffff,
-            #fff,
-            #ff00a8
-        );
-
+    background:linear-gradient(90deg,#00ffff,#fff,#ff00a8);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -751,66 +562,44 @@ main{
 }
 
 .store-title{
-    margin:
-        35px 0 20px;
-
+    margin:35px 0 20px;
     font-size:25px;
 }
 
 .products{
     display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(190px,1fr));
-
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
     gap:18px;
 }
 
 .product{
     padding:16px;
-
     border-radius:20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(17,23,35,.96),
-            rgba(8,11,19,.96)
-        );
-
-    border:
-        1px solid rgba(0,255,255,.10);
-
+    background:linear-gradient(
+        145deg,
+        rgba(17,23,35,.96),
+        rgba(8,11,19,.96)
+    );
+    border:1px solid rgba(0,255,255,.10);
     text-align:center;
-
     transition:.3s;
 }
 
 .product:hover{
-    transform:
-        translateY(-6px)
-        scale(1.015);
-
-    border-color:
-        rgba(0,255,255,.35);
-
-    box-shadow:
-        0 15px 35px rgba(0,255,255,.08);
+    transform:translateY(-6px) scale(1.015);
+    border-color:rgba(0,255,255,.35);
+    box-shadow:0 15px 35px rgba(0,255,255,.08);
 }
 
 .product.offer{
-    border-color:
-        rgba(255,170,0,.16);
+    border-color:rgba(255,170,0,.16);
 }
 
 .product img{
     width:100%;
     height:145px;
-
     object-fit:contain;
-
     border-radius:14px;
-
     margin-bottom:10px;
 }
 
@@ -835,23 +624,15 @@ main{
 
 .support-card{
     padding:40px 25px;
-
     text-align:center;
-
     border-radius:25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(17,23,36,.95),
-            rgba(8,11,19,.95)
-        );
-
-    border:
-        1px solid rgba(0,255,255,.15);
-
-    box-shadow:
-        0 15px 50px rgba(0,0,0,.3);
+    background:linear-gradient(
+        145deg,
+        rgba(17,23,36,.95),
+        rgba(8,11,19,.95)
+    );
+    border:1px solid rgba(0,255,255,.15);
+    box-shadow:0 15px 50px rgba(0,0,0,.3);
 }
 
 .support-icon{
@@ -871,38 +652,21 @@ main{
 
 .rubika{
     display:inline-block;
-
     color:#fff;
     text-decoration:none;
-
     padding:13px 25px;
-
     border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #008cff,
-            #0066ff
-        );
-
-    box-shadow:
-        0 0 25px rgba(0,130,255,.18);
-
+    background:linear-gradient(135deg,#008cff,#0066ff);
+    box-shadow:0 0 25px rgba(0,130,255,.18);
     font-weight:800;
 }
 
 footer{
     position:relative;
     z-index:1;
-
     text-align:center;
-
     padding:25px 15px;
-
-    border-top:
-        1px solid rgba(255,255,255,.06);
-
+    border-top:1px solid rgba(255,255,255,.06);
     color:#666;
 }
 
@@ -910,22 +674,17 @@ footer strong{
     color:#00ffff;
 }
 
+/* ADMIN */
+
 #adminOverlay{
     position:fixed;
     inset:0;
-
     z-index:5000;
-
     display:none;
-
     align-items:center;
     justify-content:center;
-
     padding:20px;
-
-    background:
-        rgba(0,0,0,.78);
-
+    background:rgba(0,0,0,.78);
     backdrop-filter:blur(15px);
 }
 
@@ -935,50 +694,31 @@ footer strong{
 
 .admin-box{
     width:min(650px,100%);
-
     max-height:90vh;
-
     overflow:auto;
-
     padding:28px;
-
     border-radius:25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #111725,
-            #080b13
-        );
-
-    border:
-        1px solid rgba(0,255,255,.25);
-
-    box-shadow:
-        0 0 60px rgba(0,255,255,.12);
-
+    background:linear-gradient(145deg,#111725,#080b13);
+    border:1px solid rgba(0,255,255,.25);
+    box-shadow:0 0 60px rgba(0,255,255,.12);
     animation:adminIn .35s ease;
 }
 
 @keyframes adminIn{
-
     from{
         opacity:0;
         transform:scale(.92) translateY(20px);
     }
-
     to{
         opacity:1;
         transform:scale(1) translateY(0);
     }
-
 }
 
 .admin-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     margin-bottom:25px;
 }
 
@@ -990,14 +730,10 @@ footer strong{
     border:0;
     width:38px;
     height:38px;
-
     border-radius:10px;
-
     cursor:pointer;
-
     color:#fff;
     background:#ff315b;
-
     font-size:20px;
 }
 
@@ -1007,25 +743,14 @@ footer strong{
 
 .admin-input{
     width:100%;
-
     padding:14px;
-
     margin:15px 0;
-
     border-radius:12px;
-
-    border:
-        1px solid rgba(255,255,255,.1);
-
+    border:1px solid rgba(255,255,255,.1);
     outline:none;
-
-    background:
-        rgba(255,255,255,.05);
-
+    background:rgba(255,255,255,.05);
     color:#fff;
-
     font-family:inherit;
-
     text-align:center;
 }
 
@@ -1055,15 +780,10 @@ footer strong{
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     gap:15px;
-
     padding:14px;
-
     border-radius:14px;
-
-    background:
-        rgba(255,255,255,.04);
+    background:rgba(255,255,255,.04);
 }
 
 .admin-room span{
@@ -1072,22 +792,13 @@ footer strong{
 
 .admin-room input{
     width:100px;
-
     padding:10px;
-
     border-radius:10px;
-
-    border:
-        1px solid rgba(0,255,255,.2);
-
+    border:1px solid rgba(0,255,255,.2);
     background:#080c14;
-
     color:#fff;
-
     font-family:inherit;
-
     text-align:center;
-
     font-size:18px;
 }
 
@@ -1111,19 +822,13 @@ footer strong{
 #roomTransition{
     position:fixed;
     inset:0;
-
     z-index:6000;
-
     pointer-events:none;
-
     opacity:0;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     background:#05070d;
-
     transition:.35s;
 }
 
@@ -1135,18 +840,14 @@ footer strong{
     font-size:25px;
     font-weight:900;
     color:#00ffff;
-
     animation:transitionPulse 1s infinite;
 }
 
 @keyframes transitionPulse{
-
     50%{
         transform:scale(1.05);
-        text-shadow:
-            0 0 25px #00ffff;
+        text-shadow:0 0 25px #00ffff;
     }
-
 }
 
 @media(max-width:800px){
@@ -1174,10 +875,8 @@ footer strong{
     }
 
     .room-meta{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
-
 }
 
 @media(max-width:520px){
@@ -1214,8 +913,7 @@ footer strong{
     }
 
     .products{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
         gap:10px;
     }
 
@@ -1239,1079 +937,1766 @@ footer strong{
         font-size:12px;
         padding:10px;
     }
-
 }
 
 .admin-access{
     position:fixed;
     left:12px;
     bottom:12px;
-
     z-index:1500;
-
     width:42px;
     height:42px;
-
     border-radius:50%;
-
-    border:
-        1px solid rgba(0,255,255,.18);
-
-    background:
-        rgba(5,10,18,.65);
-
+    border:1px solid rgba(0,255,255,.18);
+    background:rgba(5,10,18,.65);
     color:#777;
-
     cursor:pointer;
-
     opacity:.25;
-
     transition:.25s;
 }
 
 .admin-access:hover{
     opacity:1;
-
     color:#00ffff;
-
-    box-shadow:
-        0 0 20px rgba(0,255,255,.15);
+    box-shadow:0 0 20px rgba(0,255,255,.15);
 }
-
 </style>
-            </head>
-            <body>
-              <div id="particles"></div>
+</head>
 
-              <header>
-                <div class="header-inner">
-                  <div class="logo">
-                    امیر دیوتی
-                  </div>
-                  <nav class="nav-links">
-                    <button class="active" onclick="showPage('home',this)">
-                      خانه
-                    </button>
-                    <button onclick="showPage('rooms',this)">
-                      مسابقات
-                    </button>
-                    <button onclick="showPage('store',this)">
-                      فروشگاه CP
-                    </button>
-                    <button onclick="showPage('support',this)">
-                      پشتیبانی
-                    </button>
-                  </nav>
+<body>
+
+<div id="particles"></div>
+
+<header>
+    <div class="header-inner">
+
+        <div class="logo">
+            امیر دیوتی
+        </div>
+
+        <nav class="nav-links">
+
+            <button class="active" onclick="showPage('home',this)">
+                خانه
+            </button>
+
+            <button onclick="showPage('rooms',this)">
+                مسابقات
+            </button>
+
+            <button onclick="showPage('duelRooms',this)">
+                ⚔️ دوئل 1v1
+            </button>
+
+            <button onclick="showPage('store',this)">
+                فروشگاه CP
+            </button>
+
+            <button onclick="showPage('support',this)">
+                پشتیبانی
+            </button>
+
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                🔥 مسابقات کالاف دیوتی موبایل
+            </div>
+
+            <h1>
+                امیر دیوتی
+            </h1>
+
+            <p>
+                مسابقات جذاب Call of Duty Mobile،
+                روم‌های اختصاصی و فروشگاه CP
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="btn" onclick="showPage('rooms')">
+                    🎮 مشاهده مسابقات
+                </button>
+
+                <button class="btn secondary" onclick="showPage('store')">
+                    💎 فروشگاه CP
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NORMAL ROOMS -->
+<section id="rooms" class="page">
+
+    <div class="section-title">
+
+        <h2>
+            🎮 مسابقات امیر دیوتی
+        </h2>
+
+        <p>
+            روم مورد نظر خودت را انتخاب کن
+        </p>
+
+    </div>
+
+    <div class="rooms">
+
+        <!-- ROOM 1 -->
+        <div class="room" data-room-card="1">
+
+            <div class="room-top">
+                <h3>مولتی مچ ۱</h3>
+                <div class="room-number">1</div>
+            </div>
+
+            <div class="room-info">
+
+                <div class="info">
+                    <span>اطلاعات</span>
+                    <strong>
+                        جهت اطلاعات بیشتر و ارسال رسید به آیدی
+                        @amirduty75 در روبیکا پیام بدید .
+                    </strong>
                 </div>
-              </header>
 
-              <main>
+                <div class="info">
+                    <span>مبلغ ورودی</span>
+                    <strong class="price">
+                        ۳۰,۰۰۰ تومان
+                    </strong>
+                </div>
 
-                <section id="home" class="page active">
-                  <div class="hero">
-                    <div class="hero-content">
-                      <div class="hero-badge">
-                        🔥 مسابقات کالاف دیوتی موبایل
-                      </div>
-                      <h1>
-                        امیر دیوتی
-                      </h1>
-                      <p>
-                        مسابقات جذاب Call of Duty Mobile،
-                        روم‌های اختصاصی و فروشگاه CP
-                      </p>
-                      <div class="hero-buttons">
-                        <button class="btn" onclick="showPage('rooms')">
-                          🎮 مشاهده مسابقات
-                        </button>
-                        <button class="btn secondary" onclick="showPage('store')">
-                          💎 فروشگاه CP
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۶۰,۰۰۰ تومان برای ۲ نفر
+                    </strong>
+                </div>
 
-                <section id="rooms" class="page">
-                  <div class="section-title">
-                    <h2>
-                      🎮 مسابقات امیر دیوتی
-                    </h2>
-                    <p>
-                      روم مورد نظر خودت را انتخاب کن
-                    </p>
-                  </div>
+                <div class="info">
+                    <span>تعداد</span>
+                    <strong>۶ نفر</strong>
+                </div>
 
-                  <div class="rooms">
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>فقط اسنایپ</strong>
+                </div>
 
-                    <!-- ROOM 1 -->
-                    <div class="room" data-room-card="1">
-                      <div class="room-top">
-                        <h3>مولتی مچ ۱</h3>
-                        <div class="room-number">1</div>
-                      </div>
+            </div>
 
-                      <div class="room-info">
-                        <div class="info">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="info">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۳۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="info">
-                          <span>جایزه</span>
-                          <strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>تعداد</span>
-                          <strong>۶ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>نوع</span>
-                          <strong>فقط اسنایپ</strong>
-                        </div>
-                      </div>
+            <div class="room-capacity">
+                <span>ثبت‌نامی‌ها</span>
+                <strong data-room-count="1">۰ / ۶ نفر</strong>
+            </div>
 
-                      <div class="room-capacity">
-                        <span>ثبت‌نامی‌ها</span>
-                        <strong data-room-count="1">۰ / ۶ نفر</strong>
-                      </div>
+            <div class="capacity-complete">
+                ظرفیت تکمیل
+            </div>
 
-                      <div class="capacity-complete" data-complete="1">
-                        ظرفیت تکمیل
-                      </div>
+            <p class="room-description">
+                Call of Duty Mobile • Crash • Search & Destroy
+            </p>
 
-                      <p class="room-description">
-                        Call of Duty Mobile • Crash • Search & Destroy
-                      </p>
+            <div class="room-buttons">
 
-                      <div class="room-buttons">
-                        <button class="btn" onclick="openRoom('room1')">
-                          مشاهده روم
-                        </button>
-                        <button class="btn secondary" onclick="openForm()" data-register="1">
-                          ثبت اطلاعات
-                        </button>
-                      </div>
-                    </div>
+                <button class="btn" onclick="openRoom('room1')">
+                    مشاهده روم
+                </button>
 
-                    <!-- ROOM 2 -->
-                    <div class="room" data-room-card="2">
-                      <div class="room-top">
-                        <h3>مولتی مچ ۲</h3>
-                        <div class="room-number">2</div>
-                      </div>
+                <button class="btn secondary" onclick="openSupport()">
+                    پشتیبانی
+                </button>
 
-                      <div class="room-info">
-                        <div class="info">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="info">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۳۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="info">
-                          <span>جایزه</span>
-                          <strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>تعداد</span>
-                          <strong>۶ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>نوع</span>
-                          <strong>فقط اسنایپ</strong>
-                        </div>
-                      </div>
+            </div>
 
-                      <div class="room-capacity">
-                        <span>ثبت‌نامی‌ها</span>
-                        <strong data-room-count="2">۰ / ۶ نفر</strong>
-                      </div>
+        </div>
 
-                      <div class="capacity-complete" data-complete="2">
-                        ظرفیت تکمیل
-                      </div>
 
-                      <p class="room-description">
-                        Call of Duty Mobile • Crash • Search & Destroy
-                      </p>
+        <!-- ROOM 2 -->
+        <div class="room" data-room-card="2">
 
-                      <div class="room-buttons">
-                        <button class="btn" onclick="openRoom('room2')">
-                          مشاهده روم
-                        </button>
-                        <button class="btn secondary" onclick="openForm()" data-register="2">
-                          ثبت اطلاعات
-                        </button>
-                      </div>
-                    </div>
+            <div class="room-top">
+                <h3>مولتی مچ ۲</h3>
+                <div class="room-number">2</div>
+            </div>
 
-                    <!-- ROOM 3 -->
-                    <div class="room" data-room-card="3">
-                      <div class="room-top">
-                        <h3>مولتی مچ ۳</h3>
-                        <div class="room-number">3</div>
-                      </div>
+            <div class="room-info">
 
-                      <div class="room-info">
-                        <div class="info">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="info">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۳۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="info">
-                          <span>جایزه</span>
-                          <strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>تعداد</span>
-                          <strong>۶ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>نوع</span>
-                          <strong>فقط اسنایپ</strong>
-                        </div>
-                      </div>
+                <div class="info">
+                    <span>اطلاعات</span>
+                    <strong>
+                        جهت اطلاعات بیشتر و ارسال رسید به آیدی
+                        @amirduty75 در روبیکا پیام بدید .
+                    </strong>
+                </div>
 
-                      <div class="room-capacity">
-                        <span>ثبت‌نامی‌ها</span>
-                        <strong data-room-count="3">۰ / ۶ نفر</strong>
-                      </div>
+                <div class="info">
+                    <span>مبلغ ورودی</span>
+                    <strong class="price">
+                        ۳۰,۰۰۰ تومان
+                    </strong>
+                </div>
 
-                      <div class="capacity-complete" data-complete="3">
-                        ظرفیت تکمیل
-                      </div>
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۶۰,۰۰۰ تومان برای ۲ نفر
+                    </strong>
+                </div>
 
-                      <p class="room-description">
-                        Call of Duty Mobile • Crash • Search & Destroy
-                      </p>
+                <div class="info">
+                    <span>تعداد</span>
+                    <strong>۶ نفر</strong>
+                </div>
 
-                      <div class="room-buttons">
-                        <button class="btn" onclick="openRoom('room3')">
-                          مشاهده روم
-                        </button>
-                        <button class="btn secondary" onclick="openForm()" data-register="3">
-                          ثبت اطلاعات
-                        </button>
-                      </div>
-                    </div>
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>فقط اسنایپ</strong>
+                </div>
 
-                    <!-- ROOM 4 -->
-                    <div class="room" data-room-card="4">
-                      <div class="room-top">
-                        <h3>مولتی مچ ۴</h3>
-                        <div class="room-number">4</div>
-                      </div>
+            </div>
 
-                      <div class="room-info">
-                        <div class="info">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="info">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۳۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="info">
-                          <span>جایزه</span>
-                          <strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>تعداد</span>
-                          <strong>۶ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>نوع</span>
-                          <strong>فقط اسنایپ</strong>
-                        </div>
-                      </div>
+            <div class="room-capacity">
+                <span>ثبت‌نامی‌ها</span>
+                <strong data-room-count="2">۰ / ۶ نفر</strong>
+            </div>
 
-                      <div class="room-capacity">
-                        <span>ثبت‌نامی‌ها</span>
-                        <strong data-room-count="4">۰ / ۶ نفر</strong>
-                      </div>
+            <div class="capacity-complete">
+                ظرفیت تکمیل
+            </div>
 
-                      <div class="capacity-complete" data-complete="4">
-                        ظرفیت تکمیل
-                      </div>
+            <p class="room-description">
+                Call of Duty Mobile • Crash • Search & Destroy
+            </p>
 
-                      <p class="room-description">
-                        Call of Duty Mobile • Crash • Search & Destroy
-                      </p>
+            <div class="room-buttons">
 
-                      <div class="room-buttons">
-                        <button class="btn" onclick="openRoom('room4')">
-                          مشاهده روم
-                        </button>
-                        <button class="btn secondary" onclick="openForm()" data-register="4">
-                          ثبت اطلاعات
-                        </button>
-                      </div>
-                    </div>
+                <button class="btn" onclick="openRoom('room2')">
+                    مشاهده روم
+                </button>
 
-                    <!-- ROOM 5 -->
-                    <div class="room" data-room-card="5">
-                      <div class="room-top">
-                        <h3>مولتی مچ ۵</h3>
-                        <div class="room-number">5</div>
-                      </div>
+                <button class="btn secondary" onclick="openSupport()">
+                    پشتیبانی
+                </button>
 
-                      <div class="room-info">
-                        <div class="info">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="info">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۵۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="info">
-                          <span>جایزه</span>
-                          <strong class="prize">۱۰۰,۰۰۰ تومان برای ۱ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>تعداد</span>
-                          <strong>۶ نفر</strong>
-                        </div>
-                        <div class="info">
-                          <span>نوع</span>
-                          <strong>گان آزاد</strong>
-                        </div>
-                      </div>
+            </div>
 
-                      <div class="room-capacity">
-                        <span>ثبت‌نامی‌ها</span>
-                        <strong data-room-count="5">۰ / ۶ نفر</strong>
-                      </div>
+        </div>
 
-                      <div class="capacity-complete" data-complete="5">
-                        ظرفیت تکمیل
-                      </div>
 
-                      <p class="room-description">
-                        Call of Duty Mobile • Crash • Search & Destroy
-                      </p>
+        <!-- ROOM 3 -->
+        <div class="room" data-room-card="3">
 
-                      <div class="room-buttons">
-                        <button class="btn" onclick="openRoom('room5')">
-                          مشاهده روم
-                        </button>
-                        <button class="btn secondary" onclick="openForm()" data-register="5">
-                          ثبت اطلاعات
-                        </button>
-                      </div>
-                    </div>
+            <div class="room-top">
+                <h3>مولتی مچ ۳</h3>
+                <div class="room-number">3</div>
+            </div>
 
-                  </div>
-                </section>
+            <div class="room-info">
 
-                <!-- ROOM 1 -->
-                <section id="room1" class="page">
-                  <div class="room-page">
-                    <div class="room-hero">
-                      <div class="room-icon">🎯</div>
-                      <h1>مولتی مچ ۱</h1>
-                      <p>فقط اسنایپ ولا غیر</p>
+                <div class="info">
+                    <span>اطلاعات</span>
+                    <strong>
+                        جهت اطلاعات بیشتر و ارسال رسید به آیدی
+                        @amirduty75 در روبیکا پیام بدید .
+                    </strong>
+                </div>
 
-                      <div class="room-meta">
-                        <div class="meta-box">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۳۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>جایزه</span>
-                          <strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
-                        </div>
-                      </div>
-                    </div>
+                <div class="info">
+                    <span>مبلغ ورودی</span>
+                    <strong class="price">
+                        ۳۰,۰۰۰ تومان
+                    </strong>
+                </div>
 
-                    <div class="rules-card">
-                      <h2>🎮 اطلاعات روم</h2>
-                      <div class="rules">
-                        بازی: Call of Duty Mobile
-                        مپ: Crash
-                        مود: Search & Destroy
-                        تعداد بازیکنان: ۶ نفر
-                        بازیکنان باید مپ را از قبل دانلود کرده باشند.
-                        حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
-                      </div>
-                    </div>
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۶۰,۰۰۰ تومان برای ۲ نفر
+                    </strong>
+                </div>
 
-                    <div class="rules-card">
-                      <h2>🚫 قوانین کامل روم</h2>
-                      <div class="rules">
-                        فقط اسنایپ ولا غیر: مود سرچ اند دیستروی، استفاده از اسنایپ‌های نیمه اتوماتیک (رگباری) از جمله (XPR 50, M21 EBR, SVD) و اسنایپ‌های خشاب بمبی از جمله (NA 45, Rytec AMR) ممنوع می‌باشد.
-                        استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
-                        موارد بن (ممنوع) در بازی استفاده از این موارد باعث عدم دریافت جایزه و جریمه می‌شود:
-                        سنسورها: (Heartbeat sensor) (trip sensor)
-                        دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
-                        اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
-                        بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
-                      </div>
-                    </div>
+                <div class="info">
+                    <span>تعداد</span>
+                    <strong>۶ نفر</strong>
+                </div>
 
-                    <div class="rules-card">
-                      <h2>📋 ثبت اطلاعات</h2>
-                      <div class="notice">
-                        برای ثبت اطلاعات این روم از فرم ثبت اطلاعات استفاده کنید.
-                      </div>
-                      <div class="room-actions">
-                        <button class="btn" onclick="openForm()">ورود به فرم</button>
-                        <button class="btn secondary" onclick="goHome()">بازگشت به مسابقات</button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>فقط اسنایپ</strong>
+                </div>
 
-                <!-- ROOM 2 -->
-                <section id="room2" class="page">
-                  <div class="room-page">
-                    <div class="room-hero">
-                      <div class="room-icon">🎯</div>
-                      <h1>مولتی مچ ۲</h1>
-                      <p>فقط اسنایپ ولا غیر</p>
+            </div>
 
-                      <div class="room-meta">
-                        <div class="meta-box">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۳۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>جایزه</span>
-                          <strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
-                        </div>
-                      </div>
+            <div class="room-capacity">
+                <span>ثبت‌نامی‌ها</span>
+                <strong data-room-count="3">۰ / ۶ نفر</strong>
+            </div>
+
+            <div class="capacity-complete">
+                ظرفیت تکمیل
+            </div>
+
+            <p class="room-description">
+                Call of Duty Mobile • Crash • Search & Destroy
+            </p>
+
+            <div class="room-buttons">
+
+                <button class="btn" onclick="openRoom('room3')">
+                    مشاهده روم
+                </button>
+
+                <button class="btn secondary" onclick="openSupport()">
+                    پشتیبانی
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ROOM 4 -->
+        <div class="room" data-room-card="4">
+
+            <div class="room-top">
+                <h3>مولتی مچ ۴</h3>
+                <div class="room-number">4</div>
+            </div>
+
+            <div class="room-info">
+
+                <div class="info">
+                    <span>اطلاعات</span>
+                    <strong>
+                        جهت اطلاعات بیشتر و ارسال رسید به آیدی
+                        @amirduty75 در روبیکا پیام بدید .
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>مبلغ ورودی</span>
+                    <strong class="price">
+                        ۳۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۶۰,۰۰۰ تومان برای ۲ نفر
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>تعداد</span>
+                    <strong>۶ نفر</strong>
+                </div>
+
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>فقط اسنایپ</strong>
+                </div>
+
+            </div>
+
+            <div class="room-capacity">
+                <span>ثبت‌نامی‌ها</span>
+                <strong data-room-count="4">۰ / ۶ نفر</strong>
+            </div>
+
+            <div class="capacity-complete">
+                ظرفیت تکمیل
+            </div>
+
+            <p class="room-description">
+                Call of Duty Mobile • Crash • Search & Destroy
+            </p>
+
+            <div class="room-buttons">
+
+                <button class="btn" onclick="openRoom('room4')">
+                    مشاهده روم
+                </button>
+
+                <button class="btn secondary" onclick="openSupport()">
+                    پشتیبانی
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ROOM 5 -->
+        <div class="room" data-room-card="5">
+
+            <div class="room-top">
+                <h3>مولتی مچ ۵</h3>
+                <div class="room-number">5</div>
+            </div>
+
+            <div class="room-info">
+
+                <div class="info">
+                    <span>اطلاعات</span>
+                    <strong>
+                        جهت اطلاعات بیشتر و ارسال رسید به آیدی
+                        @amirduty75 در روبیکا پیام بدید .
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>مبلغ ورودی</span>
+                    <strong class="price">
+                        ۵۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۱۰۰,۰۰۰ تومان برای ۱ نفر
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>تعداد</span>
+                    <strong>۶ نفر</strong>
+                </div>
+
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>گان آزاد</strong>
+                </div>
+
+            </div>
+
+            <div class="room-capacity">
+                <span>ثبت‌نامی‌ها</span>
+                <strong data-room-count="5">۰ / ۶ نفر</strong>
+            </div>
+
+            <div class="capacity-complete">
+                ظرفیت تکمیل
+            </div>
+
+            <p class="room-description">
+                Call of Duty Mobile • Crash • Search & Destroy
+            </p>
+
+            <div class="room-buttons">
+
+                <button class="btn" onclick="openRoom('room5')">
+                    مشاهده روم
+                </button>
+
+                <button class="btn secondary" onclick="openSupport()">
+                    پشتیبانی
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DUEL ROOMS
+========================= -->
+
+<section id="duelRooms" class="page">
+
+    <div class="section-title">
+
+        <h2>
+            ⚔️ روم‌های دوئل 1v1
+        </h2>
+
+        <p>
+            دوئل 1v1 همراه با دوستان
+        </p>
+
+    </div>
+
+    <div class="rooms">
+
+
+        <!-- DUEL 1 -->
+        <div class="room duel-room">
+
+            <div class="room-top">
+
+                <div>
+                    <div class="duel-badge">
+                        1v1
                     </div>
 
-                    <div class="rules-card">
-                      <h2>🎮 اطلاعات روم</h2>
-                      <div class="rules">
-                        بازی: Call of Duty Mobile
-                        مپ: Crash
-                        مود: Search & Destroy
-                        تعداد بازیکنان: ۶ نفر
-                        بازیکنان باید مپ را از قبل دانلود کرده باشند.
-                        حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
-                      </div>
-                    </div>
+                    <h3>
+                        دوئل 1v1 - ۱
+                    </h3>
+                </div>
 
-                    <div class="rules-card">
-                      <h2>🚫 قوانین کامل روم</h2>
-                      <div class="rules">
-                        فقط اسنایپ ولا غیر: مود سرچ اند دیستروی، استفاده از اسنایپ‌های نیمه اتوماتیک (رگباری) از جمله (XPR 50, M21 EBR, SVD) و اسنایپ‌های خشاب بمبی از جمله (NA 45, Rytec AMR) ممنوع می‌باشد.
-                        استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
-                        سنسورها: (Heartbeat sensor) (trip sensor)
-                        دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
-                        اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
-                        بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
-                      </div>
-                    </div>
+                <div class="room-number">
+                    1
+                </div>
 
-                    <div class="rules-card">
-                      <h2>📋 ثبت اطلاعات</h2>
-                      <div class="notice">
-                        برای ثبت اطلاعات این روم از فرم ثبت اطلاعات استفاده کنید.
-                      </div>
-                      <div class="room-actions">
-                        <button class="btn" onclick="openForm()">ورود به فرم</button>
-                        <button class="btn secondary" onclick="goHome()">بازگشت به مسابقات</button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+            </div>
 
-                <!-- ROOM 3 -->
-                <section id="room3" class="page">
-                  <div class="room-page">
-                    <div class="room-hero">
-                      <div class="room-icon">🎯</div>
-                      <h1>مولتی مچ ۳</h1>
-                      <p>فقط اسنایپ ولا غیر</p>
+            <div class="room-info">
 
-                      <div class="room-meta">
-                        <div class="meta-box">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۳۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>جایزه</span>
-                          <strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
-                        </div>
-                      </div>
-                    </div>
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>
+                        دوئل 1v1
+                    </strong>
+                </div>
 
-                    <div class="rules-card">
-                      <h2>🎮 اطلاعات روم</h2>
-                      <div class="rules">
-                        بازی: Call of Duty Mobile
-                        مپ: Crash
-                        مود: Search & Destroy
-                        تعداد بازیکنان: ۶ نفر
-                        بازیکنان باید مپ را از قبل دانلود کرده باشند.
-                        حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
-                      </div>
-                    </div>
+                <div class="info">
+                    <span>ورودی</span>
+                    <strong class="price">
+                        ۵۰,۰۰۰ تومان
+                    </strong>
+                </div>
 
-                    <div class="rules-card">
-                      <h2>🚫 قوانین کامل روم</h2>
-                      <div class="rules">
-                        فقط اسنایپ ولا غیر: مود سرچ اند دیستروی، استفاده از اسنایپ‌های نیمه اتوماتیک (رگباری) از جمله (XPR 50, M21 EBR, SVD) و اسنایپ‌های خشاب بمبی از جمله (NA 45, Rytec AMR) ممنوع می‌باشد.
-                        استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
-                        سنسورها: (Heartbeat sensor) (trip sensor)
-                        دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
-                        اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
-                        بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
-                      </div>
-                    </div>
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۸۰,۰۰۰ تومان
+                    </strong>
+                </div>
 
-                    <div class="rules-card">
-                      <h2>📋 ثبت اطلاعات</h2>
-                      <div class="notice">
-                        برای ثبت اطلاعات این روم از فرم ثبت اطلاعات استفاده کنید.
-                      </div>
-                      <div class="room-actions">
-                        <button class="btn" onclick="openForm()">ورود به فرم</button>
-                        <button class="btn secondary" onclick="goHome()">بازگشت به مسابقات</button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+            </div>
 
-                <!-- ROOM 4 -->
-                <section id="room4" class="page">
-                  <div class="room-page">
-                    <div class="room-hero">
-                      <div class="room-icon">🎯</div>
-                      <h1>مولتی مچ ۴</h1>
-                      <p>فقط اسنایپ ولا غیر</p>
+            <p class="room-description">
+                دو نفره • 1v1 • همراه با دوستان
+            </p>
 
-                      <div class="room-meta">
-                        <div class="meta-box">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۳۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>جایزه</span>
-                          <strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
-                        </div>
-                      </div>
-                    </div>
+            <div class="room-capacity">
 
-                    <div class="rules-card">
-                      <h2>🎮 اطلاعات روم</h2>
-                      <div class="rules">
-                        بازی: Call of Duty Mobile
-                        مپ: Crash
-                        مود: Search & Destroy
-                        تعداد بازیکنان: ۶ نفر
-                        بازیکنان باید مپ را از قبل دانلود کرده باشند.
-                        حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
-                      </div>
-                    </div>
-
-                    <div class="rules-card">
-                      <h2>🚫 قوانین کامل روم</h2>
-                      <div class="rules">
-                        فقط اسنایپ ولا غیر: مود سرچ اند دیستروی، استفاده از اسنایپ‌های نیمه اتوماتیک (رگباری) از جمله (XPR 50, M21 EBR, SVD) و اسنایپ‌های خشاب بمبی از جمله (NA 45, Rytec AMR) ممنوع می‌باشد.
-                        استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
-                        سنسورها: (Heartbeat sensor) (trip sensor)
-                        دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
-                        اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
-                        بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
-                      </div>
-                    </div>
-
-                    <div class="rules-card">
-                      <h2>📋 ثبت اطلاعات</h2>
-                      <div class="notice">
-                        برای ثبت اطلاعات این روم از فرم ثبت اطلاعات استفاده کنید.
-                      </div>
-                      <div class="room-actions">
-                        <button class="btn" onclick="openForm()">ورود به فرم</button>
-                        <button class="btn secondary" onclick="goHome()">بازگشت به مسابقات</button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <!-- ROOM 5 -->
-                <section id="room5" class="page">
-                  <div class="room-page">
-                    <div class="room-hero">
-                      <div class="room-icon">🔥</div>
-                      <h1>مولتی مچ ۵</h1>
-                      <p>گان آزاد</p>
-
-                      <div class="room-meta">
-                        <div class="meta-box">
-                          <span>اطلاعات</span>
-                          <strong>جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>مبلغ ورودی</span>
-                          <strong class="price">۵۰,۰۰۰ تومان</strong>
-                        </div>
-                        <div class="meta-box">
-                          <span>جایزه</span>
-                          <strong class="prize">۱۰۰,۰۰۰ تومان برای ۱ نفر</strong>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="rules-card">
-                      <h2>🎮 اطلاعات روم</h2>
-                      <div class="rules">
-                        بازی: Call of Duty Mobile
-                        مپ: Crash
-                        مود: Search & Destroy
-                        تعداد بازیکنان: ۶ نفر
-                        نوع بازی: گان آزاد
-                        بازیکنان باید مپ را از قبل دانلود کرده باشند.
-                        حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
-                      </div>
-                    </div>
-
-                    <div class="rules-card">
-                      <h2>🚫 قوانین کامل روم ۵</h2>
-                      <div class="rules">
-                        مود سرچ اند دیستروی، استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
-                        سنسورها: (Heartbeat sensor) (trip sensor)
-                        دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
-                        اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
-                        بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
-                      </div>
-                    </div>
-
-                    <div class="rules-card">
-                      <h2>🔫 گان آزاد</h2>
-                      <div class="notice">
-                        در این روم محدودیت «فقط اسنایپ» وجود ندارد و بازیکنان می‌توانند از گان‌های مختلف استفاده کنند؛ سایر موارد ممنوع اعلام‌شده در قوانین همچنان پابرجاست.
-                      </div>
-                    </div>
-
-                    <div class="rules-card">
-                      <h2>📋 ثبت اطلاعات</h2>
-                      <div class="notice">
-                        برای ثبت اطلاعات این روم از فرم ثبت اطلاعات استفاده کنید.
-                      </div>
-                      <div class="room-actions">
-                        <button class="btn" onclick="openForm()">ورود به فرم</button>
-                        <button class="btn secondary" onclick="goHome()">بازگشت به مسابقات</button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <!-- STORE -->
-                <section id="store" class="page">
-                  <div class="store-head">
-                    <h2>💎 فروشگاه CP امیر دیوتی</h2>
-                    <p>محصولات CP و آفرهای ویژه کالاف دیوتی موبایل</p>
-                  </div>
-
-                  <h3 class="store-title">💎 محصولات CP</h3>
-
-                  <div class="products">
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-531mb.webp">
-                      <h3>80 CP</h3>
-                      <div class="product-price">209,000 تومان</div>
-                      <button class="btn" onclick="buyCP('80 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-GHLoE.webp">
-                      <h3>160 CP</h3>
-                      <div class="product-price">418,000 تومان</div>
-                      <button class="btn" onclick="buyCP('160 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-AnE9N.webp">
-                      <h3>240 CP</h3>
-                      <div class="product-price">627,000 تومان</div>
-                      <button class="btn" onclick="buyCP('240 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-ieQDJ.webp">
-                      <h3>320 CP</h3>
-                      <div class="product-price">836,000 تومان</div>
-                      <button class="btn" onclick="buyCP('320 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-w6hjI.webp">
-                      <h3>400 CP</h3>
-                      <div class="product-price">1,045,000 تومان</div>
-                      <button class="btn" onclick="buyCP('400 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-xbUag.webp">
-                      <h3>420 CP</h3>
-                      <div class="product-price">1,254,000 تومان</div>
-                      <button class="btn" onclick="buyCP('420 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-lXlWa.webp">
-                      <h3>480 CP</h3>
-                      <div class="product-price">1,254,000 تومان</div>
-                      <button class="btn" onclick="buyCP('480 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-yDGzB.webp">
-                      <h3>500 CP</h3>
-                      <div class="product-price">1,337,600 تومان</div>
-                      <button class="btn" onclick="buyCP('500 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-lctus.webp">
-                      <h3>560 CP</h3>
-                      <div class="product-price">1,463,000 تومان</div>
-                      <button class="btn" onclick="buyCP('560 CP')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-1z8KW.webp">
-                      <h3>580 CP فوری</h3>
-                      <div class="product-price">1,672,000 تومان</div>
-                      <button class="btn" onclick="buyCP('580 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-mt2yo.webp">
-                      <h3>660 CP فوری</h3>
-                      <div class="product-price">1,722,600 تومان</div>
-                      <button class="btn" onclick="buyCP('660 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-42W9G.webp">
-                      <h3>720 CP فوری</h3>
-                      <div class="product-price">1,772,100 تومان</div>
-                      <button class="btn" onclick="buyCP('720 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-2WdbK.webp">
-                      <h3>740 CP فوری</h3>
-                      <div class="product-price">1,818,300 تومان</div>
-                      <button class="btn" onclick="buyCP('740 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-1urd3.webp">
-                      <h3>880 CP فوری</h3>
-                      <div class="product-price">1,860,100 تومان</div>
-                      <button class="btn" onclick="buyCP('880 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-jOUep.webp">
-                      <h3>960 CP فوری</h3>
-                      <div class="product-price">1,901,900 تومان</div>
-                      <button class="btn" onclick="buyCP('960 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-8u6Qz.webp">
-                      <h3>1040 CP فوری</h3>
-                      <div class="product-price">2,048,200 تومان</div>
-                      <button class="btn" onclick="buyCP('1040 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-7VJVI.webp">
-                      <h3>1120 CP فوری</h3>
-                      <div class="product-price">2,257,200 تومان</div>
-                      <button class="btn" onclick="buyCP('1120 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-d5mLK.webp">
-                      <h3>1300 CP فوری</h3>
-                      <div class="product-price">2,758,800 تومان</div>
-                      <button class="btn" onclick="buyCP('1300 CP فوری')">خرید</button>
-                    </div>
-
-                    <div class="product">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-pFLiZ.webp">
-                      <h3>1760 CP فوری</h3>
-                      <div class="product-price">3,323,100 تومان</div>
-                      <button class="btn" onclick="buyCP('1760 CP فوری')">خرید</button>
-                    </div>
-                  </div>
-
-                  <h3 class="store-title">🔥 آفرهای ویژه کالاف</h3>
-
-                  <div class="products">
-                    <div class="product offer">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-531mb.webp">
-                      <h3>آفر 1 دلاری 80 سی پی</h3>
-                      <div class="product-price">247,000 تومان</div>
-                      <button class="btn" onclick="buyCP('آفر 1 دلاری 80 سی پی')">خرید</button>
-                    </div>
-
-                    <div class="product offer">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-vs1NI.webp">
-                      <h3>آفر 2 دلاری 400 سی پی</h3>
-                      <div class="product-price">380,000 تومان</div>
-                      <button class="btn" onclick="buyCP('آفر 2 دلاری 400 سی پی')">خرید</button>
-                    </div>
-
-                    <div class="product offer">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-Hedpo.webp">
-                      <h3>آفر 4 دلاری 800 سی پی</h3>
-                      <div class="product-price">760,000 تومان</div>
-                      <button class="btn" onclick="buyCP('آفر 4 دلاری 800 سی پی')">خرید</button>
-                    </div>
-
-                    <div class="product offer">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-XoBHL.webp">
-                      <h3>آفر 10 دلاری 2000 سی پی</h3>
-                      <div class="product-price">1,710,000 تومان</div>
-                      <button class="btn" onclick="buyCP('آفر 10 دلاری 2000 سی پی')">خرید</button>
-                    </div>
-
-                    <div class="product offer">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-4TFsq.webp">
-                      <h3>آفر Rebate کالاف</h3>
-                      <div class="product-price">640,000 تومان</div>
-                      <button class="btn" onclick="buyCP('آفر Rebate کالاف')">خرید</button>
-                    </div>
-
-                    <div class="product offer">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-xVp0V.webp">
-                      <h3>آفر لیمیت Outrider کالاف</h3>
-                      <div class="product-price">380,000 تومان</div>
-                      <button class="btn" onclick="buyCP('آفر لیمیت Outrider کالاف')">خرید</button>
-                    </div>
-
-                    <div class="product offer">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-hOMVp.webp">
-                      <h3>آفر گوست ریجن ایران و هند</h3>
-                      <div class="product-price">551,000 تومان</div>
-                      <button class="btn" onclick="buyCP('آفر گوست ریجن ایران و هند')">خرید</button>
-                    </div>
-
-                    <div class="product offer">
-                      <img src="https://cpbama.com/uploads/product/call-of-duty-cp-FGWm0.webp">
-                      <h3>آفر Supply Pass ماهانه 4 دلاری</h3>
-                      <div class="product-price">963,000 تومان</div>
-                      <button class="btn" onclick="buyCP('آفر Supply Pass ماهانه 4 دلاری')">خرید</button>
-                    </div>
-                  </div>
-
-                  <div class="rules-card">
-                    <h2>📌 قوانین و توضیحات CP</h2>
-                    <div class="rules">
-                      مدت زمان واریز سی پی های ریز بین 5 الی 30 دقیقه است و در روز های شلوغ ممکن است تا 3 ساعت هم طول بکشه.
-                      با توجه به محدودیت جدید اکتیویژن برای سی ‌پی ‌های زمانبر، مسئولیت هرگونه منفی یا صفر شدن سی ‌پی در اثر استفاده از این نوع سی ‌پی ‌ها، بر عهده مشتریه.
-                      تاکنون گزارشی مبنی بر منفی شدن سی ‌پی زمانبر دریافت نشده اما هیچ تضمینی ‌نمی‌توان برای عدم ‌وقوع این اتفاق در آینده ارائه داد.
-                      مدت زمان واریز سی پی های زمانبر بین 1 الی 10 روز می باشد.
-                      سی پی های فوری بسته های 2400 تا 10800 فوری در کمتر از 1 ساعت واریز میشه و دارای رسید گوگل پلی هستن.
-                      در صورتی که آفر یا محصول مورد نظر در اکانت شما موجود نباشد به همان مقدار مبلغ سی پی شارژ می شود.
-                    </div>
-                  </div>
-                </section>
-
-                <!-- SUPPORT -->
-                <section id="support" class="page">
-                  <div class="section-title">
-                    <h2>پشتیبانی امیر دیوتی</h2>
-                    <p>برای پیگیری سفارش‌ها و ارتباط با ما</p>
-                  </div>
-
-                  <div class="support">
-                    <div class="support-card">
-                      <div class="support-icon">💬</div>
-                      <h2>پشتیبانی</h2>
-                      <p>
-                        برای ارتباط با پشتیبانی از روبیکا استفاده کنید.
-                      </p>
-                      <a
-                        class="rubika"
-                        href="https://rubika.ir/amirtbpedit"
-                        target="_blank"
-                      >
-                        💬 @amirtbpedit
-                      </a>
-                    </div>
-                  </div>
-                </section>
-
-              </main>
-
-              <footer>
-                طراحی و توسعه توسط
                 <strong>
-                  امیر حسین جبارفر
+                    برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
                 </strong>
-              </footer>
 
-              <button
-                class="admin-access"
-                onclick="openAdminLogin()"
-                title="مدیریت"
-              >
-                ⚙
-              </button>
+            </div>
 
-              <div id="adminOverlay">
-                <div class="admin-box">
+            <div class="room-buttons">
 
-                  <div class="admin-head">
-                    <h2>⚙ پنل مدیریت</h2>
-                    <button
-                      class="close-admin"
-                      onclick="closeAdmin()"
-                    >
-                      ×
-                    </button>
-                  </div>
+                <button class="btn secondary" onclick="openSupport()">
+                    💬 پشتیبانی
+                </button>
 
-                  <div id="adminLogin">
-                    <p>
-                      برای ورود رمز مدیریت را وارد کنید.
-                    </p>
+            </div>
 
-                    <input
-                      id="adminPassword"
-                      class="admin-input"
-                      type="password"
-                      placeholder="رمز مدیریت"
-                    >
+        </div>
 
-                    <button
-                      class="btn"
-                      style="width:100%"
-                      onclick="loginAdmin()"
-                    >
-                      ورود به پنل
-                    </button>
 
-                    <div id="adminError"></div>
-                  </div>
+        <!-- DUEL 2 -->
+        <div class="room duel-room">
 
-                  <div id="adminContent">
+            <div class="room-top">
 
-                    <p style="color:#888;line-height:2;margin-bottom:18px">
-                      تعداد نمایش‌داده‌شده روم‌ها از سرور دریافت می‌شود و برای همه بازدیدکنندگان یکسان است.
-                    </p>
-
-                    <div class="admin-rooms">
-
-                      <div class="admin-room">
-                        <span>روم ۱</span>
-                        <input
-                          id="adminCount1"
-                          type="number"
-                          min="0"
-                          max="6"
-                          value="0"
-                        >
-                      </div>
-
-                      <div class="admin-room">
-                        <span>روم ۲</span>
-                        <input
-                          id="adminCount2"
-                          type="number"
-                          min="0"
-                          max="6"
-                          value="0"
-                        >
-                      </div>
-
-                      <div class="admin-room">
-                        <span>روم ۳</span>
-                        <input
-                          id="adminCount3"
-                          type="number"
-                          min="0"
-                          max="6"
-                          value="0"
-                        >
-                      </div>
-
-                      <div class="admin-room">
-                        <span>روم ۴</span>
-                        <input
-                          id="adminCount4"
-                          type="number"
-                          min="0"
-                          max="6"
-                          value="0"
-                        >
-                      </div>
-
-                      <div class="admin-room">
-                        <span>روم ۵</span>
-                        <input
-                          id="adminCount5"
-                          type="number"
-                          min="0"
-                          max="6"
-                          value="0"
-                        >
-                      </div>
-
+                <div>
+                    <div class="duel-badge">
+                        1v1
                     </div>
 
-                    <div class="admin-buttons">
-                      <button
-                        class="btn"
-                        onclick="saveAdminCounts()"
-                      >
-                        ذخیره تغییرات
-                      </button>
+                    <h3>
+                        دوئل 1v1 - ۲
+                    </h3>
+                </div>
 
-                      <button
-                        class="btn secondary"
-                        onclick="resetAdminCounts()"
-                      >
-                        صفر کردن
-                      </button>
+                <div class="room-number">
+                    2
+                </div>
+
+            </div>
+
+            <div class="room-info">
+
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>
+                        دوئل 1v1
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>ورودی</span>
+                    <strong class="price">
+                        ۵۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۸۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+            </div>
+
+            <p class="room-description">
+                دو نفره • 1v1 • همراه با دوستان
+            </p>
+
+            <div class="room-capacity">
+
+                <strong>
+                    برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+                </strong>
+
+            </div>
+
+            <div class="room-buttons">
+
+                <button class="btn secondary" onclick="openSupport()">
+                    💬 پشتیبانی
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DUEL 3 -->
+        <div class="room duel-room">
+
+            <div class="room-top">
+
+                <div>
+                    <div class="duel-badge">
+                        1v1
                     </div>
 
-                    <div id="adminStatus"></div>
-
-                  </div>
+                    <h3>
+                        دوئل 1v1 - ۳
+                    </h3>
                 </div>
-              </div>
 
-              <div id="roomTransition">
-                <div class="transition-text">
-                  در حال ورود به روم...
+                <div class="room-number">
+                    3
                 </div>
-              </div>
+
+            </div>
+
+            <div class="room-info">
+
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>
+                        دوئل 1v1
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>ورودی</span>
+                    <strong class="price">
+                        ۵۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۸۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+            </div>
+
+            <p class="room-description">
+                دو نفره • 1v1 • همراه با دوستان
+            </p>
+
+            <div class="room-capacity">
+
+                <strong>
+                    برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+                </strong>
+
+            </div>
+
+            <div class="room-buttons">
+
+                <button class="btn secondary" onclick="openSupport()">
+                    💬 پشتیبانی
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DUEL 4 -->
+        <div class="room duel-room">
+
+            <div class="room-top">
+
+                <div>
+                    <div class="duel-badge">
+                        1v1
+                    </div>
+
+                    <h3>
+                        دوئل 1v1 - ۴
+                    </h3>
+                </div>
+
+                <div class="room-number">
+                    4
+                </div>
+
+            </div>
+
+            <div class="room-info">
+
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>
+                        دوئل 1v1
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>ورودی</span>
+                    <strong class="price">
+                        ۵۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۸۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+            </div>
+
+            <p class="room-description">
+                دو نفره • 1v1 • همراه با دوستان
+            </p>
+
+            <div class="room-capacity">
+
+                <strong>
+                    برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+                </strong>
+
+            </div>
+
+            <div class="room-buttons">
+
+                <button class="btn secondary" onclick="openSupport()">
+                    💬 پشتیبانی
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DUEL 5 -->
+        <div class="room duel-room">
+
+            <div class="room-top">
+
+                <div>
+                    <div class="duel-badge">
+                        1v1
+                    </div>
+
+                    <h3>
+                        دوئل 1v1 - ۵
+                    </h3>
+                </div>
+
+                <div class="room-number">
+                    5
+                </div>
+
+            </div>
+
+            <div class="room-info">
+
+                <div class="info">
+                    <span>نوع</span>
+                    <strong>
+                        دوئل 1v1
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>ورودی</span>
+                    <strong class="price">
+                        ۵۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+                <div class="info">
+                    <span>جایزه</span>
+                    <strong class="prize">
+                        ۸۰,۰۰۰ تومان
+                    </strong>
+                </div>
+
+            </div>
+
+            <p class="room-description">
+                دو نفره • 1v1 • همراه با دوستان
+            </p>
+
+            <div class="room-capacity">
+
+                <strong>
+                    برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+                </strong>
+
+            </div>
+
+            <div class="room-buttons">
+
+                <button class="btn secondary" onclick="openSupport()">
+                    💬 پشتیبانی
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ROOM 1 -->
+<section id="room1" class="page">
+
+<div class="room-page">
+
+<div class="room-hero">
+
+<div class="room-icon">🎯</div>
+
+<h1>مولتی مچ ۱</h1>
+
+<p>فقط اسنایپ ولا غیر</p>
+
+<div class="room-meta">
+
+<div class="meta-box">
+<span>اطلاعات</span>
+<strong>
+جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .
+</strong>
+</div>
+
+<div class="meta-box">
+<span>مبلغ ورودی</span>
+<strong class="price">۳۰,۰۰۰ تومان</strong>
+</div>
+
+<div class="meta-box">
+<span>جایزه</span>
+<strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🎮 اطلاعات روم</h2>
+
+<div class="rules">
+بازی: Call of Duty Mobile
+مپ: Crash
+مود: Search & Destroy
+تعداد بازیکنان: ۶ نفر
+بازیکنان باید مپ را از قبل دانلود کرده باشند.
+حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🚫 قوانین کامل روم</h2>
+
+<div class="rules">
+فقط اسنایپ ولا غیر: مود سرچ اند دیستروی، استفاده از اسنایپ‌های نیمه اتوماتیک (رگباری) از جمله (XPR 50, M21 EBR, SVD) و اسنایپ‌های خشاب بمبی از جمله (NA 45, Rytec AMR) ممنوع می‌باشد.
+استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
+موارد بن (ممنوع) در بازی استفاده از این موارد باعث عدم دریافت جایزه و جریمه می‌شود:
+سنسورها: (Heartbeat sensor) (trip sensor)
+دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
+اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
+بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>📋 ثبت اطلاعات</h2>
+
+<div class="notice">
+برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+</div>
+
+<div class="room-actions">
+
+<button class="btn secondary" onclick="openSupport()">
+💬 پشتیبانی
+</button>
+
+<button class="btn" onclick="goHome()">
+بازگشت به مسابقات
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ROOM 2 -->
+<section id="room2" class="page">
+
+<div class="room-page">
+
+<div class="room-hero">
+
+<div class="room-icon">🎯</div>
+
+<h1>مولتی مچ ۲</h1>
+
+<p>فقط اسنایپ ولا غیر</p>
+
+<div class="room-meta">
+
+<div class="meta-box">
+<span>اطلاعات</span>
+<strong>
+جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .
+</strong>
+</div>
+
+<div class="meta-box">
+<span>مبلغ ورودی</span>
+<strong class="price">۳۰,۰۰۰ تومان</strong>
+</div>
+
+<div class="meta-box">
+<span>جایزه</span>
+<strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🎮 اطلاعات روم</h2>
+
+<div class="rules">
+بازی: Call of Duty Mobile
+مپ: Crash
+مود: Search & Destroy
+تعداد بازیکنان: ۶ نفر
+بازیکنان باید مپ را از قبل دانلود کرده باشند.
+حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🚫 قوانین کامل روم</h2>
+
+<div class="rules">
+فقط اسنایپ ولا غیر: مود سرچ اند دیستروی، استفاده از اسنایپ‌های نیمه اتوماتیک (رگباری) از جمله (XPR 50, M21 EBR, SVD) و اسنایپ‌های خشاب بمبی از جمله (NA 45, Rytec AMR) ممنوع می‌باشد.
+استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
+سنسورها: (Heartbeat sensor) (trip sensor)
+دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
+اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
+بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>📋 ثبت اطلاعات</h2>
+
+<div class="notice">
+برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+</div>
+
+<div class="room-actions">
+
+<button class="btn secondary" onclick="openSupport()">
+💬 پشتیبانی
+</button>
+
+<button class="btn" onclick="goHome()">
+بازگشت به مسابقات
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ROOM 3 -->
+<section id="room3" class="page">
+
+<div class="room-page">
+
+<div class="room-hero">
+
+<div class="room-icon">🎯</div>
+
+<h1>مولتی مچ ۳</h1>
+
+<p>فقط اسنایپ ولا غیر</p>
+
+<div class="room-meta">
+
+<div class="meta-box">
+<span>اطلاعات</span>
+<strong>
+جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .
+</strong>
+</div>
+
+<div class="meta-box">
+<span>مبلغ ورودی</span>
+<strong class="price">۳۰,۰۰۰ تومان</strong>
+</div>
+
+<div class="meta-box">
+<span>جایزه</span>
+<strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🎮 اطلاعات روم</h2>
+
+<div class="rules">
+بازی: Call of Duty Mobile
+مپ: Crash
+مود: Search & Destroy
+تعداد بازیکنان: ۶ نفر
+بازیکنان باید مپ را از قبل دانلود کرده باشند.
+حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🚫 قوانین کامل روم</h2>
+
+<div class="rules">
+فقط اسنایپ ولا غیر: مود سرچ اند دیستروی، استفاده از اسنایپ‌های نیمه اتوماتیک (رگباری) از جمله (XPR 50, M21 EBR, SVD) و اسنایپ‌های خشاب بمبی از جمله (NA 45, Rytec AMR) ممنوع می‌باشد.
+استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
+سنسورها: (Heartbeat sensor) (trip sensor)
+دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
+اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
+بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>📋 ثبت اطلاعات</h2>
+
+<div class="notice">
+برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+</div>
+
+<div class="room-actions">
+
+<button class="btn secondary" onclick="openSupport()">
+💬 پشتیبانی
+</button>
+
+<button class="btn" onclick="goHome()">
+بازگشت به مسابقات
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ROOM 4 -->
+<section id="room4" class="page">
+
+<div class="room-page">
+
+<div class="room-hero">
+
+<div class="room-icon">🎯</div>
+
+<h1>مولتی مچ ۴</h1>
+
+<p>فقط اسنایپ ولا غیر</p>
+
+<div class="room-meta">
+
+<div class="meta-box">
+<span>اطلاعات</span>
+<strong>
+جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .
+</strong>
+</div>
+
+<div class="meta-box">
+<span>مبلغ ورودی</span>
+<strong class="price">۳۰,۰۰۰ تومان</strong>
+</div>
+
+<div class="meta-box">
+<span>جایزه</span>
+<strong class="prize">۶۰,۰۰۰ تومان برای ۲ نفر</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🎮 اطلاعات روم</h2>
+
+<div class="rules">
+بازی: Call of Duty Mobile
+مپ: Crash
+مود: Search & Destroy
+تعداد بازیکنان: ۶ نفر
+بازیکنان باید مپ را از قبل دانلود کرده باشند.
+حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🚫 قوانین کامل روم</h2>
+
+<div class="rules">
+فقط اسنایپ ولا غیر: مود سرچ اند دیستروی، استفاده از اسنایپ‌های نیمه اتوماتیک (رگباری) از جمله (XPR 50, M21 EBR, SVD) و اسنایپ‌های خشاب بمبی از جمله (NA 45, Rytec AMR) ممنوع می‌باشد.
+استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
+سنسورها: (Heartbeat sensor) (trip sensor)
+دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
+اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
+بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>📋 ثبت اطلاعات</h2>
+
+<div class="notice">
+برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+</div>
+
+<div class="room-actions">
+
+<button class="btn secondary" onclick="openSupport()">
+💬 پشتیبانی
+</button>
+
+<button class="btn" onclick="goHome()">
+بازگشت به مسابقات
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ROOM 5 -->
+<section id="room5" class="page">
+
+<div class="room-page">
+
+<div class="room-hero">
+
+<div class="room-icon">🔥</div>
+
+<h1>مولتی مچ ۵</h1>
+
+<p>گان آزاد</p>
+
+<div class="room-meta">
+
+<div class="meta-box">
+<span>اطلاعات</span>
+<strong>
+جهت اطلاعات بیشتر و ارسال رسید به آیدی @amirduty75 در روبیکا پیام بدید .
+</strong>
+</div>
+
+<div class="meta-box">
+<span>مبلغ ورودی</span>
+<strong class="price">۵۰,۰۰۰ تومان</strong>
+</div>
+
+<div class="meta-box">
+<span>جایزه</span>
+<strong class="prize">۱۰۰,۰۰۰ تومان برای ۱ نفر</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🎮 اطلاعات روم</h2>
+
+<div class="rules">
+بازی: Call of Duty Mobile
+مپ: Crash
+مود: Search & Destroy
+تعداد بازیکنان: ۶ نفر
+نوع بازی: گان آزاد
+بازیکنان باید مپ را از قبل دانلود کرده باشند.
+حدود ۱۵ دقیقه قبل از مسابقه، دعوت روم برای بازیکنان ارسال می‌شود.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🚫 قوانین کامل روم ۵</h2>
+
+<div class="rules">
+مود سرچ اند دیستروی، استفاده از هرگونه آیتم پرتابی (نید، فلش، اسموک، سنسور، استیم شات و…) ممنوع می‌باشد.
+سنسورها: (Heartbeat sensor) (trip sensor)
+دسته پرک‌ها: پرک قرمز مارتیدوم (martydom)، پرک قرمز اورکلاک (Overclock)، پرک آبی پرسیسنس (Persistence)، پرک آبی هاردلاین (Hardline)، پرک آبی یونیت ساپورت (Unit Support)
+اتچمنت‌ها: خشاب ترمایت (thermite) روی همه گان‌ها، خشاب دراگون برد (Dragon’s Breath)
+بعد از تموم شدن مچ از کاستوم لفت ندین اگر لفت بدین آمار تون نمیافته و جایزه بهتون تعلق نمیگیره.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>🔫 گان آزاد</h2>
+
+<div class="notice">
+در این روم محدودیت «فقط اسنایپ» وجود ندارد و بازیکنان می‌توانند از گان‌های مختلف استفاده کنند؛ سایر موارد ممنوع اعلام‌شده در قوانین همچنان پابرجاست.
+</div>
+
+</div>
+
+<div class="rules-card">
+
+<h2>📋 ثبت اطلاعات</h2>
+
+<div class="notice">
+برای اطلاع از ظرفیت و ثبت‌نام به پشتیبانی مراجعه کنید.
+</div>
+
+<div class="room-actions">
+
+<button class="btn secondary" onclick="openSupport()">
+💬 پشتیبانی
+</button>
+
+<button class="btn" onclick="goHome()">
+بازگشت به مسابقات
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STORE -->
+<section id="store" class="page">
+
+<div class="store-head">
+
+<h2>
+💎 فروشگاه CP امیر دیوتی
+</h2>
+
+<p>
+محصولات CP و آفرهای ویژه کالاف دیوتی موبایل
+</p>
+
+</div>
+
+<h3 class="store-title">
+💎 محصولات CP
+</h3>
+
+<div class="products">
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-531mb.webp">
+<h3>80 CP</h3>
+<div class="product-price">209,000 تومان</div>
+<button class="btn" onclick="buyCP('80 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-GHLoE.webp">
+<h3>160 CP</h3>
+<div class="product-price">418,000 تومان</div>
+<button class="btn" onclick="buyCP('160 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-AnE9N.webp">
+<h3>240 CP</h3>
+<div class="product-price">627,000 تومان</div>
+<button class="btn" onclick="buyCP('240 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-ieQDJ.webp">
+<h3>320 CP</h3>
+<div class="product-price">836,000 تومان</div>
+<button class="btn" onclick="buyCP('320 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-w6hjI.webp">
+<h3>400 CP</h3>
+<div class="product-price">1,045,000 تومان</div>
+<button class="btn" onclick="buyCP('400 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-xbUag.webp">
+<h3>420 CP</h3>
+<div class="product-price">1,254,000 تومان</div>
+<button class="btn" onclick="buyCP('420 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-lXlWa.webp">
+<h3>480 CP</h3>
+<div class="product-price">1,254,000 تومان</div>
+<button class="btn" onclick="buyCP('480 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-yDGzB.webp">
+<h3>500 CP</h3>
+<div class="product-price">1,337,600 تومان</div>
+<button class="btn" onclick="buyCP('500 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-lctus.webp">
+<h3>560 CP</h3>
+<div class="product-price">1,463,000 تومان</div>
+<button class="btn" onclick="buyCP('560 CP')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-1z8KW.webp">
+<h3>580 CP فوری</h3>
+<div class="product-price">1,672,000 تومان</div>
+<button class="btn" onclick="buyCP('580 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-mt2yo.webp">
+<h3>660 CP فوری</h3>
+<div class="product-price">1,722,600 تومان</div>
+<button class="btn" onclick="buyCP('660 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-42W9G.webp">
+<h3>720 CP فوری</h3>
+<div class="product-price">1,772,100 تومان</div>
+<button class="btn" onclick="buyCP('720 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-2WdbK.webp">
+<h3>740 CP فوری</h3>
+<div class="product-price">1,818,300 تومان</div>
+<button class="btn" onclick="buyCP('740 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-1urd3.webp">
+<h3>880 CP فوری</h3>
+<div class="product-price">1,860,100 تومان</div>
+<button class="btn" onclick="buyCP('880 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-jOUep.webp">
+<h3>960 CP فوری</h3>
+<div class="product-price">1,901,900 تومان</div>
+<button class="btn" onclick="buyCP('960 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-8u6Qz.webp">
+<h3>1040 CP فوری</h3>
+<div class="product-price">2,048,200 تومان</div>
+<button class="btn" onclick="buyCP('1040 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-7VJVI.webp">
+<h3>1120 CP فوری</h3>
+<div class="product-price">2,257,200 تومان</div>
+<button class="btn" onclick="buyCP('1120 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-d5mLK.webp">
+<h3>1300 CP فوری</h3>
+<div class="product-price">2,758,800 تومان</div>
+<button class="btn" onclick="buyCP('1300 CP فوری')">خرید</button>
+</div>
+
+<div class="product">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-pFLiZ.webp">
+<h3>1760 CP فوری</h3>
+<div class="product-price">3,323,100 تومان</div>
+<button class="btn" onclick="buyCP('1760 CP فوری')">خرید</button>
+</div>
+
+</div>
+
+
+<h3 class="store-title">
+🔥 آفرهای ویژه کالاف
+</h3>
+
+<div class="products">
+
+<div class="product offer">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-531mb.webp">
+<h3>آفر 1 دلاری 80 سی پی</h3>
+<div class="product-price">247,000 تومان</div>
+<button class="btn" onclick="buyCP('آفر 1 دلاری 80 سی پی')">خرید</button>
+</div>
+
+<div class="product offer">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-vs1NI.webp">
+<h3>آفر 2 دلاری 400 سی پی</h3>
+<div class="product-price">380,000 تومان</div>
+<button class="btn" onclick="buyCP('آفر 2 دلاری 400 سی پی')">خرید</button>
+</div>
+
+<div class="product offer">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-Hedpo.webp">
+<h3>آفر 4 دلاری 800 سی پی</h3>
+<div class="product-price">760,000 تومان</div>
+<button class="btn" onclick="buyCP('آفر 4 دلاری 800 سی پی')">خرید</button>
+</div>
+
+<div class="product offer">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-XoBHL.webp">
+<h3>آفر 10 دلاری 2000 سی پی</h3>
+<div class="product-price">1,710,000 تومان</div>
+<button class="btn" onclick="buyCP('آفر 10 دلاری 2000 سی پی')">خرید</button>
+</div>
+
+<div class="product offer">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-4TFsq.webp">
+<h3>آفر Rebate کالاف</h3>
+<div class="product-price">640,000 تومان</div>
+<button class="btn" onclick="buyCP('آفر Rebate کالاف')">خرید</button>
+</div>
+
+<div class="product offer">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-xVp0V.webp">
+<h3>آفر لیمیت Outrider کالاف</h3>
+<div class="product-price">380,000 تومان</div>
+<button class="btn" onclick="buyCP('آفر لیمیت Outrider کالاف')">خرید</button>
+</div>
+
+<div class="product offer">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-hOMVp.webp">
+<h3>آفر گوست ریجن ایران و هند</h3>
+<div class="product-price">551,000 تومان</div>
+<button class="btn" onclick="buyCP('آفر گوست ریجن ایران و هند')">خرید</button>
+</div>
+
+<div class="product offer">
+<img src="https://cpbama.com/uploads/product/call-of-duty-cp-FGWm0.webp">
+<h3>آفر Supply Pass ماهانه 4 دلاری</h3>
+<div class="product-price">963,000 تومان</div>
+<button class="btn" onclick="buyCP('آفر Supply Pass ماهانه 4 دلاری')">خرید</button>
+</div>
+
+</div>
+
+
+<div class="rules-card">
+
+<h2>📌 قوانین و توضیحات CP</h2>
+
+<div class="rules">
+مدت زمان واریز سی پی های ریز بین 5 الی 30 دقیقه است و در روز های شلوغ ممکن است تا 3 ساعت هم طول بکشه.
+با توجه به محدودیت جدید اکتیویژن برای سی ‌پی ‌های زمانبر، مسئولیت هرگونه منفی یا صفر شدن سی ‌پی در اثر استفاده از این نوع سی ‌پی ‌ها، بر عهده مشتریه.
+تاکنون گزارشی مبنی بر منفی شدن سی ‌پی زمانبر دریافت نشده اما هیچ تضمینی ‌نمی‌توان برای عدم ‌وقوع این اتفاق در آینده ارائه داد.
+مدت زمان واریز سی پی های زمانبر بین 1 الی 10 روز می باشد.
+سی پی های فوری بسته های 2400 تا 10800 فوری در کمتر از 1 ساعت واریز میشه و دارای رسید گوگل پلی هستن.
+در صورتی که آفر یا محصول مورد نظر در اکانت شما موجود نباشد به همان مقدار مبلغ سی پی شارژ می شود.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUPPORT -->
+<section id="support" class="page">
+
+<div class="section-title">
+
+<h2>
+پشتیبانی امیر دیوتی
+</h2>
+
+<p>
+برای پیگیری سفارش‌ها و ثبت‌نام دوئل
+</p>
+
+</div>
+
+<div class="support">
+
+<div class="support-card">
+
+<div class="support-icon">
+💬
+</div>
+
+<h2>
+پشتیبانی
+</h2>
+
+<p>
+برای اطلاع از ظرفیت و ثبت‌نام روم‌های دوئل 1v1 و همچنین پیگیری سفارش‌ها، از طریق روبیکا با پشتیبانی در ارتباط باشید.
+</p>
+
+<a
+class="rubika"
+href="https://rubika.ir/amirtbpedit"
+target="_blank"
+>
+💬 @amirtbpedit
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+طراحی و توسعه توسط
+
+<strong>
+امیر حسین جبارفر
+</strong>
+
+</footer>
+
+
+<!-- ADMIN BUTTON -->
+
+<button
+class="admin-access"
+onclick="openAdminLogin()"
+title="مدیریت"
+>
+⚙
+</button>
+
+
+<!-- ADMIN -->
+
+<div id="adminOverlay">
+
+<div class="admin-box">
+
+<div class="admin-head">
+
+<h2>
+⚙ پنل مدیریت
+</h2>
+
+<button
+class="close-admin"
+onclick="closeAdmin()"
+>
+×
+</button>
+
+</div>
+
+
+<div id="adminLogin">
+
+<p>
+برای ورود رمز مدیریت را وارد کنید.
+</p>
+
+<input
+id="adminPassword"
+class="admin-input"
+type="password"
+placeholder="رمز مدیریت"
+>
+
+<button
+class="btn"
+style="width:100%"
+onclick="loginAdmin()"
+>
+ورود به پنل
+</button>
+
+<div id="adminError"></div>
+
+</div>
+
+
+<div id="adminContent">
+
+<p style="color:#888;line-height:2;margin-bottom:18px">
+تعداد نمایش‌داده‌شده روم‌ها از سرور دریافت می‌شود و برای همه بازدیدکنندگان یکسان است.
+</p>
+
+<div class="admin-rooms">
+
+<div class="admin-room">
+<span>روم ۱</span>
+<input id="adminCount1" type="number" min="0" max="6" value="0">
+</div>
+
+<div class="admin-room">
+<span>روم ۲</span>
+<input id="adminCount2" type="number" min="0" max="6" value="0">
+</div>
+
+<div class="admin-room">
+<span>روم ۳</span>
+<input id="adminCount3" type="number" min="0" max="6" value="0">
+</div>
+
+<div class="admin-room">
+<span>روم ۴</span>
+<input id="adminCount4" type="number" min="0" max="6" value="0">
+</div>
+
+<div class="admin-room">
+<span>روم ۵</span>
+<input id="adminCount5" type="number" min="0" max="6" value="0">
+</div>
+
+</div>
+
+<div class="admin-buttons">
+
+<button
+class="btn"
+onclick="saveAdminCounts()"
+>
+ذخیره تغییرات
+</button>
+
+<button
+class="btn secondary"
+onclick="resetAdminCounts()"
+>
+صفر کردن
+</button>
+
+</div>
+
+<div id="adminStatus"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="roomTransition">
+
+<div class="transition-text">
+در حال ورود به روم...
+</div>
+
+</div>
+
 
 <script>
 
@@ -2326,6 +2711,7 @@ const ADMIN_PASSWORD =
 "amir1392abv";
 
 const ROOM_TOTAL = 5;
+
 const ROOM_CAPACITY = 6;
 
 const DEFAULT_COUNTS = {
@@ -2336,22 +2722,25 @@ const DEFAULT_COUNTS = {
     5:0
 };
 
+
 /* ==========================================
    اعداد فارسی
 ========================================== */
 
 function toPersianNumber(number){
 
-    const digits = [
+    const digits=[
         "۰","۱","۲","۳","۴",
         "۵","۶","۷","۸","۹"
     ];
 
     return String(number).replace(
         /\d/g,
-        d => digits[d]
+        d=>digits[d]
     );
+
 }
+
 
 /* ==========================================
    ADMIN LOGIN
@@ -2385,6 +2774,7 @@ function openAdminLogin(){
 
 }
 
+
 function loginAdmin(){
 
     const input =
@@ -2415,6 +2805,7 @@ function loginAdmin(){
 
 }
 
+
 document
 .getElementById("adminPassword")
 .addEventListener(
@@ -2428,6 +2819,7 @@ document
     }
 );
 
+
 /* ==========================================
    CLOSE ADMIN
 ========================================== */
@@ -2439,6 +2831,7 @@ function closeAdmin(){
     .classList.remove("active");
 
 }
+
 
 document
 .getElementById("adminOverlay")
@@ -2453,93 +2846,121 @@ document
     }
 );
 
+
 /* ==========================================
-   GET COUNTS FROM WORKER
+   GET COUNTS
 ========================================== */
 
 async function getRoomCounts(){
 
     try{
 
-        const response = await fetch(
-            WORKER_URL,
-            {
-                method:"GET",
-                cache:"no-store",
-                headers:{"Accept":"application/json"}
-            }
-        );
+        const response =
+            await fetch(
+                WORKER_URL,
+                {
+                    method:"GET",
+                    cache:"no-store",
+                    headers:{
+                        "Accept":
+                        "application/json"
+                    }
+                }
+            );
 
-        const raw = await response.text();
-        let data = null;
+        const raw =
+            await response.text();
+
+        let data=null;
 
         try{
-            data = raw ? JSON.parse(raw) : null;
-        }catch(parseError){
+
+            data =
+                raw
+                ? JSON.parse(raw)
+                : null;
+
+        }catch(error){
+
             throw new Error(
-                "پاسخ Worker قابل خواندن نیست (HTTP "+response.status+")"
+                "پاسخ Worker قابل خواندن نیست."
             );
+
         }
 
         if(!response.ok){
+
             throw new Error(
-                data?.error
-                ? JSON.stringify(data.error)
-                : "HTTP "+response.status
+                data?.error ||
+                "HTTP "+response.status
             );
+
         }
 
-        if(!data || data.ok!==true){
+        if(
+            !data ||
+            data.ok!==true
+        ){
+
             throw new Error(
-                data?.error
-                ? JSON.stringify(data.error)
-                : "پاسخ نامعتبر از Worker"
+                data?.error ||
+                "پاسخ نامعتبر از Worker"
             );
+
         }
 
-        const counts={...DEFAULT_COUNTS};
+        const counts={
+            ...DEFAULT_COUNTS
+        };
+
         const rooms=data.rooms;
 
         if(Array.isArray(rooms)){
 
-            rooms.forEach(function(row, index){
+            rooms.forEach(
+                function(row,index){
 
-                const roomNumber = Number(
-                    row?.room ??
-                    row?.Room ??
-                    row?.number ??
-                    (index+1)
-                );
-
-                const value = Number(
-                    row?.count ??
-                    row?.Count ??
-                    row?.value ??
-                    0
-                );
-
-                if(
-                    roomNumber>=1 &&
-                    roomNumber<=ROOM_TOTAL &&
-                    Number.isFinite(value)
-                ){
-
-                    counts[roomNumber] =
-                        Math.max(
-                            0,
-                            Math.min(
-                                ROOM_CAPACITY,
-                                Math.floor(value)
-                            )
+                    const roomNumber =
+                        Number(
+                            row?.room ??
+                            row?.Room ??
+                            row?.number ??
+                            index+1
                         );
 
+                    const value =
+                        Number(
+                            row?.count ??
+                            row?.Count ??
+                            row?.value ??
+                            0
+                        );
+
+                    if(
+                        roomNumber>=1 &&
+                        roomNumber<=ROOM_TOTAL &&
+                        Number.isFinite(value)
+                    ){
+
+                        counts[roomNumber]=
+                            Math.max(
+                                0,
+                                Math.min(
+                                    ROOM_CAPACITY,
+                                    Math.floor(value)
+                                )
+                            );
+
+                    }
+
                 }
+            );
 
-            });
+        }
 
-        }else if(
+        else if(
             rooms &&
-            typeof rooms === "object"
+            typeof rooms==="object"
         ){
 
             for(
@@ -2559,7 +2980,7 @@ async function getRoomCounts(){
                     value=0;
                 }
 
-                counts[i] =
+                counts[i]=
                     Math.max(
                         0,
                         Math.min(
@@ -2586,6 +3007,7 @@ async function getRoomCounts(){
     }
 
 }
+
 
 /* ==========================================
    LOAD ADMIN
@@ -2642,6 +3064,7 @@ async function loadAdminCounts(){
     }
 
 }
+
 
 /* ==========================================
    SAVE ADMIN COUNTS
@@ -2731,9 +3154,7 @@ async function saveAdminCounts(){
                 throw new Error(
                     "پاسخ ذخیره روم "+
                     i+
-                    " قابل خواندن نیست (HTTP "+
-                    response.status+
-                    ")"
+                    " قابل خواندن نیست."
                 );
 
             }
@@ -2744,15 +3165,8 @@ async function saveAdminCounts(){
             ){
 
                 throw new Error(
-                    data?.error
-                    ? JSON.stringify(
-                        data.error
-                    )
-                    : "خطا در ذخیره روم "+
-                      i+
-                      " (HTTP "+
-                      response.status+
-                      ")"
+                    data?.error ||
+                    "خطا در ذخیره روم "+i
                 );
 
             }
@@ -2793,6 +3207,7 @@ async function saveAdminCounts(){
 
 }
 
+
 /* ==========================================
    RESET
 ========================================== */
@@ -2804,9 +3219,8 @@ async function resetAdminCounts(){
             "تعداد همه روم‌ها به صفر برگردد؟"
         );
 
-    if(!answer){
+    if(!answer)
         return;
-    }
 
     for(
         let i=1;
@@ -2819,9 +3233,8 @@ async function resetAdminCounts(){
                 "adminCount"+i
             );
 
-        if(input){
+        if(input)
             input.value=0;
-        }
 
     }
 
@@ -2829,8 +3242,9 @@ async function resetAdminCounts(){
 
 }
 
+
 /* ==========================================
-   UPDATE PUBLIC
+   UPDATE PUBLIC COUNTS
 ========================================== */
 
 function updatePublicRoomCounts(
@@ -2848,9 +3262,8 @@ function updatePublicRoomCounts(
                 counts[i] ?? 0
             );
 
-        if(!Number.isFinite(count)){
+        if(!Number.isFinite(count))
             count=0;
-        }
 
         count =
             Math.max(
@@ -2869,9 +3282,7 @@ function updatePublicRoomCounts(
             function(element){
 
                 element.textContent =
-                    toPersianNumber(
-                        count
-                    )+
+                    toPersianNumber(count)+
                     " / ۶ نفر";
 
             }
@@ -2904,20 +3315,33 @@ function updatePublicRoomCounts(
 
 }
 
+
 /* ==========================================
    REFRESH
 ========================================== */
 
 async function refreshRoomCounts(){
 
-    const counts =
-        await getRoomCounts();
+    try{
 
-    updatePublicRoomCounts(
-        counts
-    );
+        const counts =
+            await getRoomCounts();
+
+        updatePublicRoomCounts(
+            counts
+        );
+
+    }catch(error){
+
+        console.error(
+            "Refresh error:",
+            error
+        );
+
+    }
 
 }
+
 
 /* ==========================================
    AUTO REFRESH
@@ -2931,6 +3355,7 @@ setInterval(
     },
     10000
 );
+
 
 /* ==========================================
    PAGES
@@ -2994,6 +3419,7 @@ function showPage(
     });
 
 }
+
 
 /* ==========================================
    OPEN ROOM
@@ -3062,6 +3488,7 @@ function openRoom(
 
 }
 
+
 /* ==========================================
    HOME
 ========================================== */
@@ -3069,26 +3496,30 @@ function openRoom(
 function goHome(){
 
     showPage(
-        "home",
-        document.querySelector(
+        "rooms",
+        document.querySelectorAll(
             ".nav-links button"
-        )
+        )[1]
     );
 
 }
+
 
 /* ==========================================
-   FORM
+   SUPPORT
 ========================================== */
 
-function openForm(){
+function openSupport(){
 
-    window.open(
-        "https://baserow.io/form/wdEi5yLUBaweWsGbktsF-nW8_BPTQDz9x5V5n3uOnno",
-        "_blank"
+    showPage(
+        "support",
+        document.querySelectorAll(
+            ".nav-links button"
+        )[4]
     );
 
 }
+
 
 /* ==========================================
    CP
@@ -3105,6 +3536,7 @@ function buyCP(
 
 }
 
+
 /* ==========================================
    ESC
 ========================================== */
@@ -3119,6 +3551,7 @@ document.addEventListener(
 
     }
 );
+
 
 /* ==========================================
    PARTICLES
@@ -3147,8 +3580,7 @@ for(
             "div"
         );
 
-    p.className=
-        "particle";
+    p.className="particle";
 
     const size =
         1.5+
@@ -3180,8 +3612,7 @@ for(
             )
         ];
 
-    p.style.background=
-        color;
+    p.style.background=color;
 
     p.style.boxShadow=
         "0 0 12px "+color;
@@ -3189,6 +3620,7 @@ for(
     particles.appendChild(p);
 
 }
+
 
 /* ==========================================
    START
@@ -3204,6 +3636,6 @@ document.addEventListener(
 );
 
 </script>
+
 </body>
 </html>
-```
