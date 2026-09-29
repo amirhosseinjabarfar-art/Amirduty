@@ -331,6 +331,183 @@ img, video, canvas, iframe {
     .prize-rank{width:40px;height:40px}
 }
 
+
+/* =========================================================
+   AMIR DUTY - PROFILE / XP / RANK SYSTEM
+========================================================= */
+:root{
+    --rank-accent:#18c66f;
+    --rank-dark:#0b7540;
+}
+.profile-page{max-width:1180px}
+.profile-shell{display:grid;grid-template-columns:1fr 1.25fr;gap:24px;align-items:stretch}
+.profile-card,.mission-card,.rank-roadmap,.auth-card{
+    background:rgba(255,255,255,.94);
+    border:2px solid #d8eee0;
+    box-shadow:var(--shadow);
+}
+.profile-card{
+    padding:30px;
+    border-radius:42px 12px 42px 12px;
+    position:relative;overflow:hidden;
+}
+.profile-card:before{
+    content:"";position:absolute;width:260px;height:260px;right:-120px;top:-130px;
+    border-radius:50%;background:#dff9c9;animation:profileOrb 6s ease-in-out infinite;
+}
+@keyframes profileOrb{50%{transform:translate(-25px,25px) scale(1.12)}}
+.profile-avatar{
+    width:92px;height:92px;border-radius:30px 10px 30px 10px;
+    display:grid;place-items:center;font-size:43px;
+    background:linear-gradient(135deg,#0ca95a,#7de35d);color:#fff;
+    box-shadow:0 16px 35px rgba(24,198,111,.25);
+    animation:avatarFloat 3s ease-in-out infinite;
+    position:relative;z-index:2;
+}
+@keyframes avatarFloat{50%{transform:translateY(-7px) rotate(2deg)}}
+.profile-name{font-size:28px;font-weight:900;color:#124b32;margin-top:18px}
+.profile-handle{color:#789085;margin-top:4px;font-size:13px}
+.rank-badge{
+    display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+    padding:10px 15px;border-radius:999px;color:#fff;font-weight:900;
+    background:linear-gradient(135deg,var(--rank-accent),#8ddd5d);
+    box-shadow:0 12px 28px rgba(24,198,111,.2);
+    animation:rankPulse 2.4s ease-in-out infinite;
+}
+@keyframes rankPulse{50%{transform:translateY(-3px);box-shadow:0 17px 35px rgba(24,198,111,.28)}}
+.xp-number{font-size:42px;font-weight:900;color:#0a9f53;margin-top:22px}
+.xp-label{font-size:12px;color:#789085;font-weight:800}
+.progress-wrap{margin-top:15px}
+.progress-top{display:flex;justify-content:space-between;gap:10px;color:#61776b;font-size:12px;font-weight:800}
+.xp-bar{height:18px;background:#e9f6ed;border-radius:999px;margin-top:9px;padding:3px;overflow:hidden;border:1px solid #d5ecdd}
+.xp-fill{
+    height:100%;width:0;border-radius:999px;
+    background:linear-gradient(90deg,#0aa557,#a7f36b);
+    box-shadow:0 0 18px rgba(24,198,111,.38);
+    transition:width 1.1s cubic-bezier(.2,.8,.2,1);
+    position:relative;overflow:hidden;
+}
+.xp-fill:after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);
+    transform:translateX(-100%);animation:xpShine 2.2s infinite;
+}
+@keyframes xpShine{to{transform:translateX(100%)}}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.profile-stat{padding:14px 10px;text-align:center;border-radius:18px;background:#f2fbf5;border:1px solid #dcefe3}
+.profile-stat strong{display:block;font-size:19px;color:#0b9250}
+.profile-stat span{font-size:10px;color:#809187}
+.profile-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.profile-actions .btn{flex:1;min-width:120px}
+
+.mission-card{padding:28px;border-radius:12px 42px 12px 42px}
+.mission-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}
+.mission-head h3{font-size:27px;color:#0d7440}
+.week-badge{padding:8px 12px;border-radius:999px;background:#e8faee;color:#0a9450;border:1px solid #cdeed8;font-size:11px;font-weight:900}
+.mission-list{display:grid;gap:12px}
+.mission-item{
+    display:grid;grid-template-columns:48px 1fr auto;gap:12px;align-items:center;
+    padding:14px;border-radius:21px 8px 21px 8px;background:#fbfffc;border:2px solid #e0f0e5;
+    transition:.3s;position:relative;overflow:hidden;
+}
+.mission-item:hover{transform:translateX(-6px);border-color:#a8dfba;box-shadow:0 12px 28px rgba(24,120,70,.08)}
+.mission-item.done{background:linear-gradient(120deg,#edfff3,#fafffb);border-color:#9ee2b4}
+.mission-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#eaf9ef;font-size:23px}
+.mission-info strong{display:block;color:#294d3b;font-size:14px}
+.mission-info span{display:block;color:#83958b;font-size:11px;margin-top:4px;line-height:1.7}
+.mission-xp{font-size:13px;color:#0aa557;font-weight:900;white-space:nowrap}
+.mission-check{
+    position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+    background:rgba(235,255,241,.92);font-weight:900;color:#078b49;font-size:18px;
+    animation:missionDone .45s ease;
+}
+.mission-item.done .mission-check{display:flex}
+@keyframes missionDone{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.week-progress{margin-top:17px;padding:14px;border-radius:18px;background:#effaf3}
+.week-progress-top{display:flex;justify-content:space-between;color:#5d7568;font-size:11px;font-weight:800}
+.week-bar{height:10px;border-radius:999px;background:#dcefe3;margin-top:8px;overflow:hidden}
+.week-fill{height:100%;width:0;background:linear-gradient(90deg,#16b967,#a7f36b);border-radius:999px;transition:width .8s ease}
+
+.rank-roadmap{margin-top:24px;padding:28px;border-radius:42px 12px 42px 12px}
+.rank-roadmap h3{font-size:28px;color:#0d7440;margin-bottom:20px}
+.rank-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+.rank-step{padding:15px 7px;text-align:center;border-radius:20px 7px 20px 7px;background:#f6fcf8;border:2px solid #deeee3;transition:.3s;position:relative}
+.rank-step.active{background:linear-gradient(145deg,#e9fff1,#fff);border-color:#79d59b;box-shadow:0 13px 30px rgba(24,198,111,.13);transform:translateY(-7px)}
+.rank-step.current:after{content:"فعلی";position:absolute;top:-10px;right:50%;transform:translateX(50%);font-size:9px;padding:3px 8px;border-radius:999px;background:#0aa557;color:#fff;font-weight:900}
+.rank-emoji{font-size:28px;display:block;animation:rankIconFloat 2.5s ease-in-out infinite}
+@keyframes rankIconFloat{50%{transform:translateY(-4px) rotate(-3deg)}}
+.rank-step strong{display:block;font-size:11px;margin-top:8px;color:#355548}
+.rank-step span{display:block;font-size:9px;color:#8a9b91;margin-top:4px}
+
+.auth-card{max-width:650px;margin:auto;padding:34px;border-radius:42px 12px 42px 12px}
+.auth-card h2{font-size:31px;color:#0d7440;text-align:center}
+.auth-card>p{text-align:center;color:#789085;line-height:1.9;margin:8px 0 20px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px;border-radius:18px;background:#eef9f2;margin-bottom:20px}
+.auth-tab{border:0;background:transparent;padding:11px;border-radius:13px;font-family:inherit;font-weight:900;color:#6c8176;cursor:pointer}
+.auth-tab.active{background:#fff;color:#0a9d52;box-shadow:0 7px 20px rgba(24,120,70,.08)}
+.auth-form{display:grid;gap:12px}
+.auth-form input{
+    width:100%;padding:14px 16px;border-radius:15px;border:2px solid #d9eee1;
+    outline:none;background:#f8fdf9;color:#183a29;font-family:inherit;
+}
+.auth-form input:focus{border-color:#18c66f;box-shadow:0 0 0 4px rgba(24,198,111,.08)}
+.auth-message{min-height:26px;text-align:center;color:#e04d57;font-size:12px;font-weight:800}
+.auth-note{text-align:center;color:#8a9a91;font-size:10px;line-height:1.8;margin-top:12px}
+.logout-btn{background:#fff!important;color:#e04d57!important;border:2px solid #ffd6d9!important;box-shadow:none!important}
+
+.xp-toast{
+    position:fixed;left:50%;top:105px;z-index:9000;transform:translate(-50%,-20px) scale(.8);
+    opacity:0;pointer-events:none;padding:13px 22px;border-radius:999px;
+    color:#fff;background:linear-gradient(135deg,#087d43,#1acb6f);
+    box-shadow:0 18px 45px rgba(0,110,58,.25);font-weight:900;
+}
+.xp-toast.show{animation:xpToast .95s cubic-bezier(.2,.8,.2,1)}
+@keyframes xpToast{
+    0%{opacity:0;transform:translate(-50%,-20px) scale(.8)}
+    20%{opacity:1;transform:translate(-50%,0) scale(1.05)}
+    70%{opacity:1;transform:translate(-50%,0) scale(1)}
+    100%{opacity:0;transform:translate(-50%,-10px) scale(.96)}
+}
+.rank-up-overlay{
+    position:fixed;inset:0;z-index:10000;display:none;place-items:center;
+    background:rgba(7,50,28,.45);backdrop-filter:blur(10px);
+}
+.rank-up-overlay.show{display:grid}
+.rank-up-box{
+    width:min(520px,92vw);padding:42px 25px;text-align:center;border-radius:45px 10px 45px 10px;
+    background:#fff;border:3px solid #a9e9c1;box-shadow:0 35px 100px rgba(0,0,0,.25);
+    animation:rankUpBox .65s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes rankUpBox{from{opacity:0;transform:scale(.5) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.rank-up-box .big-rank{font-size:85px;display:block;animation:rankCelebration 1s ease-in-out infinite}
+@keyframes rankCelebration{50%{transform:scale(1.12) rotate(5deg);filter:drop-shadow(0 0 20px rgba(24,198,111,.45))}}
+.rank-up-box h2{font-size:34px;color:#0b8f4c;margin-top:10px}
+.rank-up-box p{color:#71867b;margin:8px 0 20px}
+
+.profile-mini{
+    margin-top:22px;padding:18px 20px;border-radius:24px 8px 24px 8px;
+    background:rgba(255,255,255,.9);border:2px solid #d8eee0;
+    display:flex;justify-content:space-between;align-items:center;gap:15px;box-shadow:0 15px 35px rgba(22,95,54,.08);
+}
+.profile-mini .mini-rank{font-weight:900;color:#0b8f4c}
+.profile-mini .mini-xp{font-size:12px;color:#789085}
+
+@media(max-width:900px){
+    .profile-shell{grid-template-columns:1fr}
+    .rank-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:560px){
+    .profile-card,.mission-card,.rank-roadmap,.auth-card{padding:20px;border-radius:30px 10px 30px 10px}
+    .profile-stats{grid-template-columns:1fr 1fr 1fr}
+    .mission-item{grid-template-columns:42px 1fr auto;padding:11px}
+    .mission-icon{width:42px;height:42px}
+    .mission-info strong{font-size:12px}
+    .mission-info span{font-size:10px}
+    .mission-xp{font-size:11px}
+    .rank-grid{grid-template-columns:repeat(2,1fr)}
+    .rank-roadmap h3{font-size:23px}
+}
+
 </style>
 </head>
 
@@ -392,6 +569,10 @@ img, video, canvas, iframe {
                 پشتیبانی
             </button>
 
+            <button onclick="openProfilePage(this)">
+                👤 پروفایل
+            </button>
+
         </nav>
 
     </div>
@@ -431,6 +612,14 @@ img, video, canvas, iframe {
 
             </div>
 
+            <div id="homeProfileMini" class="profile-mini" style="display:none">
+                <div>
+                    <div id="homeMiniRank" class="mini-rank">🥉 BRONZE</div>
+                    <div id="homeMiniXP" class="mini-xp">۰ XP</div>
+                </div>
+                <button class="btn" onclick="openProfilePage()">👤 پروفایل</button>
+            </div>
+
         </div>
 
     </div>
@@ -448,7 +637,7 @@ img, video, canvas, iframe {
                 <p class="bot-sub">ربات اختصاصی امیر دیوتی برای ارتباط و امکانات بیشتر در روبیکا.</p>
                 <div class="bot-id">@Amirdutybot</div>
                 <div class="bot-actions">
-                    <a class="btn" href="https://rubika.ir/Amirdutybot" target="_blank" rel="noopener">🤖 ورود به ربات</a>
+                    <a class="btn" href="https://rubika.ir/Amirdutybot" target="_blank" rel="noopener" onclick="missionBotVisit()">🤖 ورود به ربات</a>
                 </div>
             </div>
         </div>
@@ -2144,6 +2333,111 @@ target="_blank"
 
 </section>
 
+
+
+<!-- =========================================================
+     PROFILE / AUTH / MISSIONS
+========================================================= -->
+<section id="profile" class="page profile-page">
+
+    <div id="profileAuthView" class="auth-card">
+
+        <h2>👤 حساب کاربری امیر دیوتی</h2>
+        <p>ثبت‌نام کن، XP بگیر، مأموریت‌ها را کامل کن و رنکت را ارتقا بده.</p>
+
+        <div class="auth-tabs">
+            <button id="registerTab" class="auth-tab active" onclick="switchAuth('register')">ثبت‌نام</button>
+            <button id="loginTab" class="auth-tab" onclick="switchAuth('login')">ورود</button>
+        </div>
+
+        <form id="registerForm" class="auth-form" onsubmit="registerUser(event)">
+            <input id="registerName" type="text" maxlength="24" placeholder="نام نمایشی" required>
+            <input id="registerUsername" type="text" maxlength="20" placeholder="نام کاربری" required>
+            <input id="registerPassword" type="password" minlength="4" placeholder="رمز عبور" required>
+            <div id="registerMessage" class="auth-message"></div>
+            <button class="btn" type="submit">🚀 ساخت حساب و دریافت ۵۰ XP</button>
+        </form>
+
+        <form id="loginForm" class="auth-form" onsubmit="loginUser(event)" style="display:none">
+            <input id="loginUsername" type="text" placeholder="نام کاربری" required>
+            <input id="loginPassword" type="password" placeholder="رمز عبور" required>
+            <div id="loginMessage" class="auth-message"></div>
+            <button class="btn" type="submit">🔐 ورود به حساب</button>
+        </form>
+
+        <div class="auth-note">
+            این نسخه حساب را در مرورگر ذخیره می‌کند. برای حساب واقعی مشترک بین دستگاه‌ها باید بک‌اند/دیتابیس متصل شود.
+        </div>
+
+    </div>
+
+    <div id="profileDashboard" style="display:none">
+
+        <div class="profile-shell">
+
+            <div class="profile-card">
+
+                <div class="profile-avatar">🎮</div>
+                <div id="profileName" class="profile-name">بازیکن</div>
+                <div id="profileHandle" class="profile-handle">@player</div>
+                <div id="profileRank" class="rank-badge">🥉 BRONZE</div>
+
+                <div class="xp-number"><span id="profileXP">0</span> XP</div>
+                <div class="xp-label">امتیاز کل — با ریست هفتگی مأموریت‌ها کاهش پیدا نمی‌کند.</div>
+
+                <div class="progress-wrap">
+                    <div class="progress-top">
+                        <span id="currentRankXP">۰ XP</span>
+                        <span id="nextRankText">تا SILVER</span>
+                    </div>
+                    <div class="xp-bar">
+                        <div id="profileXPFill" class="xp-fill"></div>
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="profile-stat"><strong id="streakStat">۰</strong><span>روز متوالی</span></div>
+                    <div class="profile-stat"><strong id="completedStat">۰</strong><span>ماموریت انجام‌شده</span></div>
+                    <div class="profile-stat"><strong id="weekStat">۰٪</strong><span>پیشرفت هفته</span></div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn" onclick="claimDailyLogin()">🔄 بررسی ورود امروز</button>
+                    <button class="btn secondary logout-btn" onclick="logoutUser()">خروج از حساب</button>
+                </div>
+
+            </div>
+
+            <div class="mission-card">
+
+                <div class="mission-head">
+                    <h3>🎯 مأموریت‌های این هفته</h3>
+                    <div id="weekBadge" class="week-badge">هفته جاری</div>
+                </div>
+
+                <div id="missionList" class="mission-list"></div>
+
+                <div class="week-progress">
+                    <div class="week-progress-top">
+                        <span>پیشرفت مأموریت‌های هفتگی</span>
+                        <strong id="weekProgressText">۰ / ۴</strong>
+                    </div>
+                    <div class="week-bar"><div id="weekProgressFill" class="week-fill"></div></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="rank-roadmap">
+            <h3>🏆 مسیر رنک‌ها</h3>
+            <div id="rankGrid" class="rank-grid"></div>
+        </div>
+
+    </div>
+
+</section>
+
 </main>
 
 
@@ -3277,6 +3571,460 @@ document.addEventListener(
     update();
 })();
 
+
+/* =========================================================
+   AMIR DUTY - XP / RANK / AUTH / MISSIONS ENGINE
+========================================================= */
+const XP_SYSTEM_KEY = "amirDutyXPSystem_v1";
+const XP_SESSION_KEY = "amirDutyCurrentUser_v1";
+
+const RANKS = [
+    {name:"BRONZE", emoji:"🥉", min:0},
+    {name:"SILVER", emoji:"🥈", min:500},
+    {name:"GOLD", emoji:"🥇", min:1200},
+    {name:"PLATINUM", emoji:"💠", min:2500},
+    {name:"DIAMOND", emoji:"💎", min:5000},
+    {name:"MASTER", emoji:"🔥", min:8500},
+    {name:"GRANDMASTER", emoji:"👑", min:13000},
+    {name:"LEGENDARY", emoji:"⚡", min:20000}
+];
+
+const WEEKLY_MISSIONS = [
+    {id:"daily", title:"ورود روزانه به سایت", desc:"امروز وارد حساب کاربری‌ات شو.", xp:50, icon:"📅"},
+    {id:"bot", title:"سر زدن به بات", desc:"از بخش ربات وارد @Amirdutybot شو.", xp:100, icon:"🤖"},
+    {id:"streak10", title:"۱۰ روز متوالی سر زدن به سایت", desc:"با حفظ ورود روزانه، به ۱۰ روز متوالی برس.", xp:250, icon:"🔥"},
+    {id:"all", title:"انجام تمامی مأموریت‌ها", desc:"تمام مأموریت‌های هفتگی را کامل کن.", xp:100, icon:"🏆"}
+];
+
+function xpReadDB(){
+    try{
+        return JSON.parse(localStorage.getItem(XP_SYSTEM_KEY) || '{"users":{}}');
+    }catch(e){
+        return {users:{}};
+    }
+}
+function xpWriteDB(db){
+    localStorage.setItem(XP_SYSTEM_KEY, JSON.stringify(db));
+}
+function xpCurrentUsername(){
+    return localStorage.getItem(XP_SESSION_KEY) || "";
+}
+function xpGetUser(){
+    const username=xpCurrentUsername();
+    if(!username) return null;
+    const db=xpReadDB();
+    return db.users[username] || null;
+}
+function xpSaveUser(user){
+    const db=xpReadDB();
+    db.users[user.username]=user;
+    xpWriteDB(db);
+}
+function xpToday(){
+    const d=new Date();
+    return d.toISOString().slice(0,10);
+}
+function xpWeekKey(){
+    const d=new Date();
+    const day=(d.getDay()+6)%7;
+    d.setDate(d.getDate()-day);
+    return d.toISOString().slice(0,10);
+}
+function xpDiffDays(a,b){
+    const aa=new Date(a+"T00:00:00");
+    const bb=new Date(b+"T00:00:00");
+    return Math.round((bb-aa)/86400000);
+}
+function getRank(xp){
+    let rank=RANKS[0];
+    for(const r of RANKS){
+        if(xp>=r.min) rank=r;
+    }
+    return rank;
+}
+function getRankIndex(xp){
+    let idx=0;
+    RANKS.forEach((r,i)=>{if(xp>=r.min) idx=i;});
+    return idx;
+}
+function persianNum(n){
+    return toPersianNumber(Math.round(n));
+}
+function xpToast(amount, text=""){
+    const old=document.getElementById("xpToast");
+    if(!old) return;
+    old.textContent = amount>0 ? `+${persianNum(amount)} XP ${text}` : text;
+    old.classList.remove("show");
+    void old.offsetWidth;
+    old.classList.add("show");
+}
+function rankUp(rank){
+    const overlay=document.getElementById("rankUpOverlay");
+    if(!overlay) return;
+    document.getElementById("rankUpEmoji").textContent=rank.emoji;
+    document.getElementById("rankUpName").textContent=rank.name;
+    overlay.classList.add("show");
+    setTimeout(()=>overlay.classList.remove("show"),3300);
+}
+function maybeRankChanged(oldXP,newXP){
+    const oldIndex=getRankIndex(oldXP);
+    const newIndex=getRankIndex(newXP);
+    if(newIndex>oldIndex) rankUp(RANKS[newIndex]);
+}
+function ensureUserMissionState(user){
+    const wk=xpWeekKey();
+    if(user.missionWeek!==wk){
+        user.missionWeek=wk;
+        user.missions={daily:false,bot:false,streak10:false,all:false};
+    }
+    if(!user.missions) user.missions={daily:false,bot:false,streak10:false,all:false};
+    return user;
+}
+function addXP(user, amount, reason=""){
+    const oldXP=user.xp||0;
+    user.xp=oldXP+amount;
+    xpSaveUser(user);
+    maybeRankChanged(oldXP,user.xp);
+    xpToast(amount, reason);
+    renderProfile();
+}
+function completeMission(id){
+    const user=xpGetUser();
+    if(!user) return false;
+    ensureUserMissionState(user);
+    if(user.missions[id]) return false;
+    const mission=WEEKLY_MISSIONS.find(m=>m.id===id);
+    if(!mission) return false;
+
+    user.missions[id]=true;
+    if(id==="daily"){
+        // streak is updated by daily login logic
+    }
+    addXP(user,mission.xp,"برای "+mission.title);
+    user.lastMissionAt=new Date().toISOString();
+    xpSaveUser(user);
+
+    // بعد از هر ماموریت، ماموریت «همه» را بررسی می‌کنیم.
+    if(id!=="all"){
+        const allDone=["daily","bot","streak10"].every(k=>user.missions[k]);
+        if(allDone && !user.missions.all){
+            user.missions.all=true;
+            addXP(user,100,"پاداش تکمیل همه مأموریت‌ها");
+        }
+    }
+    renderProfile();
+    return true;
+}
+function claimDailyLogin(){
+    const user=xpGetUser();
+    if(!user){
+        openProfilePage();
+        return;
+    }
+    ensureUserMissionState(user);
+
+    const today=xpToday();
+    if(user.lastLoginDate===today){
+        renderProfile();
+        xpToast(0,"ورود امروز قبلاً ثبت شده ✓");
+        return;
+    }
+
+    const oldStreak=user.streak||0;
+    if(user.lastLoginDate && xpDiffDays(user.lastLoginDate,today)===1){
+        user.streak=oldStreak+1;
+    }else{
+        user.streak=1;
+    }
+    user.lastLoginDate=today;
+
+    if(!user.missions.daily){
+        user.missions.daily=true;
+        user.xp=(user.xp||0)+50;
+        maybeRankChanged((user.xp||0)-50,user.xp);
+        xpToast(50,"ورود روزانه");
+    }else{
+        xpToast(0,"ورود امروز ثبت شد ✓");
+    }
+
+    if(user.streak>=10 && !user.missions.streak10){
+        user.missions.streak10=true;
+        user.xp+=250;
+        maybeRankChanged(user.xp-250,user.xp);
+        setTimeout(()=>xpToast(250,"۱۰ روز متوالی"),450);
+    }
+
+    xpSaveUser(user);
+    renderProfile();
+}
+function missionBotVisit(){
+    completeMission("bot");
+}
+function checkWeeklyAllMission(user){
+    if(!user) return;
+    ensureUserMissionState(user);
+    const done=["daily","bot","streak10"].every(k=>user.missions[k]);
+    if(done && !user.missions.all){
+        user.missions.all=true;
+        const old=user.xp||0;
+        user.xp=old+100;
+        maybeRankChanged(old,user.xp);
+        xpSaveUser(user);
+        setTimeout(()=>xpToast(100,"تکمیل همه مأموریت‌ها"),850);
+    }
+}
+function renderMissions(user){
+    const list=document.getElementById("missionList");
+    if(!list) return;
+    list.innerHTML="";
+    const total=WEEKLY_MISSIONS.length;
+    let completed=0;
+
+    WEEKLY_MISSIONS.forEach(m=>{
+        const done=!!user.missions[m.id];
+        if(done) completed++;
+        const item=document.createElement("div");
+        item.className="mission-item"+(done?" done":"");
+        item.innerHTML=`
+            <div class="mission-icon">${m.icon}</div>
+            <div class="mission-info">
+                <strong>${m.title}</strong>
+                <span>${m.desc}</span>
+            </div>
+            <div class="mission-xp">+${persianNum(m.xp)} XP</div>
+            <div class="mission-check">✓ انجام شد</div>
+        `;
+        list.appendChild(item);
+    });
+
+    const pct=Math.round((completed/total)*100);
+    document.getElementById("weekProgressText").textContent=`${persianNum(completed)} / ${persianNum(total)}`;
+    document.getElementById("weekProgressFill").style.width=pct+"%";
+    document.getElementById("weekStat").textContent=persianNum(pct)+"٪";
+    document.getElementById("completedStat").textContent=persianNum(completed);
+    document.getElementById("weekBadge").textContent="شروع هفته: "+toPersianNumber(xpWeekKey().split("-").reverse().join("/"));
+}
+function renderRankRoadmap(user){
+    const grid=document.getElementById("rankGrid");
+    if(!grid) return;
+    const current=getRankIndex(user.xp||0);
+    grid.innerHTML="";
+    RANKS.forEach((r,i)=>{
+        const div=document.createElement("div");
+        div.className="rank-step"+(i<=current?" active ":"")+(i===current?" current":"");
+        div.innerHTML=`<span class="rank-emoji">${r.emoji}</span><strong>${r.name}</strong><span>${persianNum(r.min)} XP</span>`;
+        grid.appendChild(div);
+    });
+}
+function renderProfile(){
+    const user=xpGetUser();
+    const auth=document.getElementById("profileAuthView");
+    const dash=document.getElementById("profileDashboard");
+    if(!auth || !dash) return;
+
+    if(!user){
+        auth.style.display="block";
+        dash.style.display="none";
+        updateHomeMini();
+        return;
+    }
+
+    ensureUserMissionState(user);
+    xpSaveUser(user);
+
+    auth.style.display="none";
+    dash.style.display="block";
+
+    const rank=getRank(user.xp||0);
+    const idx=getRankIndex(user.xp||0);
+    const next=RANKS[idx+1];
+
+    document.getElementById("profileName").textContent=user.name;
+    document.getElementById("profileHandle").textContent="@"+user.username;
+    document.getElementById("profileRank").textContent=rank.emoji+" "+rank.name;
+    document.getElementById("profileXP").textContent=persianNum(user.xp||0);
+    document.getElementById("streakStat").textContent=persianNum(user.streak||0);
+
+    let pct=100;
+    if(next){
+        const currentBase=rank.min;
+        pct=Math.max(0,Math.min(100,((user.xp-currentBase)/(next.min-currentBase))*100));
+        document.getElementById("currentRankXP").textContent=persianNum(user.xp-currentBase)+" XP";
+        document.getElementById("nextRankText").textContent="تا "+next.name+" ("+persianNum(next.min-user.xp)+" XP)";
+    }else{
+        document.getElementById("currentRankXP").textContent=persianNum(user.xp)+" XP";
+        document.getElementById("nextRankText").textContent="بالاترین رنک";
+    }
+    document.getElementById("profileXPFill").style.width=pct+"%";
+
+    renderMissions(user);
+    renderRankRoadmap(user);
+    updateHomeMini();
+}
+function updateHomeMini(){
+    const box=document.getElementById("homeProfileMini");
+    const user=xpGetUser();
+    if(!box) return;
+    if(!user){
+        box.style.display="none";
+        return;
+    }
+    const rank=getRank(user.xp||0);
+    box.style.display="flex";
+    document.getElementById("homeMiniRank").textContent=rank.emoji+" "+rank.name;
+    document.getElementById("homeMiniXP").textContent=persianNum(user.xp||0)+" XP";
+}
+function switchAuth(mode){
+    const register=mode==="register";
+    document.getElementById("registerForm").style.display=register?"grid":"none";
+    document.getElementById("loginForm").style.display=register?"none":"grid";
+    document.getElementById("registerTab").classList.toggle("active",register);
+    document.getElementById("loginTab").classList.toggle("active",!register);
+    document.getElementById("registerMessage").textContent="";
+    document.getElementById("loginMessage").textContent="";
+}
+function registerUser(e){
+    e.preventDefault();
+    const name=document.getElementById("registerName").value.trim();
+    const username=document.getElementById("registerUsername").value.trim().toLowerCase().replace(/\s+/g,"");
+    const password=document.getElementById("registerPassword").value;
+    const msg=document.getElementById("registerMessage");
+    if(name.length<2 || username.length<3 || password.length<4){
+        msg.textContent="نام، نام کاربری یا رمز عبور معتبر نیست.";
+        return;
+    }
+    const db=xpReadDB();
+    if(db.users[username]){
+        msg.textContent="این نام کاربری قبلاً ثبت شده است.";
+        return;
+    }
+    const user={
+        username,
+        name,
+        password,
+        xp:50,
+        streak:0,
+        lastLoginDate:xpToday(),
+        missionWeek:xpWeekKey(),
+        missions:{daily:true,bot:false,streak10:false,all:false},
+        createdAt:new Date().toISOString()
+    };
+    db.users[username]=user;
+    xpWriteDB(db);
+    localStorage.setItem(XP_SESSION_KEY,username);
+    document.getElementById("registerForm").reset();
+    xpToast(50,"پاداش ثبت‌نام");
+    renderProfile();
+}
+function loginUser(e){
+    e.preventDefault();
+    const username=document.getElementById("loginUsername").value.trim().toLowerCase().replace(/\s+/g,"");
+    const password=document.getElementById("loginPassword").value;
+    const msg=document.getElementById("loginMessage");
+    const db=xpReadDB();
+    const user=db.users[username];
+    if(!user || user.password!==password){
+        msg.textContent="نام کاربری یا رمز عبور اشتباه است.";
+        return;
+    }
+    localStorage.setItem(XP_SESSION_KEY,username);
+    document.getElementById("loginForm").reset();
+    renderProfile();
+    claimDailyLogin();
+}
+function logoutUser(){
+    localStorage.removeItem(XP_SESSION_KEY);
+    renderProfile();
+    switchAuth("login");
+}
+function openProfilePage(button){
+    showPage("profile",button);
+    const user=xpGetUser();
+    if(user) claimDailyLogin();
+    else renderProfile();
+}
+function initXPSystem(){
+    const user=xpGetUser();
+    if(user){
+        ensureUserMissionState(user);
+        xpSaveUser(user);
+        // ورود روزانه با هر بار باز شدن سایت، فقط یک بار در روز XP می‌دهد.
+        claimDailyLogin();
+    }else{
+        renderProfile();
+    }
+}
+
+/* تزریق کنترل‌های رتبه و XP */
+(function(){
+    const toast=document.createElement("div");
+    toast.id="xpToast";
+    toast.className="xp-toast";
+    document.body.appendChild(toast);
+
+    const overlay=document.createElement("div");
+    overlay.id="rankUpOverlay";
+    overlay.className="rank-up-overlay";
+    overlay.innerHTML=`
+        <div class="rank-up-box">
+            <span id="rankUpEmoji" class="big-rank">🥉</span>
+            <h2>🎉 ارتقای رنک!</h2>
+            <p>تبریک! رنک جدید شما</p>
+            <strong id="rankUpName" style="font-size:25px;color:#0a9f53">BRONZE</strong>
+            <div style="margin-top:22px">
+                <button class="btn" onclick="document.getElementById('rankUpOverlay').classList.remove('show')">عالیه! 🔥</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    document.addEventListener("DOMContentLoaded",function(){
+        initXPSystem();
+        updateHomeMini();
+    });
+})();
+
+
+
+/* PROFILE ACCOUNT DISPLAY FIX — APPENDED ONLY; ORIGINAL ACCOUNT LOGIC IS PRESERVED */
+(function(){
+    function finishProfileAfterAccount(){
+        try{
+            var user = (typeof xpGetUser === "function") ? xpGetUser() : null;
+            if(!user) return;
+
+            var auth = document.getElementById("profileAuthView");
+            var dash = document.getElementById("profileDashboard");
+            if(auth) auth.style.display = "none";
+            if(dash) dash.style.display = "block";
+
+            if(typeof ensureUserMissionState === "function") ensureUserMissionState(user);
+            if(typeof xpSaveUser === "function") xpSaveUser(user);
+            if(typeof renderMissions === "function") renderMissions(user);
+            if(typeof renderRankRoadmap === "function") renderRankRoadmap(user);
+            if(typeof updateHomeMini === "function") updateHomeMini();
+
+            var profile = document.getElementById("profile");
+            if(profile && typeof showPage === "function" && !profile.classList.contains("active")){
+                showPage("profile");
+            }
+        }catch(err){
+            console.error("Profile account display error:",err);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+        var form=document.getElementById("registerForm");
+        if(!form) return;
+
+        form.addEventListener("submit", function(){
+            /* The original onsubmit/registerUser remains the source of truth. */
+            setTimeout(finishProfileAfterAccount, 0);
+            setTimeout(finishProfileAfterAccount, 80);
+            setTimeout(finishProfileAfterAccount, 250);
+        });
+    });
+})();
 </script>
 
 </body>
