@@ -508,6 +508,72 @@ img, video, canvas, iframe {
     .rank-roadmap h3{font-size:23px}
 }
 
+
+/* =========================================================
+   AMIR DUTY — SEASON 9 / 2026
+   Scoped design: BLACK background + RED cards + BLACK text
+   ========================================================= */
+.s9x-page{background:#030303!important;color:#e10622!important;min-height:100vh;overflow:hidden}
+.s9x-wrap{width:min(1220px,calc(100% - 28px));margin:auto;padding:35px 0 90px}
+.s9x-hero{position:relative;min-height:520px;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:34px;padding:38px 0 55px;border-bottom:1px solid #7f0015;overflow:hidden}
+.s9x-hero:before{content:"S9";position:absolute;left:-35px;bottom:-110px;font-size:250px;font-weight:1000;line-height:1;color:rgba(225,6,34,.055);pointer-events:none}
+.s9x-hero:after{content:"";position:absolute;right:-220px;top:-220px;width:560px;height:560px;border:1px solid rgba(225,6,34,.25);border-radius:50%;box-shadow:0 0 0 35px rgba(225,6,34,.035),0 0 0 75px rgba(225,6,34,.02);animation:s9x-ring 9s linear infinite}
+.s9x-kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid #e10622;background:#0a0a0a;color:#ff1837;padding:9px 14px;border-radius:999px;font-size:12px;font-weight:1000;animation:s9x-up .65s both}
+.s9x-kicker i{width:8px;height:8px;border-radius:50%;background:#e10622;box-shadow:0 0 15px #e10622;animation:s9x-blink 1.3s infinite}
+.s9x-title{margin:22px 0 12px;font-size:clamp(58px,9vw,120px);line-height:.86;font-weight:1000;letter-spacing:-5px;color:#e10622;text-shadow:0 0 30px rgba(225,6,34,.22);animation:s9x-title .85s both}
+.s9x-title span{display:block;color:#ff2442}
+.s9x-sub{max-width:680px;color:#d10a24;font-size:18px;line-height:2;animation:s9x-up .85s .1s both}
+.s9x-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px;animation:s9x-up .85s .2s both}
+.s9x-btn{border:1px solid #ff2946;background:#e10622;color:#050505;border-radius:12px;padding:14px 23px;font:inherit;font-weight:1000;cursor:pointer;transition:.3s;box-shadow:0 12px 35px rgba(225,6,34,.22)}
+.s9x-btn:hover{transform:translateY(-5px);box-shadow:0 20px 45px rgba(225,6,34,.36)}
+.s9x-btn.dark{background:#070707;color:#e10622;border-color:#e10622;box-shadow:none}
+.s9x-orbit{display:grid;place-items:center;position:relative;min-height:390px;animation:s9x-orbit-in 1s .1s both}
+.s9x-core{width:min(330px,68vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 28%,#ff4058 0,#7d0017 25%,#160006 62%,#030303 75%);border:2px solid #e10622;box-shadow:0 0 55px rgba(225,6,34,.3),inset 0 0 80px #000;display:grid;place-items:center;position:relative;animation:s9x-float 4s ease-in-out infinite}
+.s9x-core:before,.s9x-core:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(225,6,34,.38);inset:-20px;animation:s9x-ring 7s linear infinite}
+.s9x-core:after{inset:-50px;opacity:.45;animation-direction:reverse;animation-duration:11s}
+.s9x-core b{font-size:76px;line-height:1;color:#e10622;text-shadow:0 0 30px rgba(255,30,60,.65)}
+.s9x-core small{display:block;margin-top:7px;color:#e10622;font-weight:1000;letter-spacing:4px;text-align:center}
+.s9x-section{padding-top:72px}
+.s9x-head{margin-bottom:24px}
+.s9x-head small{color:#e10622;font-weight:1000;letter-spacing:2px}
+.s9x-head h2{color:#e10622;font-size:36px;margin:6px 0 5px;font-weight:1000}
+.s9x-head p{color:#a8001a;line-height:1.9}
+.s9x-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.s9x-card{grid-column:span 4;background:#e10622;color:#050505;border:1px solid #ff4a61;border-radius:18px;padding:24px;min-height:205px;position:relative;overflow:hidden;box-shadow:0 14px 35px rgba(0,0,0,.38),0 0 0 1px rgba(225,6,34,.18);transition:.42s cubic-bezier(.2,.8,.2,1);opacity:0;transform:translateY(42px) scale(.97)}
+.s9x-card.s9x-show{opacity:1;transform:none}
+.s9x-card:nth-child(2){transition-delay:.08s}.s9x-card:nth-child(3){transition-delay:.16s}.s9x-card:nth-child(4){transition-delay:.24s}.s9x-card:nth-child(5){transition-delay:.32s}.s9x-card:nth-child(6){transition-delay:.4s}
+.s9x-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 24px 55px rgba(0,0,0,.58),0 0 28px rgba(225,6,34,.28)}
+.s9x-card:before{content:"";position:absolute;width:130px;height:130px;right:-65px;top:-65px;border:1px solid rgba(0,0,0,.25);border-radius:50%;transition:.5s}
+.s9x-card:hover:before{transform:scale(1.45)}
+.s9x-icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:#090909;color:#e10622;border:1px solid #050505;font-size:24px;margin-bottom:16px}
+.s9x-card h3{color:#050505;font-size:20px;margin:0 0 8px;font-weight:1000}
+.s9x-card p,.s9x-card li{color:#050505;line-height:1.95;font-size:14px;font-weight:700}
+.s9x-tag{display:inline-block;background:#050505;color:#e10622;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:1000;margin-bottom:10px}
+.s9x-feature{background:#e10622;color:#050505;border:1px solid #ff4a61;border-radius:22px;padding:28px;box-shadow:0 18px 50px rgba(0,0,0,.45);position:relative;overflow:hidden}
+.s9x-feature h3{color:#050505;font-size:27px;margin:0 0 10px;font-weight:1000}
+.s9x-feature p{color:#050505;line-height:2;font-weight:700}
+.s9x-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.s9x-list div{background:#080808;color:#e10622;border:1px solid #080808;border-radius:12px;padding:12px;font-weight:900}
+.s9x-note{margin-top:14px;background:#080808;color:#e10622;border-radius:13px;padding:13px;font-size:13px;line-height:1.9;font-weight:800}
+.s9x-cta{margin-top:75px;padding:58px 22px;text-align:center;background:#050505;border:1px solid #e10622;border-radius:25px;box-shadow:0 0 45px rgba(225,6,34,.12);position:relative;overflow:hidden}
+.s9x-cta:before{content:"";position:absolute;inset:14px;border:1px solid rgba(225,6,34,.25);border-radius:18px;pointer-events:none}
+.s9x-cta h2{color:#e10622;font-size:clamp(30px,5vw,54px);font-weight:1000;margin:0}
+.s9x-cta p{color:#e10622;margin:10px 0 25px}
+.s9x-enter{min-width:290px;min-height:62px;background:#e10622;color:#050505;border:1px solid #ff4960;border-radius:14px;font:inherit;font-size:18px;font-weight:1000;cursor:pointer;box-shadow:0 15px 45px rgba(225,6,34,.3);animation:s9x-pulse 2.2s infinite;transition:.3s}
+.s9x-enter:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 25px 60px rgba(225,6,34,.42)}
+.s9x-home{margin:35px 0 40px;padding:22px;background:#e10622;color:#050505;border:1px solid #ff4a61;border-radius:20px;display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 15px 40px rgba(0,0,0,.35);position:relative;overflow:hidden}
+.s9x-home h3{color:#050505;margin:0 0 6px;font-size:22px;font-weight:1000}.s9x-home p{color:#050505;margin:0;font-weight:700;line-height:1.8}
+.s9x-home .s9x-btn{background:#050505;color:#e10622;box-shadow:none;white-space:nowrap}
+@keyframes s9x-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes s9x-title{from{opacity:0;transform:translateY(35px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes s9x-orbit-in{from{opacity:0;transform:scale(.72) rotate(-8deg)}to{opacity:1;transform:none}}
+@keyframes s9x-float{50%{transform:translateY(-13px)}}
+@keyframes s9x-ring{to{transform:rotate(360deg)}}
+@keyframes s9x-blink{50%{opacity:.3;transform:scale(.65)}}
+@keyframes s9x-pulse{70%{box-shadow:0 15px 45px rgba(225,6,34,.3),0 0 0 18px rgba(225,6,34,0)}}
+@media(max-width:900px){.s9x-hero{grid-template-columns:1fr;text-align:center}.s9x-sub{margin:auto}.s9x-actions{justify-content:center}.s9x-card{grid-column:span 6}.s9x-home{flex-direction:column;text-align:center}.s9x-list{grid-template-columns:1fr}}
+@media(max-width:600px){.s9x-wrap{width:min(100% - 18px,1220px)}.s9x-title{font-size:62px;letter-spacing:-3px}.s9x-card{grid-column:span 12}.s9x-core{width:255px}.s9x-core b{font-size:58px}.s9x-enter{width:100%;min-width:0}.s9x-feature{padding:22px 18px}}
+
 </style>
 </head>
 
@@ -555,6 +621,10 @@ img, video, canvas, iframe {
 
             <button onclick="showPage('rooms',this)">
                 مسابقات
+            </button>
+
+            <button onclick="showPage('season9',this)">
+                🩸 سیزن ۹
             </button>
 
             <button onclick="showPage('duelRooms',this)">
@@ -622,6 +692,14 @@ img, video, canvas, iframe {
 
         </div>
 
+    </div>
+
+    <div class="s9x-home">
+        <div>
+            <h3>🩸 Season 9 — Vampires vs Werewolves</h3>
+            <p>اطلاعات سیزن ۹، اپراتورها، سلاح‌ها، BR، Battle Pass و Leakها</p>
+        </div>
+        <button class="s9x-btn" onclick="showPage('season9')">مشاهده سیزن ۹ ←</button>
     </div>
 
     <section class="bot-section" aria-label="ربات روبیکای امیر دیوتی">
@@ -2438,6 +2516,124 @@ target="_blank"
 
 </section>
 
+
+<!-- =========================================================
+     AMIR DUTY — CALL OF DUTY MOBILE SEASON 9 / 2026
+     ========================================================= -->
+<section id="season9" class="page s9x-page">
+<div class="s9x-wrap">
+
+    <div class="s9x-hero">
+        <div>
+            <div class="s9x-kicker"><i></i> CALL OF DUTY: MOBILE — SEASON 9 / 2026</div>
+            <h1 class="s9x-title">SEASON <span>09</span></h1>
+            <p class="s9x-sub">Vampires vs Werewolves؛ فصل نهم ۲۰۲۶ با یک هویت ماورایی و انتخاب‌شده توسط جامعه بازیکنان. این صفحه اطلاعات تأییدشده را از موارد احتمالی و Leak جدا می‌کند.</p>
+            <div class="s9x-actions">
+                <button class="s9x-btn" onclick="document.getElementById('s9x-info').scrollIntoView({behavior:'smooth'})">مشاهده اطلاعات سیزن</button>
+                <button class="s9x-btn dark" onclick="showPage('home')">بازگشت به خانه</button>
+            </div>
+        </div>
+        <div class="s9x-orbit"><div class="s9x-core"><div><b>S9</b><small>VAMPIRES × WEREWOLVES</small></div></div></div>
+    </div>
+
+    <div id="s9x-info">
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>01 / OVERVIEW</small><h2>معرفی سیزن ۹</h2><p>مهم‌ترین اطلاعاتی که تا این لحظه درباره Season 9 سال ۲۰۲۶ تأیید یا گزارش شده است.</p></div>
+            <div class="s9x-grid">
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🩸</div><span class="s9x-tag">تأییدشده</span><h3>Vampires vs Werewolves</h3><p>تم برنده سیزن ۹ است و هویت اصلی فصل را شکل می‌دهد.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🗳️</div><span class="s9x-tag">تأییدشده</span><h3>Your Season, Your Vote</h3><p>جامعه بازیکنان در انتخاب تم، اپراتورها و طرح‌های سلاح نقش داشته است.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">📅</div><span class="s9x-tag">تأییدشده</span><h3>زمان انتشار</h3><p>عرضه Season 9 سال ۲۰۲۶ برای ماه اکتبر برنامه‌ریزی شده است؛ زمان دقیق انتشار را پس از اعلام رسمی درج کنید.</p></article>
+            </div>
+        </section>
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>02 / OPERATORS</small><h2>اپراتورهای منتخب</h2><p>دو اپراتوری که در فرآیند رأی‌گیری جامعه برای این فصل انتخاب شدند.</p></div>
+            <div class="s9x-grid">
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🐺</div><span class="s9x-tag">تأییدشده</span><h3>Pack Commander</h3><p>یکی از دو اپراتور منتخب جامعه برای Season 9.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🌙</div><span class="s9x-tag">تأییدشده</span><h3>Moonlight Vengeance</h3><p>دومین اپراتور منتخب جامعه و یکی از چهره‌های اصلی تم فصل.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🧛</div><span class="s9x-tag">تم فصل</span><h3>Vampire × Werewolf</h3><p>مفهوم اصلی طراحی اپراتورها بر پایه دو جناح خون‌آشام و گرگینه شکل گرفته است.</p></article>
+            </div>
+        </section>
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>03 / WEAPONS</small><h2>سلاح‌ها و طرح‌های منتخب</h2><p>مواردی که برای Season 9 2026 در گزارش‌های مربوط به رأی جامعه تأیید شده‌اند.</p></div>
+            <div class="s9x-grid">
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🔫</div><span class="s9x-tag">تأییدشده</span><h3>Wolven Moonlight — CX-9</h3><p>طرح منتخب جامعه برای CX-9 که با هویت گرگینه‌ای فصل ارتباط دارد.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🎯</div><span class="s9x-tag">تأییدشده</span><h3>Cantus Rubra</h3><p>طرح سلاح منتخب دیگر در فرآیند رأی‌گیری Season 9.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">⚡</div><span class="s9x-tag">گزارش‌شده</span><h3>CX-9</h3><p>CX-9 در گزارش‌های مرتبط با Season 9 به‌عنوان سلاح اصلی مرتبط با این محتوا مطرح شده است.</p></article>
+            </div>
+        </section>
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>04 / BATTLE PASS</small><h2>Battle Pass</h2><p>جزئیات نهایی Battle Pass تا انتشار اطلاعات کامل بازی باید به‌روزرسانی شود.</p></div>
+            <div class="s9x-feature">
+                <span class="s9x-tag">تأییدشده / جزئیات کامل در انتظار اعلام</span>
+                <h3>بتل‌پس سیزن ۹</h3>
+                <p>اپراتورها و طرح‌های منتخب جامعه قرار است در هویت محتوای فصل نقش اصلی داشته باشند. ساختار نهایی Tierها، جوایز Free/Premium و آیتم‌های هر Tier را بعد از اعلام رسمی می‌توان به همین صفحه اضافه کرد.</p>
+                <div class="s9x-list"><div>🎭 Operator Skins</div><div>🔫 Weapon Blueprints</div><div>🪪 Calling Cards</div><div>🎒 آیتم‌ها و جوایز فصلی</div></div>
+            </div>
+        </section>
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>05 / BATTLE ROYALE</small><h2>Battle Royale</h2><p>وضعیت BR را از محتوای قطعی Season 9 جدا نگه داشته‌ایم تا اطلاعات اشتباه منتشر نشود.</p></div>
+            <div class="s9x-grid">
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🗺️</div><span class="s9x-tag">برنامه توسعه</span><h3>نقشه بزرگ جدید BR</h3><p>توسعه یک نقشه بزرگ جدید برای Battle Royale تأیید شده، اما جزئیات گیم‌پلی و زمان عرضه آن هنوز برای Season 9 قطعی اعلام نشده است.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🏆</div><span class="s9x-tag">توسعه جاری</span><h3>بهبود تجربه BR</h3><p>تیم توسعه اعلام کرده کار روی تجربه فعلی Battle Royale و بهبودهای آن ادامه دارد.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">❓</div><span class="s9x-tag">نامشخص</span><h3>جزئیات اختصاصی Season 9</h3><p>هر تغییر BR که مستقیماً برای Season 9 اعلام شود، در همین کارت اضافه خواهد شد.</p></article>
+            </div>
+        </section>
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>06 / RANKED & LEVEL</small><h2>رنک و پیشرفت بازیکن</h2><p>برخی تغییرات دوره‌ای توسعه‌دهندگان هم‌زمان با برنامه Season 9 مطرح شده‌اند.</p></div>
+            <div class="s9x-grid">
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">⬆️</div><span class="s9x-tag">تأییدشده در گزارش توسعه</span><h3>Level Cap: 450</h3><p>سقف Level بازیکن از ۴۰۰ به ۴۵۰ افزایش پیدا می‌کند.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🗳️</div><span class="s9x-tag">برنامه توسعه</span><h3>Ranked Map Voting</h3><p>توسعه‌دهندگان از مشارکت جامعه در انتخاب نقشه‌های Ranked آینده از طریق نظرسنجی صحبت کرده‌اند.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">⚙️</div><span class="s9x-tag">توسعه جاری</span><h3>Quality of Life</h3><p>بهبود تجربه کاربری، دسترسی بهتر به محتوای محدود و مسیرهای ساده‌تر برای دریافت جوایز از محورهای اعلام‌شده توسعه هستند.</p></article>
+            </div>
+        </section>
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>07 / MYTHIC & LEGENDARY</small><h2>Mythic و Legendary</h2><p>وضعیت موارد ویژه را شفاف نگه داشته‌ایم.</p></div>
+            <div class="s9x-feature">
+                <span class="s9x-tag">⚠️ هنوز قطعی نیست</span>
+                <h3>فهرست Mythic/Legendary اختصاصی Season 9</h3>
+                <p>در اطلاعاتی که برای Season 9 سال ۲۰۲۶ بررسی شد، فهرست رسمی و کامل یک Mythic Weapon یا Legendary Draw اختصاصی این فصل هنوز اعلام نشده است. بنابراین نام‌های منتشرشده در کانال‌ها و منابع غیررسمی را به‌عنوان قطعی وارد نکرده‌ایم.</p>
+                <div class="s9x-note">هر Leak جدید را می‌توان در همین بخش با برچسب «احتمالی / Leak» اضافه کرد تا با اطلاعات رسمی اشتباه نشود.</div>
+            </div>
+        </section>
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>08 / LEAKS</small><h2>موارد احتمالی و Leak</h2><p>این قسمت عمداً از اطلاعات تأییدشده جدا شده است.</p></div>
+            <div class="s9x-feature">
+                <span class="s9x-tag">احتمالی / Leak — غیرقطعی</span>
+                <h3>مواردی که در منابع غیررسمی برای Season 9 مطرح شده‌اند</h3>
+                <div class="s9x-list">
+                    <div>🏍️ Motorcycle — Fluorescence</div><div>🪂 Parachute — Legendary Motorcycle</div><div>🚗 Coupe — Ford Mustang</div><div>🚙 ORV — Ford Raptor</div>
+                </div>
+                <div class="s9x-note">این موارد بر اساس گزارش‌های Leak هستند و ممکن است تغییر کنند، حذف شوند یا وارد نسخه نهایی نشوند.</div>
+            </div>
+        </section>
+
+        <section class="s9x-section">
+            <div class="s9x-head"><small>09 / NEWS</small><h2>وضعیت اخبار Season 9</h2><p>این صفحه برای به‌روزرسانی‌های بعدی آماده است.</p></div>
+            <div class="s9x-grid">
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🔴</div><span class="s9x-tag">تأییدشده</span><h3>تم اصلی</h3><p>Vampires vs Werewolves.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🧛</div><span class="s9x-tag">تأییدشده</span><h3>اپراتورها</h3><p>Pack Commander و Moonlight Vengeance.</p></article>
+                <article class="s9x-card s9x-reveal"><div class="s9x-icon">🔫</div><span class="s9x-tag">تأییدشده</span><h3>طرح‌های سلاح</h3><p>Wolven Moonlight — CX-9 و Cantus Rubra.</p></article>
+            </div>
+        </section>
+
+        <div class="s9x-cta">
+            <h2>آماده ورود به سیزن ۹ هستی؟</h2>
+            <p>Vampires vs Werewolves — Season 9 / 2026</p>
+            <button class="s9x-enter" onclick="openSeason9Top()">🩸 ورود به سیزن ۹</button>
+        </div>
+
+    </div>
+</div>
+</section>
+
 </main>
 
 
@@ -4025,6 +4221,41 @@ function initXPSystem(){
         });
     });
 })();
+
+/* =========================================================
+   SEASON 9 — 2026 INTERACTION
+   ========================================================= */
+(function(){
+    function s9xObserve(){
+        const cards=document.querySelectorAll('#season9 .s9x-reveal');
+        if(!cards.length) return;
+        if(!('IntersectionObserver' in window)){
+            cards.forEach(c=>c.classList.add('s9x-show'));
+            return;
+        }
+        const ob=new IntersectionObserver(entries=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('s9x-show');
+                    ob.unobserve(entry.target);
+                }
+            });
+        },{threshold:.12,rootMargin:'0px 0px -45px 0px'});
+        cards.forEach(c=>ob.observe(c));
+    }
+    window.openSeason9Top=function(){
+        const page=document.getElementById('season9');
+        if(page) window.scrollTo({top:0,behavior:'smooth'});
+    };
+    document.addEventListener('DOMContentLoaded',s9xObserve);
+    const s9page=document.getElementById('season9');
+    if(s9page && 'MutationObserver' in window){
+        new MutationObserver(function(){
+            if(s9page.classList.contains('active')) setTimeout(s9xObserve,80);
+        }).observe(s9page,{attributes:true,attributeFilter:['class']});
+    }
+})();
+
 </script>
 
 </body>
