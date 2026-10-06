@@ -1161,6 +1161,128 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
 @media(max-width:560px){.wallet-actions{grid-template-columns:1fr}.wallet-balance{font-size:34px}}
 
 </style>
+
+<style>
+#roomStartNotice{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translate(-50%,-150%);
+  width:min(680px,calc(100vw - 24px));
+  z-index:2147483647;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  direction:rtl;
+  padding:16px 18px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.7);
+  background:linear-gradient(135deg,rgba(34,18,10,.97),rgba(111,63,28,.97));
+  color:#fff;
+  box-shadow:0 18px 55px rgba(0,0,0,.35),0 0 35px rgba(255,177,75,.38);
+  backdrop-filter:blur(18px);
+  opacity:0;
+  transition:transform .65s cubic-bezier(.2,.9,.2,1),opacity .35s ease;
+  overflow:hidden;
+}
+#roomStartNotice::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:radial-gradient(circle,rgba(255,207,115,.25),transparent 55%);
+  animation:rsnGlow 2.5s ease-in-out infinite;
+  pointer-events:none;
+}
+#roomStartNotice.show{
+  transform:translate(-50%,0);
+  opacity:1;
+  animation:rsnShake .7s ease-out;
+}
+.rsn-sticker{
+  position:relative;
+  min-width:66px;
+  height:66px;
+  display:grid;
+  place-items:center;
+  border-radius:20px;
+  background:rgba(255,255,255,.13);
+  font-size:34px;
+  box-shadow:inset 0 0 20px rgba(255,255,255,.08),0 0 25px rgba(255,188,86,.25);
+}
+.rsn-body{position:relative;flex:1;min-width:0}
+.rsn-small{font-size:12px;opacity:.78;margin-bottom:3px}
+.rsn-title{font-size:20px;font-weight:900;line-height:1.5}
+.rsn-code-label{font-size:12px;opacity:.8;margin-top:5px}
+.rsn-code{
+  margin-top:3px;
+  font-size:25px;
+  font-weight:1000;
+  letter-spacing:2px;
+  color:#ffe1a8;
+  text-shadow:0 0 16px rgba(255,201,107,.65);
+  direction:ltr;
+  text-align:right;
+}
+.rsn-actions{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+.rsn-actions button{
+  border:0;
+  cursor:pointer;
+  border-radius:12px;
+  padding:8px 13px;
+  font-family:inherit;
+  font-weight:800;
+}
+.rsn-copy{background:#fff;color:#4b2815}
+.rsn-close{background:rgba(255,255,255,.12);color:#fff}
+.rsn-x{
+  position:relative;
+  align-self:flex-start;
+  border:0;
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  width:32px;height:32px;
+  border-radius:10px;
+  font-size:21px;
+  cursor:pointer;
+}
+#dutyMiniToast{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translate(-50%,20px);
+  opacity:0;
+  z-index:2147483647;
+  padding:11px 16px;
+  border-radius:14px;
+  background:#24160f;
+  color:#fff;
+  box-shadow:0 12px 35px rgba(0,0,0,.3);
+  transition:.3s ease;
+  direction:rtl;
+  font-family:inherit;
+}
+#dutyMiniToast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes rsnShake{
+  0%{transform:translate(-50%,0) rotate(0)}
+  18%{transform:translate(calc(-50% - 8px),0) rotate(-1deg)}
+  36%{transform:translate(calc(-50% + 8px),0) rotate(1deg)}
+  54%{transform:translate(calc(-50% - 5px),0) rotate(-.7deg)}
+  72%{transform:translate(calc(-50% + 5px),0) rotate(.7deg)}
+  100%{transform:translate(-50%,0) rotate(0)}
+}
+@keyframes rsnGlow{
+  0%,100%{transform:scale(.9);opacity:.5}
+  50%{transform:scale(1.1);opacity:1}
+}
+@media(max-width:560px){
+  #roomStartNotice{top:10px;padding:13px;border-radius:20px;gap:10px}
+  .rsn-sticker{min-width:52px;height:52px;font-size:27px;border-radius:16px}
+  .rsn-title{font-size:16px}
+  .rsn-code{font-size:21px}
+  .rsn-actions button{padding:7px 10px}
+}
+</style>
+
 </head>
 
 <body>
@@ -1448,7 +1570,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>مبلغ ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -1520,7 +1642,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>مبلغ ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -1592,7 +1714,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>مبلغ ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -1664,7 +1786,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>مبلغ ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -1736,7 +1858,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>مبلغ ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -1845,7 +1967,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -1914,7 +2036,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -1983,7 +2105,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -2052,7 +2174,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -2121,7 +2243,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
                 <div class="info">
                     <span>ورودی</span>
                     <strong class="price">
-                        ۵۰,۰۰۰ تومان
+                        ۵۰,۰۰۰ دیوتی
                     </strong>
                 </div>
 
@@ -2185,7 +2307,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
 
 <div class="meta-box">
 <span>مبلغ ورودی</span>
-<strong class="price">۳۰,۰۰۰ تومان</strong>
+<strong class="price">۵۰ دیوتی</strong>
 </div>
 
 <div class="meta-box">
@@ -2314,7 +2436,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
 
 <div class="meta-box">
 <span>مبلغ ورودی</span>
-<strong class="price">۳۰,۰۰۰ تومان</strong>
+<strong class="price">۵۰ دیوتی</strong>
 </div>
 
 <div class="meta-box">
@@ -2442,7 +2564,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
 
 <div class="meta-box">
 <span>مبلغ ورودی</span>
-<strong class="price">۳۰,۰۰۰ تومان</strong>
+<strong class="price">۵۰ دیوتی</strong>
 </div>
 
 <div class="meta-box">
@@ -2570,7 +2692,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
 
 <div class="meta-box">
 <span>مبلغ ورودی</span>
-<strong class="price">۳۰,۰۰۰ تومان</strong>
+<strong class="price">۵۰ دیوتی</strong>
 </div>
 
 <div class="meta-box">
@@ -2698,7 +2820,7 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
 
 <div class="meta-box">
 <span>مبلغ ورودی</span>
-<strong class="price">۵۰,۰۰۰ تومان</strong>
+<strong class="price">۵۰,۰۰۰ دیوتی</strong>
 </div>
 
 <div class="meta-box">
@@ -3110,9 +3232,9 @@ footer{border-top-color:#eadbcb!important}.admin-box{border-color:#e2ccb4!import
   <div class="wallet-grid">
     <div class="wallet-card">
       <div class="wallet-label">موجودی فعلی</div>
-      <div id="walletBalance" class="wallet-balance">۰ تومان</div>
-      <p style="color:#806e60;line-height:1.9;font-size:13px">شارژ کیف پول توسط مدیریت انجام می‌شود. برای شارژ، از پشتیبانی درخواست ثبت کنید.</p>
-      <button class="btn" style="width:100%;margin-top:14px" onclick="openSupport()">💬 درخواست شارژ از پشتیبانی</button>
+      <div id="walletBalance" class="wallet-balance">۰ دیوتی</div>
+      <p style="color:#806e60;line-height:1.9;font-size:13px">برای شارژ دیوتی به روبیکا برید و از پشتیبانی درخواست شارژ کنید.</p>
+      <button class="btn" style="width:100%;margin-top:14px" onclick="openSupport()">💬 شارژ دیوتی در روبیکا</button>
       <div class="wallet-history" id="walletHistory"></div>
     </div>
     <div class="wallet-card">
@@ -5205,22 +5327,198 @@ function saveCodeDB(db){localStorage.setItem(ROOM_CODE_KEY,JSON.stringify(db))}
 function currentDutyUser(){try{return xpGetUser()}catch(e){return null}}
 function openWalletPage(button){showPage('wallet',button);renderWallet()}
 function walletBalance(username){const db=walletDB();return Number(db.users[username]||0)}
-function fmtT(n){return toPersianNumber(Math.max(0,Math.floor(Number(n)||0)).toLocaleString('en-US'))+' تومان'}
+function fmtT(n){return toPersianNumber(Math.max(0,Math.floor(Number(n)||0)).toLocaleString('en-US'))+' دیوتی'}
 function renderWallet(){const u=currentDutyUser();const b=document.getElementById('walletBalance');const h=document.getElementById('walletHistory');if(!b||!h)return;if(!u){b.textContent='ابتدا وارد حساب شوید';h.innerHTML='<div class="security-note">برای دیدن کیف پول، از بخش پروفایل وارد حساب شوید.</div>';return}b.textContent=fmtT(walletBalance(u.username));const db=walletDB();const tx=db.tx.filter(x=>x.username===u.username).slice(-8).reverse();h.innerHTML=tx.length?tx.map(x=>`<div class="wallet-tx"><span>${x.title}</span><b class="${x.type==='plus'?'wallet-plus':'wallet-minus'}">${x.type==='plus'?'+':'-'}${fmtT(x.amount)}</b></div>`).join(''):'<div class="security-note">هنوز تراکنشی ثبت نشده است.</div>'}
-function roomPrice(room){const el=document.querySelector('#'+room+' .meta-box .price');if(!el)return 0;return Number((el.textContent||'').replace(/[^0-9۰-۹]/g,'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/,/g,''))||0}
+function roomPrice(room){
+  if(/^room[1-5]$/.test(room) && /مولتی/i.test(roomTitle(room))) return 50;
+  const el=document.querySelector('#'+room+' .meta-box .price');
+  if(!el)return 0;
+  return Number((el.textContent||'').replace(/[^0-9۰-۹]/g,'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/,/g,''))||0
+}
 function roomTitle(room){const h=document.querySelector('#'+room+' .room-hero h1');return h?h.textContent.trim():room}
-function injectRoomPanels(){for(let i=1;i<=5;i++){const id='room'+i, page=document.getElementById(id);if(!page||page.querySelector('.wallet-room-panel'))continue;const box=document.createElement('div');box.className='register-box wallet-room-panel';box.innerHTML=`<h3>💳 ثبت‌نام با کیف پول</h3><p>هزینه ثبت‌نام از کیف پول کسر می‌شود و نام شما در فهرست شرکت‌کنندگان همین روم نمایش داده خواهد شد.</p><div class="register-form"><input id="codName_${i}" maxlength="32" placeholder="نام دقیق داخل Call of Duty Mobile"><input id="shot_${i}" type="file" accept="image/*"><textarea id="shotNote_${i}" placeholder="توضیح اختیاری برای پشتیبانی"></textarea><button class="btn" onclick="registerInRoom('${id}')">🎮 ثبت‌نام و کسر هزینه</button></div><div id="regMsg_${i}" class="security-note"></div>`;const hero=page.querySelector('.room-hero');if(hero)hero.after(box);const players=document.createElement('div');players.className='room-players';players.innerHTML=`<h2>👥 شرکت‌کنندگان روم</h2><div class="player-list" id="players_${i}"></div><div id="code_${i}"></div>`;box.after(players)}}
-function renderRoomParticipants(){const db=regDB(),codes=codeDB();for(let i=1;i<=5;i++){const list=document.getElementById('players_'+i);if(!list)continue;const rows=Array.isArray(db[i])?db[i]:[];list.innerHTML=rows.length?rows.map(x=>`<div class="player-chip">🎮 ${escapeHtml(x.name)}<br><small style="color:#8b7767">@${escapeHtml(x.username)}</small></div>`).join(''):'<div class="security-note">هنوز کسی در این روم ثبت‌نام نکرده است.</div>';const c=document.getElementById('code_'+i);const code=codes[i];c.innerHTML=code?`<div class="room-code-box"><small>🔐 کد ورود روم — فقط برای ثبت‌نام‌شده‌ها</small><strong>${escapeHtml(code)}</strong></div>`:''}}
+function injectRoomPanels(){for(let i=1;i<=5;i++){const id='room'+i, page=document.getElementById(id);if(!page||page.querySelector('.wallet-room-panel'))continue;const box=document.createElement('div');box.className='register-box wallet-room-panel';box.innerHTML=`<h3>💳 ثبت‌نام با کیف پول</h3><p>هزینه ورود این مسابقه ۵۰ دیوتی است و از موجودی دیوتی شما کسر می‌شود. جایزه مسابقه به تومان محاسبه می‌شود.</p><div class="register-form"><input id="codName_${i}" maxlength="32" placeholder="نام دقیق داخل Call of Duty Mobile"><input id="shot_${i}" type="file" accept="image/*"><textarea id="shotNote_${i}" placeholder="توضیح اختیاری برای پشتیبانی"></textarea><button class="btn" onclick="registerInRoom('${id}')">🎮 ثبت‌نام و کسر هزینه</button></div><div id="regMsg_${i}" class="security-note"></div>`;const hero=page.querySelector('.room-hero');if(hero)hero.after(box);const players=document.createElement('div');players.className='room-players';players.innerHTML=`<h2>👥 شرکت‌کنندگان روم</h2><div class="player-list" id="players_${i}"></div><div id="code_${i}"></div>`;box.after(players)}}
+function renderRoomParticipants(){
+  const db=regDB(),codes=codeDB(),u=currentDutyUser();
+  for(let i=1;i<=5;i++){
+    const list=document.getElementById('players_'+i);
+    if(!list)continue;
+    const rows=Array.isArray(db[i])?db[i]:[];
+    list.innerHTML=rows.length?rows.map(x=>`<div class="player-chip">🎮 ${escapeHtml(x.name)}<br><small style="color:#8b7767">@${escapeHtml(x.username)}</small></div>`).join(''):'<div class="security-note">هنوز کسی در این روم ثبت‌نام نکرده است.</div>';
+    const c=document.getElementById('code_'+i);
+    const code=codes[i];
+    const registered=!!u&&rows.some(x=>x.username===u.username);
+    c.innerHTML=(code&&registered)?`<div class="room-code-box"><small>🔐 کد ورود روم — فقط برای ثبت‌نام‌شده‌ها</small><strong>${escapeHtml(code)}</strong><button class="btn room-code-copy" onclick="copyRoomCode('${escapeHtml(code)}')">📋 کپی کد</button></div>`:'';
+  }
+}
 function escapeHtml(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
-function registerInRoom(room){const i=Number(room.replace('room',''));const u=currentDutyUser(),msg=document.getElementById('regMsg_'+i);if(!u){msg.textContent='ابتدا از بخش پروفایل وارد حساب شوید.';return}const cod=document.getElementById('codName_'+i).value.trim();const file=document.getElementById('shot_'+i).files[0];if(!cod||!file){msg.textContent='نام دقیق کالاف و اسکرین‌شات الزامی است.';return}const regs=regDB();regs[i]=Array.isArray(regs[i])?regs[i]:[];if(regs[i].some(x=>x.username===u.username)){msg.textContent='شما قبلاً در این روم ثبت‌نام کرده‌اید.';return}const price=roomPrice(room);const db=walletDB();const bal=Number(db.users[u.username]||0);if(bal<price){msg.textContent='موجودی کیف پول کافی نیست. ابتدا از پشتیبانی درخواست شارژ کنید.';return}db.users[u.username]=bal-price;db.tx=db.tx||[];db.tx.push({username:u.username,type:'minus',amount:price,title:'ثبت‌نام '+roomTitle(room),time:new Date().toISOString()});saveWalletDB(db);const reader=new FileReader();reader.onload=()=>{regs[i].push({username:u.username,name:cod,shot:reader.result,note:document.getElementById('shotNote_'+i).value.trim(),time:new Date().toISOString()});saveRegDB(regs);msg.textContent='ثبت‌نام با موفقیت انجام شد. حالا اسکرین‌شات را برای پشتیبانی ارسال کنید.';renderWallet();renderRoomParticipants();window.open('https://rubika.ir/amirduty75','_blank')};reader.readAsDataURL(file)}
+function registerInRoom(room){const i=Number(room.replace('room',''));const u=currentDutyUser(),msg=document.getElementById('regMsg_'+i);if(!u){msg.textContent='ابتدا از بخش پروفایل وارد حساب شوید.';return}const cod=document.getElementById('codName_'+i).value.trim();const file=document.getElementById('shot_'+i).files[0];if(!cod||!file){msg.textContent='نام دقیق کالاف و اسکرین‌شات الزامی است.';return}const regs=regDB();regs[i]=Array.isArray(regs[i])?regs[i]:[];if(regs[i].some(x=>x.username===u.username)){msg.textContent='شما قبلاً در این روم ثبت‌نام کرده‌اید.';return}const price=roomPrice(room);const db=walletDB();const bal=Number(db.users[u.username]||0);if(bal<price){msg.textContent='موجودی دیوتی کافی نیست. برای شارژ دیوتی به روبیکا برید و از پشتیبانی درخواست شارژ کنید.';return}db.users[u.username]=bal-price;db.tx=db.tx||[];db.tx.push({username:u.username,type:'minus',amount:price,title:'ثبت‌نام '+roomTitle(room),time:new Date().toISOString()});saveWalletDB(db);const reader=new FileReader();reader.onload=()=>{regs[i].push({username:u.username,name:cod,shot:reader.result,note:document.getElementById('shotNote_'+i).value.trim(),time:new Date().toISOString()});saveRegDB(regs);msg.textContent='ثبت‌نام با موفقیت انجام شد. حالا اسکرین‌شات را برای پشتیبانی ارسال کنید.';renderWallet();renderRoomParticipants();window.open('https://rubika.ir/amirduty75','_blank')};reader.readAsDataURL(file)}
 function adminWalletRows(){const db=xpReadDB();const w=walletDB();return Object.values(db.users||{}).map(u=>`<div class="admin-wallet-row"><div><b>${escapeHtml(u.name)}</b><small style="display:block;color:#8b7767">@${escapeHtml(u.username)} — موجودی: ${fmtT(w.users[u.username]||0)}</small></div><input class="admin-mini-input" id="walletAmt_${escapeHtml(u.username)}" type="number" min="0" placeholder="مبلغ"><button class="btn" onclick="adminAddWallet('${escapeHtml(u.username)}')">شارژ</button></div>`).join('')||'<div class="security-note">هنوز کاربری ساخته نشده است.</div>'}
 function adminAddWallet(username){const input=document.getElementById('walletAmt_'+username),amount=Number(input?.value||0);if(!amount||amount<1)return;const db=walletDB();db.users[username]=Number(db.users[username]||0)+Math.floor(amount);db.tx=db.tx||[];db.tx.push({username,type:'plus',amount:Math.floor(amount),title:'شارژ توسط مدیریت',time:new Date().toISOString()});saveWalletDB(db);renderWallet();renderAdminWallet();alert('موجودی شارژ شد.')}
-function adminSetRoomCode(room){const input=document.getElementById('roomCodeInput_'+room),code=(input?.value||'').trim();const db=codeDB();if(code)db[room]=code;else delete db[room];saveCodeDB(db);renderRoomParticipants();alert('کد روم ذخیره شد.')}
+function adminSetRoomCode(room){
+  const input=document.getElementById('roomCodeInput_'+room),code=(input?.value||'').trim();
+  const db=codeDB();
+  if(code){
+    db[room]=code;
+    db._startedAt=db._startedAt||{};
+    db._startedAt[room]=Date.now();
+  }else{
+    delete db[room];
+    if(db._startedAt) delete db._startedAt[room];
+  }
+  saveCodeDB(db);
+  renderRoomParticipants();
+  if(code) publishRoomStart(room,code);
+  alert(code?'کد روم ذخیره شد و اعلان شروع برای ثبت‌نام‌شده‌ها فعال شد.':'کد روم حذف شد.');
+}
 function renderAdminWallet(){const box=document.getElementById('walletAdminRows');if(box)box.innerHTML=adminWalletRows();const codes=document.getElementById('roomCodeAdminRows');if(codes){const db=codeDB();codes.innerHTML=Array.from({length:5},(_,i)=>{const r=i+1;return `<div class="admin-room-code"><b>روم ${r}</b><input id="roomCodeInput_${r}" value="${escapeHtml(db[r]||'')}" placeholder="کد روم"><button class="btn" onclick="adminSetRoomCode(${r})">ذخیره</button></div>`}).join('')}}
 function injectAdminWallet(){const box=document.querySelector('#adminContent');if(!box||document.getElementById('walletAdminBlock'))return;const d=document.createElement('div');d.id='walletAdminBlock';d.style.marginTop='28px';d.innerHTML=`<div class="rules-card"><h2>💳 مدیریت کیف پول</h2><p class="notice">شارژ موجودی کاربران از همین دستگاه در این نسخه انجام می‌شود.</p><div id="walletAdminRows" class="admin-wallet-grid"></div></div><div class="rules-card"><h2>🔐 کد ورود روم</h2><p class="notice">کد فقط در صفحه همان روم و برای ثبت‌نام‌شده‌ها نمایش داده می‌شود.</p><div id="roomCodeAdminRows"></div></div>`;box.appendChild(d);renderAdminWallet()}
 const oldLoginAdmin=window.loginAdmin;window.loginAdmin=function(){oldLoginAdmin();setTimeout(injectAdminWallet,50)};
 const oldOpenAdminLogin=window.openAdminLogin;window.openAdminLogin=function(){oldOpenAdminLogin();setTimeout(injectAdminWallet,50)};
 const oldShowPage=window.showPage;window.showPage=function(pageId,button){oldShowPage(pageId,button);if(pageId==='wallet')renderWallet()};
+
+/* ===== اعلان شروع روم برای ثبت‌نام‌شده‌ها ===== */
+(function(){
+  const NOTICE_EVENT_KEY='amirDutyRoomStartEvent_v2';
+  const NOTICE_SEEN_KEY='amirDutyRoomStartSeen_v2';
+
+  function noticeSeenKey(username,room,code){
+    return String(username||'guest')+'_'+String(room)+'_'+String(code);
+  }
+
+  function getSeen(){
+    try{return JSON.parse(localStorage.getItem(NOTICE_SEEN_KEY)||'{}')}catch(e){return {}}
+  }
+
+  function setSeen(k){
+    const x=getSeen();x[k]=Date.now();localStorage.setItem(NOTICE_SEEN_KEY,JSON.stringify(x));
+  }
+
+  function roomRegistered(room,username){
+    if(!username)return false;
+    const rows=regDB()[room];
+    return Array.isArray(rows)&&rows.some(x=>x.username===username);
+  }
+
+  function copyRoomCode(code){
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(String(code)).then(()=>toastDuty('✅ کد روم کپی شد')).catch(()=>fallbackCopy(code));
+    }else fallbackCopy(code);
+  }
+  window.copyRoomCode=copyRoomCode;
+
+  function fallbackCopy(code){
+    const ta=document.createElement('textarea');
+    ta.value=String(code);ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');toastDuty('✅ کد روم کپی شد')}catch(e){}
+    ta.remove();
+  }
+
+  function toastDuty(text){
+    const old=document.getElementById('dutyMiniToast');
+    if(old)old.remove();
+    const t=document.createElement('div');
+    t.id='dutyMiniToast';t.textContent=text;
+    document.body.appendChild(t);
+    setTimeout(()=>t.classList.add('show'),20);
+    setTimeout(()=>t.classList.remove('show'),1800);
+    setTimeout(()=>t.remove(),2200);
+  }
+
+  function closeRoomNotice(){
+    const n=document.getElementById('roomStartNotice');
+    if(n){n.classList.remove('show');setTimeout(()=>n.remove(),450)}
+  }
+  window.closeRoomNotice=closeRoomNotice;
+
+  function vibrate(){
+    try{if(navigator.vibrate)navigator.vibrate([180,90,180,90,350])}catch(e){}
+  }
+
+  function showRoomStartNotice(room,code,force){
+    const u=currentDutyUser();
+    if(!u||!roomRegistered(room,u.username)||!code)return false;
+
+    const seenKey=noticeSeenKey(u.username,room,code);
+    if(!force&&getSeen()[seenKey])return false;
+    setSeen(seenKey);
+
+    const title=roomTitle(room);
+    const old=document.getElementById('roomStartNotice');
+    if(old)old.remove();
+
+    const n=document.createElement('div');
+    n.id='roomStartNotice';
+    n.innerHTML=`
+      <div class="rsn-sticker">🎮🔥</div>
+      <div class="rsn-body">
+        <div class="rsn-small">اعلان مسابقه</div>
+        <div class="rsn-title">روم ${escapeHtml(title)} شروع شده!</div>
+        <div class="rsn-code-label">🔐 کد ورود روم</div>
+        <div class="rsn-code">${escapeHtml(code)}</div>
+        <div class="rsn-actions">
+          <button class="rsn-copy" onclick="copyRoomCode('${escapeHtml(code)}')">📋 کپی کد</button>
+          <button class="rsn-close" onclick="closeRoomNotice()">بستن</button>
+        </div>
+      </div>
+      <button class="rsn-x" onclick="closeRoomNotice()" aria-label="بستن">×</button>
+    `;
+    document.body.appendChild(n);
+    requestAnimationFrame(()=>n.classList.add('show'));
+    vibrate();
+    setTimeout(vibrate,520);
+    return true;
+  }
+
+  function publishRoomStart(room,code){
+    const event={room:String(room),code:String(code),time:Date.now()};
+    localStorage.setItem(NOTICE_EVENT_KEY,JSON.stringify(event));
+    const u=currentDutyUser();
+    if(u)showRoomStartNotice(event.room,event.code,true);
+  }
+
+  function checkRoomStarts(){
+    const u=currentDutyUser();
+    if(!u)return;
+    const codes=codeDB();
+    for(let i=1;i<=5;i++){
+      const room='room'+i,code=codes[i];
+      if(code&&roomRegistered(room,u.username)){
+        showRoomStartNotice(room,code,false);
+        break;
+      }
+    }
+  }
+
+  window.addEventListener('storage',function(e){
+    if(e.key===NOTICE_EVENT_KEY&&e.newValue){
+      try{
+        const event=JSON.parse(e.newValue);
+        if(event&&event.room&&event.code)showRoomStartNotice(event.room,event.code,false);
+      }catch(err){}
+    }
+  });
+
+  // This also catches the admin changing the code in the same tab.
+  window.publishRoomStart=publishRoomStart;
+
+  const oldSetRoomCode=window.adminSetRoomCode;
+  if(typeof oldSetRoomCode==='function'){
+    // Kept as a safety hook if the function is redefined later.
+  }
+
+  setTimeout(checkRoomStarts,350);
+  setInterval(checkRoomStarts,2500);
+
+  const oldShowPageForNotice=window.showPage;
+  if(typeof oldShowPageForNotice==='function'){
+    window.showPage=function(pageId,button){
+      oldShowPageForNotice(pageId,button);
+      setTimeout(checkRoomStarts,120);
+    };
+  }
+})();
+
 setTimeout(()=>{injectRoomPanels();renderRoomParticipants();},100);
 setInterval(()=>{injectRoomPanels();renderRoomParticipants();},2000);
 
