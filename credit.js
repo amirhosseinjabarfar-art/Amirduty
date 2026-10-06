@@ -1,1747 +1,865 @@
 /* =========================================================
-   AMIR DUTY - CREDIT / ROOMS SYSTEM
-   Supabase
+   AMIR DUTY - CREDIT / ROOM CODE SYSTEM
+   دیوتی = اعتبار داخلی سایت
    ========================================================= */
 
-(() => {
-  "use strict";
+const SUPABASE_URL = "https://lwdlmymtmzclrenuhxaw.supabase.co";
+const SUPABASE_KEY = "sb_publishable_eX-2O3OlzkEK4ZzHA-RGWQ_Ejxl3BDa";
 
-  /* =========================================================
-     SUPABASE
-     ========================================================= */
+let supabaseClient = null;
+let currentUser = null;
 
-  const SUPABASE_URL =
-    "https://lwdlmymtmzclrenuhxaw.supabase.co";
+const seenRoomAlerts = new Set();
 
-  const SUPABASE_KEY =
-    "sb_publishable_eX-2O3OlzkEK4ZzHA-RGWQ_Ejxl3BDa";
+/* =========================================================
+   INIT
+   ========================================================= */
 
-  if (!window.supabase) {
-    console.error("Supabase library not loaded.");
-    return;
-  }
-
-  const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
-
-  window.AmirDutyDB = supabase;
-
-
-  /* =========================================================
-     TABLES
-     ========================================================= */
-
-  const TABLES = {
-    users: "users",
-    wallet: "wallet",
-    rooms: "rooms",
-    registrations: "registrations",
-    roomCodes: "room_codes"
-  };
-
-
-  /* =========================================================
-     HELPERS
-     ========================================================= */
-
-  const $ = (selector) =>
-    document.querySelector(selector);
-
-  const $$ = (selector) =>
-    [...document.querySelectorAll(selector)];
-
-
-  function escapeHTML(value) {
-
-    const div =
-      document.createElement("div");
-
-    div.textContent =
-      value ?? "";
-
-    return div.innerHTML;
-  }
-
-
-  function formatNumber(value) {
-
-    return Number(value || 0)
-      .toLocaleString("fa-IR");
-
-  }
-
-
-  /* =========================================================
-     CURRENT USER
-     ========================================================= */
-
-  async function getCurrentUser() {
-
-    try {
-
-      const {
-        data,
-        error
-      } = await supabase.auth.getUser();
-
-      if (!error && data?.user) {
-        return data.user;
-      }
-
-    } catch (error) {
-
-      console.warn(
-        "Auth error:",
-        error
-      );
-
+async function initAmirDutyCredit() {
+    if (!window.supabase) {
+        console.error("Supabase library پیدا نشد.");
+        return;
     }
 
-    return null;
-  }
+    supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
-
-  async function getCurrentUserId() {
-
-    const user =
-      await getCurrentUser();
-
-    return user?.id || null;
-
-  }
-
-
-  /* =========================================================
-     CREDIT
-     ========================================================= */
-
-  async function loadCredit() {
-
-    const userId =
-      await getCurrentUserId();
-
-    if (!userId) return null;
-
-
-    try {
-
-      const {
-        data,
+    const {
+        data: { user },
         error
-      } = await supabase
-        .from(TABLES.wallet)
-        .select("*")
-        .eq("user_id", userId)
+    } = await supabaseClient.auth.getUser();
+
+    if (error || !user) {
+        console.log("کاربر وارد نشده است.");
+        return;
+    }
+
+    currentUser = user;
+
+    await createWalletIfNeeded();
+    await loadWallet();
+    await loadUserRegistrations();
+    await checkRoomCodes();
+
+    startRoomCodeRealtime();
+    startRoomCodePolling();
+}
+
+
+/* =========================================================
+   WALLET
+   ========================================================= */
+
+async function createWalletIfNeeded() {
+    if (!currentUser) return;
+
+    const { data } = await supabaseClient
+        .from("wallet")
+        .select("id")
+        .eq("user_id", currentUser.id)
         .maybeSingle();
 
-
-      if (error) {
-
-        console.error(
-          "Wallet error:",
-          error
-        );
-
-        return null;
-      }
-
-
-      if (!data) {
-
-        updateCreditUI(0);
-
-        return 0;
-      }
+    if (!data) {
+        await supabaseClient
+            .from("wallet")
+            .insert({
+                user_id: currentUser.id,
+                balance: 0
+            });
+    }
+}
 
 
-      const credit =
-        data.balance ??
-        data.credit ??
-        data.duty ??
-        data.amount ??
-        0;
+async function loadWallet() {
+    if (!currentUser) return;
 
+    const { data, error } = await supabaseClient
+        .from("wallet")
+        .select("balance")
+        .eq("user_id", currentUser.id)
+        .maybeSingle();
 
-      updateCreditUI(credit);
-
-      return credit;
-
-    } catch (error) {
-
-      console.error(
-        "Credit error:",
-        error
-      );
-
-      return null;
-
+    if (error) {
+        console.error("خطا در دریافت دیوتی:", error);
+        return;
     }
 
-  }
+    const balance = Number(data?.balance || 0);
+
+    updateWalletElements(balance);
+}
 
 
-  function updateCreditUI(credit) {
+function updateWalletElements(balance) {
 
-    const selectors = [
-
-      "#accountBalance",
-
-      "#walletBalance",
-
-      "#userBalance",
-
-      "#creditBalance",
-
-      "#balance",
-
-      "#dutyBalance",
-
-      "[data-account-credit]",
-
-      "[data-wallet-balance]",
-
-      "[data-user-balance]",
-
-      "[data-credit]",
-
-      "[data-duty]"
-
-    ];
-
-
-    selectors.forEach(
-      selector => {
-
-        $$(selector).forEach(
-          element => {
-
-            element.textContent =
-              `${formatNumber(credit)} دیوتی`;
-
-          }
-        );
-
-      }
+    const elements = document.querySelectorAll(
+        "[data-wallet], #walletBalance, .wallet-balance"
     );
 
-  }
-
-
-  /* =========================================================
-     ROOM
-     ========================================================= */
-
-  async function getRoom(roomId) {
-
-    if (!roomId) return null;
-
-
-    const {
-      data,
-      error
-    } = await supabase
-      .from(TABLES.rooms)
-      .select("*")
-      .eq("id", roomId)
-      .maybeSingle();
-
-
-    if (error) {
-
-      console.error(
-        "Room error:",
-        error
-      );
-
-      return null;
-
-    }
-
-
-    return data || null;
-
-  }
-
-
-  /* =========================================================
-     GET ROOMS
-     ========================================================= */
-
-  async function getRooms() {
-
-    const {
-      data,
-      error
-    } = await supabase
-      .from(TABLES.rooms)
-      .select("*")
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
-
-
-    if (error) {
-
-      console.error(
-        "Rooms error:",
-        error
-      );
-
-      return [];
-
-    }
-
-
-    return data || [];
-
-  }
-
-
-  /* =========================================================
-     CHECK REGISTRATION
-     ========================================================= */
-
-  async function isRegistered(roomId) {
-
-    const userId =
-      await getCurrentUserId();
-
-
-    if (!userId || !roomId) {
-      return false;
-    }
-
-
-    const {
-      data,
-      error
-    } = await supabase
-      .from(TABLES.registrations)
-      .select("id")
-      .eq("room_id", roomId)
-      .eq("user_id", userId)
-      .limit(1);
-
-
-    if (error) {
-
-      console.error(
-        "Registration check:",
-        error
-      );
-
-      return false;
-
-    }
-
-
-    return Boolean(
-      data &&
-      data.length > 0
-    );
-
-  }
-
-
-  /* =========================================================
-     REGISTER
-     ========================================================= */
-
-  async function registerForRoom(
-    roomId,
-    playerName = ""
-  ) {
-
-    const user =
-      await getCurrentUser();
-
-
-    if (!user) {
-
-      showNotice(
-        "ابتدا وارد حساب کاربری خود شوید."
-      );
-
-      return {
-        success: false
-      };
-
-    }
-
-
-    if (!roomId) {
-
-      showNotice(
-        "روم انتخاب نشده است."
-      );
-
-      return {
-        success: false
-      };
-
-    }
-
-
-    /* -----------------------------------------
-       روم
-       ----------------------------------------- */
-
-    const room =
-      await getRoom(roomId);
-
-
-    if (!room) {
-
-      showNotice(
-        "این روم پیدا نشد."
-      );
-
-      return {
-        success: false
-      };
-
-    }
-
-
-    /* -----------------------------------------
-       روم تمام شده
-       ----------------------------------------- */
-
-    if (
-      room.finished === true ||
-      room.status === "finished" ||
-      room.status === "closed"
-    ) {
-
-      showNotice(
-        "این روم به پایان رسیده است."
-      );
-
-      return {
-        success: false
-      };
-
-    }
-
-
-    /* -----------------------------------------
-       ثبت نام قبلی
-       ----------------------------------------- */
-
-    const already =
-      await isRegistered(roomId);
-
-
-    if (already) {
-
-      showNotice(
-        "شما در این روم ثبت نام کرده‌اید."
-      );
-
-      return {
-        success: false,
-        alreadyRegistered: true
-      };
-
-    }
-
-
-    /* -----------------------------------------
-       ثبت نام
-       ----------------------------------------- */
-
-    const name =
-      playerName ||
-      user.user_metadata?.name ||
-      user.user_metadata?.full_name ||
-      user.email ||
-      "بازیکن";
-
-
-    const {
-      data,
-      error
-    } = await supabase
-      .from(TABLES.registrations)
-      .insert({
-
-        user_id: user.id,
-
-        room_id: roomId,
-
-        player_name: name,
-
-        registration_date:
-          new Date()
-            .toISOString()
-            .slice(0, 10)
-
-      })
-      .select()
-      .single();
-
-
-    if (error) {
-
-      /*
-         اگر قبلاً ثبت شده باشد
-         Unique Index جلوی ثبت دوباره را می‌گیرد.
-      */
-
-      if (
-        error.code === "23505"
-      ) {
-
-        showNotice(
-          "شما در این روم ثبت نام کرده‌اید."
-        );
-
-        return {
-          success: false,
-          alreadyRegistered: true
-        };
-
-      }
-
-
-      console.error(
-        "Registration error:",
-        error
-      );
-
-
-      showNotice(
-        "ثبت نام انجام نشد."
-      );
-
-
-      return {
-        success: false
-      };
-
-    }
-
-
-    showNotice(
-      "ثبت نام شما با موفقیت انجام شد."
-    );
-
-
-    await loadParticipants(roomId);
-
-
-    return {
-      success: true,
-      data
+    elements.forEach(el => {
+        el.textContent = `${balance.toLocaleString("fa-IR")} دیوتی`;
+    });
+
+    window.AmirDutyWallet = {
+        balance
     };
-
-  }
-
-
-  window.AmirDutyRegisterForRoom =
-    registerForRoom;
+}
 
 
-  /* =========================================================
-     PARTICIPANTS
-     ========================================================= */
+/* =========================================================
+   REGISTRATIONS
+   ========================================================= */
 
-  async function loadParticipants(
-    roomId
-  ) {
+async function loadUserRegistrations() {
 
-    if (!roomId) {
-      return [];
-    }
+    if (!currentUser) return [];
 
-
-    const {
-      data,
-      error
-    } = await supabase
-      .from(TABLES.registrations)
-      .select("*")
-      .eq("room_id", roomId)
-      .order(
-        "created_at",
-        {
-          ascending: true
-        }
-      );
-
+    const { data, error } = await supabaseClient
+        .from("registrations")
+        .select(`
+            id,
+            room_id,
+            player_name,
+            registration_date,
+            created_at,
+            rooms (
+                id,
+                name,
+                status,
+                finished
+            )
+        `)
+        .eq("user_id", currentUser.id);
 
     if (error) {
-
-      console.error(
-        "Participants error:",
-        error
-      );
-
-      return [];
-
+        console.error("خطا در دریافت ثبت‌نام‌ها:", error);
+        return [];
     }
 
-
-    renderParticipants(
-      data || []
-    );
-
+    window.AmirDutyRegistrations = data || [];
 
     return data || [];
+}
 
-  }
 
+/* =========================================================
+   CHECK ROOM CODES
+   ========================================================= */
 
-  function renderParticipants(
-    participants
-  ) {
+async function checkRoomCodes() {
 
-    const containers = [
+    if (!currentUser) return;
 
-      "#roomParticipants",
+    const registrations = await loadUserRegistrations();
 
-      "#participantsList",
+    if (!registrations.length) {
+        return;
+    }
 
-      "#registeredPlayers",
-
-      "[data-room-participants]"
-
+    const roomIds = [
+        ...new Set(
+            registrations
+                .map(item => Number(item.room_id))
+                .filter(Boolean)
+        )
     ];
 
+    if (!roomIds.length) return;
 
-    containers.forEach(
-      selector => {
+    /*
+       نکته مهم:
+       این درخواست فقط در صورتی کد را برمی‌گرداند
+       که RLS دیتابیس اجازه بدهد.
+    */
 
-        $$(selector).forEach(
-          container => {
-
-            if (
-              participants.length === 0
-            ) {
-
-              container.innerHTML = `
-                <div class="amir-empty-participants">
-                  هنوز کسی در این روم ثبت‌نام نکرده است.
-                </div>
-              `;
-
-              return;
-            }
-
-
-            container.innerHTML = `
-
-              <div class="amir-participants-header">
-
-                <strong>
-                  ثبت‌نامی‌های این روم
-                </strong>
-
-                <span>
-                  ${formatNumber(
-                    participants.length
-                  )} نفر
-                </span>
-
-              </div>
-
-
-              <div class="amir-participants-list">
-
-                ${participants.map(
-                  (person, index) => {
-
-                    const name =
-                      person.player_name ||
-                      person.name ||
-                      person.username ||
-                      `بازیکن ${index + 1}`;
-
-
-                    return `
-
-                      <div
-                        class="amir-participant"
-                      >
-
-                        <span
-                          class="amir-participant-number"
-                        >
-                          ${formatNumber(
-                            index + 1
-                          )}
-                        </span>
-
-                        <span
-                          class="amir-participant-name"
-                        >
-                          ${escapeHTML(name)}
-                        </span>
-
-                      </div>
-
-                    `;
-
-                  }
-                ).join("")}
-
-              </div>
-
-            `;
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =========================================================
-     ROOM CODE
-     ========================================================= */
-
-  async function getRoomCode(
-    roomId
-  ) {
-
-    if (!roomId) return null;
-
-
-    const {
-      data,
-      error
-    } = await supabase
-      .from(TABLES.roomCodes)
-      .select("*")
-      .eq("room_id", roomId)
-      .maybeSingle();
-
+    const { data, error } = await supabaseClient
+        .from("room_codes")
+        .select(`
+            id,
+            room_id,
+            code,
+            started,
+            started_at
+        `)
+        .in("room_id", roomIds)
+        .eq("started", true);
 
     if (error) {
-
-      console.error(
-        "Room code error:",
-        error
-      );
-
-      return null;
-
+        console.error("خطا در بررسی کد اتاق:", error);
+        return;
     }
 
+    if (!data || !data.length) return;
 
-    return data || null;
+    for (const roomCode of data) {
 
-  }
-
-
-  /* =========================================================
-     CHECK IF USER IS REGISTERED
-     ========================================================= */
-
-  async function canSeeRoomCode(
-    roomId
-  ) {
-
-    const registered =
-      await isRegistered(roomId);
-
-
-    return registered;
-
-  }
-
-
-  /* =========================================================
-     ROOM START CHECK
-     ========================================================= */
-
-  async function checkStartedRooms() {
-
-    const userId =
-      await getCurrentUserId();
-
-
-    if (!userId) return;
-
-
-    const {
-      data: registrations,
-      error
-    } = await supabase
-      .from(TABLES.registrations)
-      .select(
-        "id, room_id"
-      )
-      .eq(
-        "user_id",
-        userId
-      );
-
-
-    if (error) {
-
-      console.error(
-        "User registrations:",
-        error
-      );
-
-      return;
-
-    }
-
-
-    if (
-      !registrations ||
-      registrations.length === 0
-    ) {
-
-      return;
-
-    }
-
-
-    for (
-      const registration
-      of registrations
-    ) {
-
-      const roomId =
-        registration.room_id;
-
-
-      const code =
-        await getRoomCode(
-          roomId
+        const registration = registrations.find(
+            r => Number(r.room_id) === Number(roomCode.room_id)
         );
 
+        if (!registration) continue;
 
-      if (!code) continue;
+        /*
+           جلوگیری از نمایش دوباره یک نوتیفیکیشن
+           در همان باز بودن صفحه
+        */
 
+        const alertKey = String(roomCode.room_id);
 
-      /*
-         فقط زمانی که مدیر روم را شروع کرده
-      */
+        if (seenRoomAlerts.has(alertKey)) {
+            continue;
+        }
 
-      if (
-        code.started !== true
-      ) {
+        seenRoomAlerts.add(alertKey);
 
-        continue;
+        const room = Array.isArray(registration.rooms)
+            ? registration.rooms[0]
+            : registration.rooms;
 
-      }
-
-
-      const room =
-        await getRoom(roomId);
-
-
-      if (!room) continue;
-
-
-      showRoomStarted(
-        room,
-        code
-      );
-
+        showRoomCodeNotification({
+            roomId: roomCode.room_id,
+            roomName: room?.name || "اتاق مسابقه",
+            code: roomCode.code,
+            startedAt: roomCode.started_at
+        });
     }
-
-  }
-
-
-  /* =========================================================
-     START ANNOUNCEMENT
-     ========================================================= */
-
-  const shownAnnouncements =
-    new Set();
+}
 
 
-  function showRoomStarted(
-    room,
-    code
-  ) {
+/* =========================================================
+   ROOM CODE NOTIFICATION
+   ========================================================= */
 
-    const uniqueId =
-      `${room.id}-${code.id}-${code.started_at || ""}`;
+function showRoomCodeNotification({
+    roomId,
+    roomName,
+    code,
+    startedAt
+}) {
 
+    removeExistingRoomNotification();
 
-    if (
-      shownAnnouncements.has(
-        uniqueId
-      )
-    ) {
+    /* لرزش موبایل */
 
-      return;
+    try {
+        if (navigator.vibrate) {
+            navigator.vibrate([
+                250,
+                120,
+                250,
+                120,
+                500
+            ]);
+        }
+    } catch (e) {}
 
-    }
+    const overlay = document.createElement("div");
 
+    overlay.id = "amirDutyRoomNotification";
 
-    shownAnnouncements.add(
-      uniqueId
-    );
+    overlay.innerHTML = `
+        <div class="ad-room-alert">
 
+            <div class="ad-room-glow"></div>
 
-    document
-      .getElementById(
-        "amir-duty-room-start"
-      )
-      ?.remove();
+            <div class="ad-room-title">
+                اتاق مسابقه شروع شد
+            </div>
 
+            <div class="ad-room-subtitle">
+                ${escapeHTML(roomName)}
+            </div>
 
-    const popup =
-      document.createElement(
-        "div"
-      );
+            <div class="ad-room-label">
+                کد ورود اتاق
+            </div>
 
+            <div class="ad-room-code">
+                ${escapeHTML(String(code))}
+            </div>
 
-    popup.id =
-      "amir-duty-room-start";
+            <div class="ad-room-buttons">
 
+                <button
+                    type="button"
+                    id="adCopyRoomCode">
+                    کپی کد
+                </button>
 
-    popup.innerHTML = `
+                <button
+                    type="button"
+                    id="adCloseRoomNotification">
+                    بستن
+                </button>
 
-      <div class="amir-duty-start-overlay">
-
-        <div class="amir-duty-start-card">
-
-          <button
-            class="amir-duty-start-close"
-            type="button"
-            aria-label="بستن"
-          >
-            ×
-          </button>
-
-
-          <div class="amir-duty-warning">
-            ⚠️
-          </div>
-
-
-          <div class="amir-duty-start-title">
-
-            روم
-            ${escapeHTML(
-              room.name
-            )}
-            شروع شده ⚠️
-
-          </div>
-
-
-          <div class="amir-duty-start-label">
-
-            کد روم
-
-          </div>
-
-
-          <div class="amir-duty-room-code">
-
-            ${escapeHTML(
-              code.code
-            )}
-
-          </div>
-
-
-          <button
-            class="amir-duty-copy-code"
-            type="button"
-          >
-            کپی کد
-          </button>
-
+            </div>
 
         </div>
-
-      </div>
-
     `;
 
+    document.body.appendChild(overlay);
 
-    document.body.appendChild(
-      popup
-    );
+    requestAnimationFrame(() => {
+        overlay.classList.add("show");
+    });
 
+    const copyButton =
+        document.getElementById("adCopyRoomCode");
 
-    popup
-      .querySelector(
-        ".amir-duty-start-close"
-      )
-      ?.addEventListener(
-        "click",
-        () => {
+    const closeButton =
+        document.getElementById("adCloseRoomNotification");
 
-          popup.remove();
+    copyButton?.addEventListener("click", async () => {
 
-        }
-      );
+        try {
 
+            await navigator.clipboard.writeText(String(code));
 
-    popup
-      .querySelector(
-        ".amir-duty-copy-code"
-      )
-      ?.addEventListener(
-        "click",
-        async event => {
+            copyButton.textContent = "کپی شد ✓";
 
-          const button =
-            event.currentTarget;
+            if (navigator.vibrate) {
+                navigator.vibrate(100);
+            }
 
+            setTimeout(() => {
+                copyButton.textContent = "کپی کد";
+            }, 1800);
 
-          try {
+        } catch (error) {
 
-            await navigator
-              .clipboard
-              .writeText(
-                String(code.code)
-              );
+            /* روش جایگزین برای بعضی مرورگرها */
 
+            const textarea = document.createElement("textarea");
 
-            button.textContent =
-              "✓ کد کپی شد";
+            textarea.value = String(code);
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
 
-
-          } catch {
-
-            const textarea =
-              document.createElement(
-                "textarea"
-              );
-
-
-            textarea.value =
-              String(code.code);
-
-
-            document.body.appendChild(
-              textarea
-            );
-
+            document.body.appendChild(textarea);
 
             textarea.select();
 
-
-            document.execCommand(
-              "copy"
-            );
-
+            try {
+                document.execCommand("copy");
+                copyButton.textContent = "کپی شد ✓";
+            } catch (e) {
+                copyButton.textContent = "کپی نشد";
+            }
 
             textarea.remove();
-
-
-            button.textContent =
-              "✓ کد کپی شد";
-
-          }
-
-
-          setTimeout(
-            () => {
-
-              if (
-                button.isConnected
-              ) {
-
-                button.textContent =
-                  "کپی کد";
-
-              }
-
-            },
-            2000
-          );
-
         }
-      );
+    });
 
 
-    requestAnimationFrame(
-      () => {
+    closeButton?.addEventListener("click", () => {
 
-        popup.classList.add(
-          "show"
-        );
+        overlay.classList.remove("show");
 
-      }
-    );
+        setTimeout(() => {
+            overlay.remove();
+        }, 350);
+    });
+}
 
-  }
 
+/* =========================================================
+   REMOVE NOTIFICATION
+   ========================================================= */
 
-  /* =========================================================
-     NOTICE
-     ========================================================= */
+function removeExistingRoomNotification() {
 
-  function showNotice(
-    message
-  ) {
+    const old =
+        document.getElementById("amirDutyRoomNotification");
 
-    document
-      .getElementById(
-        "amir-duty-notice"
-      )
-      ?.remove();
+    if (!old) return;
 
+    old.remove();
+}
 
-    const notice =
-      document.createElement(
-        "div"
-      );
 
+/* =========================================================
+   REALTIME
+   ========================================================= */
 
-    notice.id =
-      "amir-duty-notice";
+function startRoomCodeRealtime() {
 
+    if (!supabaseClient || !currentUser) return;
 
-    notice.textContent =
-      message;
+    supabaseClient
+        .channel("amir-duty-room-codes")
+        .on(
+            "postgres_changes",
+            {
+                event: "*",
+                schema: "public",
+                table: "room_codes"
+            },
+            async () => {
 
+                /*
+                   وقتی مدیریت کد را تغییر دهد یا
+                   started را true کند، دوباره بررسی می‌کنیم.
+                */
 
-    document.body.appendChild(
-      notice
-    );
+                await checkRoomCodes();
+            }
+        )
+        .subscribe();
+}
 
 
-    setTimeout(
-      () => {
+/* =========================================================
+   POLLING BACKUP
+   ========================================================= */
 
-        notice.classList.add(
-          "hide"
-        );
-
-
-        setTimeout(
-          () => {
-
-            notice.remove();
-
-          },
-          350
-        );
-
-      },
-      2800
-    );
-
-  }
-
-
-  /* =========================================================
-     PUBLIC API
-     ========================================================= */
-
-  window.AmirDutyCredit = {
-
-    loadCredit,
-
-    getCurrentUser,
-
-    getCurrentUserId,
-
-    getRoom,
-
-    getRooms,
-
-    isRegistered,
-
-    registerForRoom,
-
-    loadParticipants,
-
-    getRoomCode,
-
-    checkStartedRooms,
-
-    showRoomStarted
-
-  };
-
-
-  /* =========================================================
-     STYLES
-     فقط برای قابلیت‌های جدید
-     ========================================================= */
-
-  const style =
-    document.createElement(
-      "style"
-    );
-
-
-  style.textContent = `
-
-    .amir-participants-header {
-
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-
-      margin-bottom:15px;
-      padding:15px 18px;
-
-      border-radius:18px;
-
-      background:
-        rgba(255,255,255,.85);
-
-      border:
-        1px solid
-        rgba(120,72,35,.15);
-
-      font-weight:900;
-
-    }
-
-
-    .amir-participants-header span {
-
-      padding:6px 12px;
-
-      border-radius:999px;
-
-      background:#784823;
-
-      color:white;
-
-      font-size:13px;
-
-    }
-
-
-    .amir-participants-list {
-
-      display:grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(190px,1fr)
-        );
-
-      gap:10px;
-
-    }
-
-
-    .amir-participant {
-
-      display:flex;
-
-      align-items:center;
-
-      gap:12px;
-
-      padding:13px 15px;
-
-      border-radius:16px;
-
-      background:
-        rgba(255,255,255,.9);
-
-      border:
-        1px solid
-        rgba(120,72,35,.13);
-
-      transition:.25s ease;
-
-    }
-
-
-    .amir-participant:hover {
-
-      transform:
-        translateY(-3px);
-
-      box-shadow:
-        0 10px 25px
-        rgba(80,45,20,.12);
-
-    }
-
-
-    .amir-participant-number {
-
-      width:34px;
-      height:34px;
-
-      display:grid;
-      place-items:center;
-
-      border-radius:11px;
-
-      background:#784823;
-
-      color:#fff;
-
-      font-weight:900;
-
-      flex:none;
-
-    }
-
-
-    .amir-participant-name {
-
-      font-weight:800;
-
-      overflow:hidden;
-
-      text-overflow:ellipsis;
-
-      white-space:nowrap;
-
-    }
-
-
-    .amir-empty-participants {
-
-      padding:24px;
-
-      text-align:center;
-
-      border-radius:18px;
-
-      border:
-        1px dashed
-        rgba(120,72,35,.25);
-
-      background:
-        rgba(120,72,35,.05);
-
-      font-weight:800;
-
-    }
-
-
-    #amir-duty-room-start {
-
-      position:fixed;
-
-      inset:0;
-
-      z-index:999999;
-
-      opacity:0;
-
-      visibility:hidden;
-
-      transition:
-        opacity .4s ease,
-        visibility .4s ease;
-
-    }
-
-
-    #amir-duty-room-start.show {
-
-      opacity:1;
-
-      visibility:visible;
-
-    }
-
-
-    .amir-duty-start-overlay {
-
-      position:absolute;
-
-      inset:0;
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
-
-      padding:20px;
-
-      background:
-        rgba(30,18,10,.60);
-
-      backdrop-filter:
-        blur(16px);
-
-      -webkit-backdrop-filter:
-        blur(16px);
-
-    }
-
-
-    .amir-duty-start-card {
-
-      position:relative;
-
-      width:
-        min(560px,94vw);
-
-      padding:34px 25px;
-
-      border-radius:30px;
-
-      text-align:center;
-
-      background:
-        rgba(255,255,255,.98);
-
-      border:
-        2px solid
-        rgba(120,72,35,.18);
-
-      box-shadow:
-        0 35px 100px
-        rgba(0,0,0,.28);
-
-      transform:
-        scale(.8)
-        translateY(30px);
-
-      transition:
-        .55s
-        cubic-bezier(.2,.9,.2,1);
-
-    }
-
-
-    #amir-duty-room-start.show
-    .amir-duty-start-card {
-
-      transform:
-        scale(1)
-        translateY(0);
-
-    }
-
-
-    .amir-duty-start-close {
-
-      position:absolute;
-
-      top:12px;
-      right:12px;
-
-      width:40px;
-      height:40px;
-
-      border:0;
-
-      border-radius:50%;
-
-      background:#f2ebe5;
-
-      color:#784823;
-
-      font-size:25px;
-
-      font-weight:900;
-
-      cursor:pointer;
-
-    }
-
-
-    .amir-duty-warning {
-
-      font-size:50px;
-
-      margin-bottom:10px;
-
-      animation:
-        amir-duty-warning-pulse
-        1s infinite;
-
-    }
-
-
-    .amir-duty-start-title {
-
-      color:#784823;
-
-      font-size:
-        clamp(
-          24px,
-          6vw,
-          40px
-        );
-
-      line-height:1.5;
-
-      font-weight:1000;
-
-      margin-bottom:15px;
-
-    }
-
-
-    .amir-duty-start-label {
-
-      font-size:16px;
-
-      font-weight:800;
-
-      opacity:.65;
-
-      margin-bottom:12px;
-
-    }
-
-
-    .amir-duty-room-code {
-
-      width:100%;
-
-      box-sizing:border-box;
-
-      padding:20px;
-
-      border-radius:22px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #f7f0e9,
-          #fff
-        );
-
-      border:
-        2px solid
-        rgba(120,72,35,.18);
-
-      color:#784823;
-
-      font-size:
-        clamp(
-          32px,
-          10vw,
-          58px
-        );
-
-      line-height:1.2;
-
-      font-weight:1000;
-
-      letter-spacing:3px;
-
-      direction:ltr;
-
-      word-break:break-all;
-
-      user-select:text;
-
-      margin-bottom:15px;
-
-    }
-
-
-    .amir-duty-copy-code {
-
-      border:0;
-
-      padding:13px 27px;
-
-      border-radius:15px;
-
-      background:#784823;
-
-      color:white;
-
-      font-weight:900;
-
-      font-size:15px;
-
-      cursor:pointer;
-
-      transition:.25s ease;
-
-    }
-
-
-    .amir-duty-copy-code:hover {
-
-      transform:
-        translateY(-3px);
-
-      box-shadow:
-        0 12px 28px
-        rgba(120,72,35,.25);
-
-    }
-
-
-    #amir-duty-notice {
-
-      position:fixed;
-
-      left:50%;
-
-      bottom:25px;
-
-      z-index:1000000;
-
-      transform:
-        translateX(-50%);
-
-      padding:
-        14px 21px;
-
-      border-radius:17px;
-
-      background:#784823;
-
-      color:#fff;
-
-      font-weight:900;
-
-      box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.2);
-
-      animation:
-        amir-duty-notice-in
-        .35s ease;
-
-      max-width:
-        calc(100vw - 30px);
-
-      text-align:center;
-
-    }
-
-
-    #amir-duty-notice.hide {
-
-      opacity:0;
-
-      transform:
-        translateX(-50%)
-        translateY(15px);
-
-      transition:.35s;
-
-    }
-
-
-    @keyframes
-    amir-duty-warning-pulse {
-
-      0%,100% {
-        transform:scale(1);
-      }
-
-      50% {
-        transform:scale(1.15);
-      }
-
-    }
-
-
-    @keyframes
-    amir-duty-notice-in {
-
-      from {
-
-        opacity:0;
-
-        transform:
-          translateX(-50%)
-          translateY(15px)
-          scale(.92);
-
-      }
-
-      to {
-
-        opacity:1;
-
-        transform:
-          translateX(-50%)
-          translateY(0)
-          scale(1);
-
-      }
-
-    }
-
-
-    @media(max-width:600px) {
-
-      .amir-participants-list {
-
-        grid-template-columns:1fr;
-
-      }
-
-      .amir-duty-start-card {
-
-        padding:
-          30px 18px;
-
-      }
-
-    }
-
-  `;
-
-
-  document.head.appendChild(
-    style
-  );
-
-
-  /* =========================================================
-     INIT
-     ========================================================= */
-
-  async function init() {
-
-    await loadCredit();
-
-    await checkStartedRooms();
-
+function startRoomCodePolling() {
 
     /*
-       هر 10 ثانیه بررسی می‌کند
-       آیا روم جدیدی شروع شده یا نه.
+       Realtime روش اصلی است.
+       این polling پشتیبان است تا اگر realtime
+       روی مرورگر یا هاست کار نکرد، کد همچنان برسد.
     */
 
-    setInterval(
-      async () => {
+    setInterval(async () => {
 
-        await loadCredit();
+        if (!currentUser) return;
 
-        await checkStartedRooms();
+        await checkRoomCodes();
 
-      },
-      10000
-    );
-
-  }
+    }, 10000);
+}
 
 
-  if (
-    document.readyState ===
-    "loading"
-  ) {
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
 
-    document.addEventListener(
-      "DOMContentLoaded",
-      init
-    );
+function escapeHTML(value) {
 
-  } else {
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
 
-    init();
 
-  }
+/* =========================================================
+   CSS
+   ========================================================= */
+
+(function injectRoomNotificationCSS() {
+
+    if (document.getElementById("amir-duty-room-css")) {
+        return;
+    }
+
+    const style = document.createElement("style");
+
+    style.id = "amir-duty-room-css";
+
+    style.textContent = `
+
+        #amirDutyRoomNotification {
+            position: fixed;
+            inset: 0;
+            z-index: 999999999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(8, 12, 30, 0.72);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            opacity: 0;
+
+            transition:
+                opacity .35s ease;
+        }
+
+
+        #amirDutyRoomNotification.show {
+            opacity: 1;
+        }
+
+
+        .ad-room-alert {
+
+            position: relative;
+
+            width: min(430px, 94vw);
+
+            padding: 32px 24px 24px;
+
+            border-radius: 28px;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.98),
+                    rgba(240,246,255,.97)
+                );
+
+            border:
+                1px solid rgba(255,255,255,.8);
+
+            box-shadow:
+                0 25px 80px rgba(0,0,0,.35),
+                0 0 45px rgba(60,120,255,.25);
+
+            transform:
+                translateY(35px)
+                scale(.88);
+
+            animation:
+                adRoomPopup .65s cubic-bezier(.2,.9,.2,1)
+                forwards;
+        }
+
+
+        .ad-room-glow {
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            top: -90px;
+            right: -60px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(70,130,255,.5),
+                    transparent 70%
+                );
+
+            filter: blur(8px);
+
+            animation:
+                adRoomGlow 2s ease-in-out infinite alternate;
+        }
+
+
+        .ad-room-title {
+
+            position: relative;
+
+            font-family:
+                Vazirmatn,
+                Tahoma,
+                sans-serif;
+
+            font-size: 26px;
+
+            font-weight: 900;
+
+            color: #172554;
+
+            margin-bottom: 10px;
+        }
+
+
+        .ad-room-subtitle {
+
+            position: relative;
+
+            font-family:
+                Vazirmatn,
+                Tahoma,
+                sans-serif;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            color: #64748b;
+
+            margin-bottom: 25px;
+        }
+
+
+        .ad-room-label {
+
+            position: relative;
+
+            font-family:
+                Vazirmatn,
+                Tahoma,
+                sans-serif;
+
+            font-size: 14px;
+
+            color: #64748b;
+
+            margin-bottom: 8px;
+        }
+
+
+        .ad-room-code {
+
+            position: relative;
+
+            direction: ltr;
+
+            user-select: all;
+
+            font-family:
+                monospace;
+
+            font-size: 34px;
+
+            font-weight: 900;
+
+            letter-spacing: 5px;
+
+            color: #2563eb;
+
+            padding: 18px 15px;
+
+            margin-bottom: 22px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe
+                );
+
+            border:
+                2px solid rgba(37,99,235,.2);
+
+            box-shadow:
+                inset 0 0 25px rgba(37,99,235,.08),
+                0 0 30px rgba(37,99,235,.12);
+
+            animation:
+                adRoomCodePulse 1.8s ease-in-out infinite;
+        }
+
+
+        .ad-room-buttons {
+
+            position: relative;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+        }
+
+
+        .ad-room-buttons button {
+
+            border: none;
+
+            border-radius: 15px;
+
+            padding: 14px 10px;
+
+            cursor: pointer;
+
+            font-family:
+                Vazirmatn,
+                Tahoma,
+                sans-serif;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        #adCopyRoomCode {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(37,99,235,.25);
+        }
+
+
+        #adCloseRoomNotification {
+
+            color: #334155;
+
+            background: #e2e8f0;
+        }
+
+
+        .ad-room-buttons button:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.02);
+        }
+
+
+        .ad-room-buttons button:active {
+
+            transform:
+                scale(.96);
+        }
+
+
+        @keyframes adRoomPopup {
+
+            0% {
+                opacity: 0;
+                transform:
+                    translateY(60px)
+                    scale(.75)
+                    rotate(-2deg);
+            }
+
+            60% {
+                opacity: 1;
+                transform:
+                    translateY(-8px)
+                    scale(1.03)
+                    rotate(1deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1)
+                    rotate(0);
+            }
+        }
+
+
+        @keyframes adRoomGlow {
+
+            from {
+                transform: scale(.8);
+                opacity: .55;
+            }
+
+            to {
+                transform: scale(1.35);
+                opacity: 1;
+            }
+        }
+
+
+        @keyframes adRoomCodePulse {
+
+            0%,100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.025);
+            }
+        }
+
+
+        @media(max-width:480px) {
+
+            .ad-room-alert {
+                padding: 28px 18px 20px;
+                border-radius: 24px;
+            }
+
+            .ad-room-title {
+                font-size: 22px;
+            }
+
+            .ad-room-code {
+                font-size: 27px;
+                letter-spacing: 3px;
+            }
+
+            .ad-room-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    `;
+
+    document.head.appendChild(style);
 
 })();
+
+
+/* =========================================================
+   PUBLIC API
+   ========================================================= */
+
+window.AmirDutyCredit = {
+
+    getUser: () => currentUser,
+
+    getWallet: () =>
+        window.AmirDutyWallet || { balance: 0 },
+
+    getRegistrations: () =>
+        window.AmirDutyRegistrations || [],
+
+    reloadWallet: loadWallet,
+
+    reloadRegistrations: loadUserRegistrations,
+
+    checkRoomCodes,
+
+    refresh: async () => {
+        await loadWallet();
+        await loadUserRegistrations();
+        await checkRoomCodes();
+    }
+
+};
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initAmirDutyCredit
+    );
+
+} else {
+
+    initAmirDutyCredit();
+
+}
